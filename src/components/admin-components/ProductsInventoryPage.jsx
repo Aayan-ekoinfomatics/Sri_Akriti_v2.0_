@@ -44,12 +44,13 @@ const ProductsInventoryPage = () => {
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
             // console.log(response?.data)
             setAllProducts(response?.data?.data)
+            console.log(Math.ceil(allProducts?.length / usersPerPage))
         })
     }, [])
 
-    useEffect(() => {
-        console.log(allProducts)
-    }, [allProducts])
+    // useEffect(() => {
+    //     console.log(Math.ceil(allProducts?.length / usersPerPage))
+    // }, [])
 
 
     useEffect(() => {
@@ -177,7 +178,7 @@ const ProductsInventoryPage = () => {
                                                                             formdata.append("token", localStorage.getItem("token"));
                                                                             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
                                                                                 // console.log(response?.data)
-                                                                                setAllProducts(response?.data?.data)
+                                                                                // setAllProducts(response?.data?.data)
                                                                             })
                                                                         }}><img src={delete_icon} className="w-[14px]" /></span>
                                                                     </div>
@@ -200,49 +201,6 @@ const ProductsInventoryPage = () => {
                                 </div>
                             </div>
                         </div>
-
-
-                        {/* popup modal */}
-                        {/* <div className={`z-[110] bg-[#EAEAEA] rounded-[20px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-[480px] h-[480px] transition-all duration-300 ${popUpToggle ? 'block ease-in' : 'hidden ease-out'}`}>
-                            <div className='w-full flex justify-end'>
-                                <img src={cross} className='cursor-pointer mt-5 mr-5 w-[18px] md:w-[20px]' alt="" onClick={() => setPopUpToggle(null)} />
-                            </div>
-                            <div className='w-full h-[100%] flex flex-col justify-evenly items-center'>
-                                <form className='w-full py-2 px-6' action="">
-                                    <div className='flex justify-between my-2 w-[50%] mx-auto'>
-                                        <div className='flex gap-2 items-center'>
-                                            <label className='text-[12px]'>Male</label>
-                                            <input className='text-[12px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type="radio" placeholder='Product gender' />
-                                        </div>
-                                        <div className='flex gap-2 items-center'>
-                                            <label className='text-[12px]'>Female</label>
-                                            <input className='text-[12px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type="radio" placeholder='Product gender' />
-                                        </div>
-                                    </div>
-                                    <div className='flex flex-col my-2'>
-                                        <input className='text-[13px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type="text" placeholder='Product Name' />
-                                    </div>
-                                    <div className='flex flex-col my-2'>
-                                        <input className='text-[13px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type="text" placeholder='Product category' />
-                                    </div>
-                                    <div className='flex flex-col my-2'>
-                                        <input className='text-[13px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type='text' placeholder='Diamond Quality' />
-                                    </div>
-                                    <div className='flex flex-col my-2'>
-                                        <input className='text-[13px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type='text' placeholder='Product Size' />
-                                    </div>
-                                    <div className='flex flex-col my-2 w-fit mx-auto '>
-                                        <input className='text-[13px] px-2 text-center py-[6px] outline-none rounded-[10px] border-2 border-white bg-[#E7E7E7]' type='file' placeholder='Product image' />
-                                    </div>
-                                </form>
-                                <div className='w-full flex justify-center'>
-                                    <button className='bg-white text-black py-[6px] px-4 rounded-[10px] shadow-md'>Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={`absolute bg-black inset-0 opacity-60 w-full h-[100vh] z-[100] ${popUpToggle ? 'block ease-in' : 'hidden ease-out'}`} onClick={() => setPopUpToggle(null)}>
-
-                        </div> */}
 
                     </div>
                 </div>
