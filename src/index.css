@@ -1,0 +1,191 @@
+/* @import url("https://fonts.cdnfonts.com/css/gill-sans"); */
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom fonts */
+@font-face {
+  font-family: "GoldenSignature";
+  src: url("../public/fonts/GoldenSignature.ttf");
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  /* background-color: #b0b0b013; */
+  /* background-color: #b0b0b00a; */
+  background-color: #69696911;
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.gill-sans-nav {
+  font-family: "Gill Sans", sans-serif;
+}
+
+.lora {
+  font-family: "Lora", serif;
+}
+
+
+.text-vertical {
+  writing-mode: vertical-rl; 
+}
+
+.slick-next::before, .slick-prev::before {
+  content: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  transition: all 0.3s ease-in-out;
+  background: rgb(168, 168, 168);
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #929292;
+}
+
+
+input[type=radio] {
+  border: 0.5px solid #696969;
+  padding: 0.35em;
+  -webkit-appearance: none;
+}
+
+
+input[type=radio]:checked {
+  /* background: url(data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==) no-repeat center center; */
+  background: #696969;
+  background-size: 9px 9px;
+}
+
+input[type=radio]:focus {
+  outline-color: transparent;
+}
+
+input[type="date"]{
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator{
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+  color: black !important;
+}
+
+.paginationButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #494949;
+  font-size: 14px;
+  /* max-width: 500px; */
+}
+
+.previousBtn {
+  color: #494949;
+}
+
+.nextBtn {
+  color: #494949;
+}
+
+.paginationActive {
+  background-color: #3EDCFF;
+  color: black;
+  padding: 0px 7px;
+  border-radius: 50%;
+}
+
+/* .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select some files';
+  display: inline-block;
+  background-color: #DDDDDD;
+  border: 1px solid #999;
+  border-radius: 8px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+} */
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  padding: 6px 25px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #696363;
+  background-color: #DDDDDD;
+  display: inline-block;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.inputfile + label:hover {
+  color: rgb(53, 53, 53);
+  /* background-color: #c8f5fffd; */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.inputfile + label:active {
+  color: black;
+  transform: scale(0.91);
+  background-color: #1ab9dd;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
