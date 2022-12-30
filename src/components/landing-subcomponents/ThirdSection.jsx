@@ -60,7 +60,7 @@ const ThirdSection = () => {
             third_section?.section_data?.map((data, i) => (
               <div className="flex-1 flex overflow-hidden group justify-end" key={i} >
             <div className="w-fit translate-x-8 z-[100] group-hover:translate-x-5 text-vertical p-2 transition-all pb-8">
-              <h1 className="text-right text-[#3EDCFF] poppins text-[15px] lg:text-[21px] lg:tracking-[10px]">
+              <h1 className="text-right text-[#3EDCFF] poppins text-[15px] lg:text-[20px] lg:tracking-[7px]">
                   {data?.title}
               </h1>
             </div>
