@@ -23,7 +23,7 @@ const admiOrdersApi = {
         {order_id: 'GH41', order_name: 'SAA-w2-0016', order_category: 'Ring', icon_edit: edit_icon, icon_delete: delete_icon,},
         {order_id: 'GH44', order_name: 'SAA-w2-0017', order_category: 'Bracelet', icon_edit: edit_icon, icon_delete: delete_icon,},
         {order_id: 'GH43', order_name: 'SAA-w2-0012', order_category: 'Necklace', icon_edit: edit_icon, icon_delete: delete_icon,},
-        {order_id: 'GH46', order_name: 'SAA-w2-0015', order_category: 'Necklace', icon_edit: edit_icon, icon_delete: delete_icon,},
+        {order_id: 'GH46', order_name: 'SAA-w2-0015', order_category: 'Necklace', icon_edit:edit_icon, icon_delete: delete_icon,},
         {order_id: 'GH45', order_name: 'SAA-w2-0020', order_category: 'Ring', icon_edit: edit_icon, icon_delete: delete_icon,},
         {order_id: 'GH48', order_name: 'SAA-w2-0018', order_category: 'Chain', icon_edit: edit_icon, icon_delete: delete_icon,},
         {order_id: 'GH47', order_name: 'SAA-w2-0013', order_category: 'Chain', icon_edit: edit_icon, icon_delete: delete_icon,},

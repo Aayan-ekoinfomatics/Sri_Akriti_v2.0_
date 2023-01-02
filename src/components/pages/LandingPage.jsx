@@ -25,17 +25,6 @@ const LandingPage = () => {
 
   const [mobileNav, setMobileNav] = useRecoilState(navApiAtom);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(import.meta.env.VITE_APP_BASE_API_LINK + "landingPage")  
-  //     .then(function (response) {
-  //       setLandingApiData(response?.data);
-      
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
   
     // useEffect(() => {
     //   console.log('landing data: ', landingApiData)
@@ -68,54 +57,6 @@ const LandingPage = () => {
             </div>
           </div>
 
-        {/* {  landingApiData == null ?
-
-          static data
-          <div className="w-[93%] hidden md:flex justify-around mt-[-25px] pb-[42px]">
-            <div className="w-[8%] flex justify-center items-end pb-[200px]">
-              <img src={arrow} className="" />
-            </div>
-            <div className="hidden flex-[0.9] md:flex items-center">
-              <div className="flex w-[47%] flex-col justify-between items-center ">
-                <div className="flex flex-1 flex-col items-start my-20 w-[80%] lora font-[16px] text-[#696969] text-[35px] leading-tight">
-                  <div>
-                    <p>{first_section?.section_data?.section_title?.first}</p>
-                    <p>{first_section?.section_data?.section_title?.second}</p>
-                    <p>{first_section?.section_data?.section_title?.third}</p>
-                  </div>
-                </div>
-                <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
-              </div>
-              <div className=" w-[53%]">
-                <img src={first_section?.section_data?.section_image} className="w-[1500px]" /> 
-              </div>
-            </div>
-          </div>
-
-          :
-
-          dynamic data
-          <div className="w-[93%] hidden md:flex justify-around mt-[-25px] pb-[42px]">
-            <div className="w-[8%] flex justify-center items-end pb-[200px]">
-              <img src={arrow} className="" />
-            </div>
-            <div className="hidden flex-[0.9] md:flex items-center">
-              <div className="flex w-[47%] flex-col justify-between items-center ">
-                <div className="flex flex-1 flex-col items-start my-20 w-[80%] lora font-[16px] text-[#696969] text-[35px] leading-tight">
-                  <div>
-                    <p>{first_section?.section_data?.section_title?.first}</p>
-                    <p>{first_section?.section_data?.section_title?.second}</p>
-                    <p>{first_section?.section_data?.section_title?.third}</p>
-                  </div>
-                </div>
-                <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
-              </div>
-              <div className=" w-[53%]">
-                <img src={import.meta.env.VITE_APP_BASE_API_LINK + landingApiData?.first_section?.section_image} className="w-[1500px]" /> 
-              </div>
-            </div>
-          </div>
-        } */}
 
         {/* mobile view */}
         <div className="md:hidden">
@@ -123,7 +64,7 @@ const LandingPage = () => {
           <ul className="flex justify-evenly w-full sm:w-[95%] mx-auto px-1">
             {
               mobileNav?.slice(0, 4)?.map((data, i) => (
-                <NavLink key={i} to={data?.routes} 
+                <NavLink key={i} to={data?.routes}
                   onClick={() => {
                     let formdata = new FormData();
                     formdata.append("id", data?.id);
@@ -134,10 +75,7 @@ const LandingPage = () => {
                 ><li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{data?.title}</li></NavLink>
               ))
             }
-            {/* <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.first}</li>
-            <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.second}</li>
-            <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.third}</li>
-            <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.forth}</li> */}
+            
           </ul>
           {/* </div> */}
           <div className="w-[93%] mt-4 flex justify-between">

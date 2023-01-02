@@ -76,10 +76,8 @@ const OrderDetails = () => {
                 
                 <h1 className="poppins text-[11px] md:text-[14px] my-3 mt-6">Return within 14 days of Delivery applicable</h1>
                 <h1 className="poppins text-[11px] md:text-[13px] my-3 mb-6 font-[600]">Person Name, 123-456-789</h1>
-                <div className="bg-[#E6E6E6] p-4 my-4 mt-6 tracking-[1px] ">
-                    <h1 className="poppins text-[13px] md:text-[15px] font-[500] mb-4 md:mb-0" >Delivery Address</h1>
-                    <h1 className="poppins text-[11px] md:text-[12px] mt-4 md:mt-0" >71, A S K Memon Street, Chira Bazar, Mumbai, India</h1>
-                </div>
+                
+                
                 <div className="bg-[#E6E6E6] p-4 my-4 mb-6 tracking-[1px] ">
                     <h1 className="poppins text-[12px] md:text-[14px] mb-4 font-[300]" >Order ID #1234565789qwerty</h1>
                     <h1 className="poppins text-[12px] md:text-[13px] font-[600] mt-4 md:mt-0" >Order Payment Details</h1>
