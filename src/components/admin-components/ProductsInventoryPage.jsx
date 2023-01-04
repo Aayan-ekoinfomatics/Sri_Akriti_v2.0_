@@ -13,6 +13,7 @@ import ReactPaginate from 'react-paginate'
 import edit_icon from '../../assets/icons/admit-edit.svg'
 import cross from '../../assets/icons/cross.svg'
 import delete_icon from '../../assets/icons/admin-delete.svg'
+import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
 
 const ProductsInventoryPage = () => {
 
@@ -52,7 +53,6 @@ const ProductsInventoryPage = () => {
     //     console.log(Math.ceil(allProducts?.length / usersPerPage))
     // }, [])
 
-
     useEffect(() => {
         setFilteredValue(admiProductsApi?.products?.filter((filterValue) => {
             if (searchData === '') {
@@ -62,6 +62,13 @@ const ProductsInventoryPage = () => {
             }
         }).length)
     }, [searchData])
+
+    // useEffect(() => {
+    //     axios.post((import.meta.env.VITE_APP_BASE_API_LINK + 'allProducts', {data: {id:8}}).then((response) => {
+    //         console.log(response?.data)
+    //         setAllProducts(response?.data)
+    //     }))
+    // }, [])
 
 
     return (
@@ -176,7 +183,7 @@ const ProductsInventoryPage = () => {
                                                                             let formdata = new FormData();
                                                                             formdata.append("id", data?.id);
                                                                             formdata.append("token", localStorage.getItem("token"));
-                                                                            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
+                                                                            axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
                                                                                 // console.log(response?.data)
                                                                                 // setAllProducts(response?.data?.data)
                                                                             })
@@ -193,8 +200,8 @@ const ProductsInventoryPage = () => {
                                                 <div className='w-fit grayscale-[50%]'>
                                                     <img src={img} className="w-[180px]" />
                                                 </div>
-                                                <div className='text-center text-[#7C7A7A]'>
-                                                    <p className='roboto text-[14px]'>No results found</p>
+                                                <div className="text-center text-[#7C7A7A]">
+                                                    <p className="roboto text-[14px]">No results Found</p>
                                                 </div>
                                             </div>
                                     }
@@ -207,15 +214,17 @@ const ProductsInventoryPage = () => {
 
                 {/* mani flex - 2 */}
                 <div className='w-full flex justify-center items-center pt-4 relative'>
-                    {/* <div className='flex items-center gap-3'>
+                    <div className='flex items-center gap-3'>
                         <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
                         {
                             admiProductsApi?.page_number_data?.map((num_data, num_index) => (
-                                <p key={num_index} className='mx-1 text-[#718096] text-[12px]'>{num_data}</p>
+                                <>
+                                    <p key={num_index} className='mx-1 text-[#718096] text-[12px]'>{num_data}</p>
+                                </>
                             ))
                         }
                         <span className='ml-3' ><img src={right_arrow} className="w-[11px]" /></span>
-                    </div> */}
+                    </div>
                     <ReactPaginate
                         // previousLabel={'←'}
                         previousLabel={<img src={left_arrow} />}

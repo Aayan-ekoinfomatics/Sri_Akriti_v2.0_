@@ -44,182 +44,97 @@ const FourthSection = () => {
   return (
     <>
       {/* desktop view */}
-      {/* <div className="hidden md:block mb-20">
-        <div className="flex w-[90%] mx-auto pb-5 pt-16 items-center justify-between">
-          <h1 className="lora italic text-[30px]">
-            {fourth_section?.section_data?.section_title}
-            {landingFourthSectionApiData?.fourth_section?.section_title}
-          </h1>
-          <p className="tracking-[8px] poppins text-[20px] leading-10">
-            SEE FULL COLLECTION
-          </p>
-        </div>
-        <div className="px-2">
-        <Slider
-          className="w-[92%] mx-auto pt-5 pb-10 z-[780]"
-          prevArrow={<PreviousBtn />}
-          nextArrow={<NextBtn />}
-          slidesToScroll={1}
-          slidesToShow={4}
-          infinite
-        >
-          {
-            landingFourthSectionApiData?.fourth_section?.carousal_images?.map((data, i) => (
-              <div className="max-w-[100%] h-[100%]" key={i}>
-                <NavLink to={data?.route}><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="object-contain" /></NavLink>
-              </div>
-            ))
-          }
-        </Slider>
-        </div>
-      </div> */}
-      
+
       {
         !landingFourthSectionApiData == null ?
-        <>
-        <div className="hidden md:block mb-20">
-        <div className="flex w-[90%] mx-auto pb-5 pt-16 items-center justify-between">
-          <h1 className="lora italic text-[30px]">
-            {/* {fourth_section?.section_data?.section_title} */}
-            {landingFourthSectionApiData?.fourth_section?.section_title}
-          </h1>
-          <p className="tracking-[8px] poppins text-[20px] leading-10">
-            SEE FULL COLLECTION
-          </p>
-        </div>
-        <div className="px-2">
-        <Slider
-          className="w-[92%] mx-auto pt-5 pb-10 z-[780]"
-          prevArrow={<PreviousBtn />}
-          nextArrow={<NextBtn />}
-          slidesToScroll={1}
-          slidesToShow={4}
-          infinite
-        >
-          {
-            landingFourthSectionApiData?.fourth_section?.carousal_images?.map((data, i) => (
-              <div className="max-w-[100%] h-[100%]" key={i}>
-                <NavLink to={data?.route}><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="object-contain" /></NavLink>
-              </div>
-            ))
-          }
-        </Slider>
-        </div>
-      </div>
-        </>
-        :
-        <>
-        <div className="hidden md:block mb-20">
-          <div className="flex w-[90%] mx-auto pb-5 pt-16 items-center justify-between">
-            <h1 className="lora italic text-[30px]">
-              {fourth_section?.section_data?.section_title}
-              {/* {landingFourthSectionApiData?.fourth_section?.section_title} */}
-            </h1>
-            <p className="tracking-[8px] poppins text-[20px] leading-10">
-              SEE FULL COLLECTION
-            </p>
+          <div className="hidden md:block mb-20">
+            <div className="flex w-[90%] mx-auto pb-5 pt-16 items-center justify-between">
+              <h1 className="lora italic text-[30px]">
+                {/* {fourth_section?.section_data?.section_title} */}
+                {landingFourthSectionApiData?.fourth_section?.section_title}
+              </h1>
+              <p className="tracking-[8px] poppins text-[20px] leading-10">
+                SEE FULL COLLECTION
+              </p>
+            </div>
+            <div className="px-2">
+              <Slider
+                className="w-[92%] mx-auto pt-5 pb-10 z-[780]"
+                prevArrow={<PreviousBtn />}
+                nextArrow={<NextBtn />}
+                slidesToScroll={1}
+                slidesToShow={4}
+                infinite
+              >
+                {
+                  landingFourthSectionApiData?.fourth_section?.carousal_images?.map((data, i) => (
+                    <div className="max-w-[100%] h-[100%]" key={i}>
+                      <NavLink to={data?.route}><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="object-contain" /></NavLink>
+                    </div>
+                  ))
+                }
+              </Slider>
+            </div>
           </div>
-          <div className="px-2">
-            <Slider
-              className="w-[92%] mx-auto pt-5 pb-10 z-[780]"
-              prevArrow={<PreviousBtn />}
-              nextArrow={<NextBtn />}
-              slidesToScroll={1}
-              slidesToShow={4}
-              infinite
-            >
-              {
-                fourth_section?.section_data?.carousal_images?.map((data, i) => (
-                  <div className="max-w-[100%] h-[100%]" key={i}>
-                    <NavLink to={data?.route}><img src={data?.image} className="object-contain" /></NavLink>
-                  </div>
-                ))
-              }
-            </Slider>
+          :
+          <div className="hidden md:block mb-20">
+            <div className="flex w-[90%] mx-auto pb-5 pt-16 items-center justify-between">
+              <h1 className="lora italic text-[30px]">
+                {fourth_section?.section_data?.section_title}
+                {/* {landingFourthSectionApiData?.fourth_section?.section_title} */}
+              </h1>
+              <p className="tracking-[8px] poppins text-[20px] leading-10">
+                SEE FULL COLLECTION
+              </p>
+            </div>
+            <div className="px-2">
+              <Slider
+                className="w-[92%] mx-auto pt-5 pb-10 z-[780]"
+                prevArrow={<PreviousBtn />}
+                nextArrow={<NextBtn />}
+                slidesToScroll={1}
+                slidesToShow={4}
+                infinite
+              >
+                {
+                  fourth_section?.section_data?.carousal_images?.map((data, i) => (
+                    <div className="max-w-[100%] h-[100%]" key={i}>
+                      <NavLink to={data?.route}><img src={data?.image} className="object-contain" /></NavLink>
+                    </div>
+                  ))
+                }
+              </Slider>
+            </div>
           </div>
-        </div>
-        </>
       }
 
 
       {/* mobile view */}
       <div className="block md:hidden py-14 ">
-        {/* {
-          !landingSectionApiAtom == null ?
-          <div className="w-[90%] mx-auto ">
-            <h1 className="lora italic text-[20px]">
-              {landingFourthSectionApiData?.fourth_section?.section_title}
-            </h1>
-            <Slider
-              className="w-[95%] mx-auto pt-5 pb-10"
-              prevArrow={<PreviousBtn />}
-              nextArrow={<NextBtn />}
-              slidesToScroll={1}
-              slidesToShow={2}
-              infinite
-            >
-              {
-                landingFourthSectionApiData?.fourth_section?.carousal_images?.map((data, i) => (
-                  <div className="max-w-[100%] h-[100%]" key={i}>
-                    <img src={data?.image} className="object-contain" />
-                  </div>
-                ))
-              }
-            </Slider>
-            <p className="tracking-[8px] poppins text-[12px] leading-10">
-              SEE FULL COLLECTION
-            </p>
-          </div>
-        :
-          <div className="w-[90%] mx-auto ">
-            <h1 className="lora italic text-[20px]">
-              {fourth_section?.section_data?.section_title}
-            </h1>
-            <Slider
-              className="w-[95%] mx-auto pt-5 pb-10"
-              prevArrow={<PreviousBtn />}
-              nextArrow={<NextBtn />}
-              slidesToScroll={1}
-              slidesToShow={2}
-              infinite
-            >
-              {
-              fourth_section?.section_data?.carousal_images?.map((data, i) => (
-                <div className="max-w-[100%] h-[100%]" key={i}>
-                  <img src={data} className="object-contain" />
-                </div>
-              ))
-            }
-            </Slider>
-            <p className="tracking-[8px] poppins text-[12px] leading-10">
-              SEE FULL COLLECTION
-            </p>
-          </div>
-        } */}
         <div className="w-[90%] mx-auto ">
-            <h1 className="lora italic text-[20px]">
-              {fourth_section?.section_data?.section_title}
-            </h1>
-            <Slider
-              className="w-[95%] mx-auto pt-5 pb-10"
-              prevArrow={<PreviousBtn />}
-              nextArrow={<NextBtn />}
-              slidesToScroll={1}
-              slidesToShow={2}
-              infinite
-            >
-              {
+          <h1 className="lora italic text-[20px]">
+            {fourth_section?.section_data?.section_title}
+          </h1>
+          <Slider
+            className="w-[95%] mx-auto pt-5 pb-10"
+            prevArrow={<PreviousBtn />}
+            nextArrow={<NextBtn />}
+            slidesToScroll={1}
+            slidesToShow={2}
+            infinite
+          >
+            {
               fourth_section?.section_data?.carousal_images?.map((data, i) => (
                 <div className="max-w-[100%] h-[100%]" key={i}>
                   <NavLink to={data?.route + '/:product_id'}><img src={data?.image} className="object-contain" /></NavLink>
                 </div>
               ))
             }
-            </Slider>
-            <p className="tracking-[8px] poppins text-[12px] leading-10">
-              SEE FULL COLLECTION
-            </p>
-          </div>
+          </Slider>
+          <p className="tracking-[8px] poppins text-[12px] leading-10">
+            SEE FULL COLLECTION
+          </p>
+        </div>
       </div>
     </>
   );

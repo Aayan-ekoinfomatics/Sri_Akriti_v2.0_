@@ -72,9 +72,9 @@ function App() {
         />
       </div>
 
-      {/* <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
+      <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
         <Navbar />
-      </div> */}
+      </div>
       <div>
         <Routes>
           <Route path='*' element={<Navigate to={localStorage.getItem("status") === 'true' ? '/' : '/login'} replace={true} />} />
@@ -89,10 +89,10 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
 
           {/* <Route element={<ProtectedRouteAdmin />} > */}
-            <Route path="/admin-products" element={<ProductsInventoryPage />} />
+            {/* <Route path="/admin-products" element={<ProductsInventoryPage />} />
             <Route path="/admin-orders" element={<OrdersInventoryPage />} />  
             <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
-            <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
+            <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} /> */}
           {/* </Route> */}
 
           {/* <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} /> */}
@@ -115,7 +115,7 @@ function App() {
 
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

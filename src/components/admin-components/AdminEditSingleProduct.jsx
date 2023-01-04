@@ -74,42 +74,6 @@ const AdmitEditSingleProduct = () => {
     // }, [selectedDiamondQuality])
 
 
-    // const diamondQalityApi = {
-    //     product: [
-    //         {
-    //             diamond_quality: 'ABCD',
-    //             size: ['22', '21', '20'],
-    //             weight: ['50', '60', '70'],
-    //             actual_price: ['22000', '23000', '24000'],
-    //             selling_price: ['24000', '26000', '28000'],
-    //         },
-    //         {
-    //             diamond_quality: 'EFGH',
-    //             size: ['23', '22', '21'],
-    //             weight: ['40', '50', '60'],
-    //             actual_price: ['24000', '26000', '28000'],
-    //             selling_price: ['26000', '28000', '30000'],
-    //         },
-    //         {
-    //             diamond_quality: 'IJKL',
-    //             size: ['24', '23', '22'],
-    //             weight: ['30', '50', '60'],
-    //             actual_price: ['26000', '28000', '30000'],
-    //             selling_price: ['28000', '30000', '32000'],
-    //         },
-    //         {
-    //             diamond_quality: 'MNOP',
-    //             size: ['25', '24', '23'],
-    //             weight: ['20', '70', '90'],
-    //             actual_price: ['32000', '30000', '28000'],
-    //             selling_price: ['34000', '32000', '30000'],
-    //         },
-    //     ],
-    //     variants: [
-    //         {}
-    //     ],
-    // }
-
     const submitForm = (e) => {
         e.preventDefault()
         // let formdata = new FormData();

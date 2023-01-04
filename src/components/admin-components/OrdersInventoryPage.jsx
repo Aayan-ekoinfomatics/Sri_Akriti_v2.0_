@@ -171,7 +171,7 @@ const OrdersInventoryPage = () => {
                                                                             let formdata = new FormData();
                                                                             formdata.append("id", data?.id);
                                                                             formdata.append("token", localStorage.getItem("token"));
-                                                                            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'singleOrderDelete', formdata).then((response) => {
+                                                                            axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'singleOrderDelete', formdata).then((response) => {
                                                                                 // console.log(response?.data)
                                                                                 // setAllOrders(response?.data?.data)
                                                                             })

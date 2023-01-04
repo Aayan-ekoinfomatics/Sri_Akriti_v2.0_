@@ -57,7 +57,7 @@ const OrderList = () => {
             <div className="w-full my-4 md:mb-24">
                 <h1 className="text-[25px] md:text-[30px] lora italic font-[500] text-center">My Orders</h1>
             </div>
-            <div className="w-full md:w-[53%] mx-auto md:flex flex-row-reverse justify-between mb-10 relative">
+            <div className="w-full md:w-[60%] mx-auto md:flex flex-row-reverse gap-2 justify-between mb-10 relative">
 
                 {/* searchbar */}
                 <div className="w-full flex border border-[#696969b6] bg-[#69696911] my-2 md:my-0 max-w-[500px]">
@@ -66,9 +66,9 @@ const OrderList = () => {
                 </div>
 
                 {/* filter */}
-                <div className="bg-[#69696900] cursor-pointer flex justify-start gap-8 md:gap-14 my-2 md:my-0 items-center w-[150px] md:w-[180px] p-2 px-2 border border-[#696969b6] " onClick={() => setFilterToggle(!filterToggle)}>
+                <div className="bg-[#69696900] cursor-pointer flex justify-between gap-8 my-2 md:my-0 items-center w-[150px] md:w-[180px] p-2 px-2 border border-[#696969b6] " onClick={() => setFilterToggle(!filterToggle)}>
                     <img src={filter} className="w-[14px] md:w-[16px] ml-2" />
-                    <h1 className="text-[13px] md:text-[17px] tracking-[2px] text-[#696969]">FILTERS</h1>
+                    <h1 className="text-[13px] md:text-[16px] tracking-[2px] text-[#696969]">FILTERS</h1>
                 </div>
                 <div className={`absolute md:top-[50px] left-0 bg-white min-w-[240px] md:min-w-[370px] pl-10 z-[10] border border-[#696969af] transition-all duration-[400ms] overflow-hidden ${filterToggle ? 'h-[470px] ease-in' : 'h-0 border-none ease-out'}`}>
                     <h1 className="border-b border-b-[#6969692c] w-[70%] my-2 poppins text-[18px] font-[500] tracking-[2px] py-2 pt-4">Status</h1>

@@ -80,43 +80,6 @@ const CategoryPage = () => {
   return (
     <div>
       <div className="w-full pb-[100px]">
-        {/* {
-          categoryApiData?.category === "COLLECTION" ? (
-            <>
-              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
-                {categoryApiData?.category}
-              </h1>
-              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
-                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
-                  <input
-                    type="text"
-                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
-                    placeholder="Seach your type of Platinum"
-                    onChange={(e) => setSearchItem(e.target.value)}
-                    value={searchItem}
-                  />
-                  <img src={search} className="w-[35px] mx-2 px-1" />
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
-                style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }}
-              >
-                <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
-                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full">
-                    {categoryApiData?.category}
-                  </h1>
-                  <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full pl-10">
-                    {categoryApiData?.category_details}
-                  </p>
-                </div>
-
-              </div>
-            </>
-          )
-        } */}
 
         {
           categoryApiData?.category === "COLLECTION" ? (
@@ -139,7 +102,6 @@ const CategoryPage = () => {
               </div>
             </>
           ) : (
-            <>
               <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
                 style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}
               >
@@ -154,88 +116,8 @@ const CategoryPage = () => {
                 {/* <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-top4'  ></div> */}
 
               </div>
-            </>
           )
         }
-
-        {/* { !categoryApi == null ?
-        <>
-          {categoryApiData?.category === "COLLECTION" ? (
-            <>
-              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
-                {params.category_id}
-                {categoryApiData?.category}
-                
-              </h1>
-              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
-                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
-                  <input
-                    type="text"
-                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
-                    placeholder="Seach your type of Platinum"
-                    onChange={(e) => setSearchItem(e.target.value)}
-                    value={searchItem}
-                  />
-                  <img src={search} className="w-[35px] mx-2 px-1" />
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex bg-white px-10 md:py-10">
-                <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
-                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
-                    {categoryApiData?.category}
-                  </h1>
-                  <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
-                    {categoryApiData?.category_details}
-                  </p>
-                </div>
-                <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }} ></div>
-                
-              </div>
-            </>
-          )}
-        </>
-        :
-        <>
-          {collection_data?.category === "COLLECTION" ? (
-            <>
-              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
-                {params.category_id}
-                {collection_data?.category}
-              </h1>
-              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
-                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
-                  <input
-                    type="text"
-                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
-                    placeholder="Seach your type of Platinum"
-                    onChange={(e) => setSearchItem(e.target.value)}
-                    value={searchItem}
-                  />
-                  <img src={search} className="w-[35px] mx-2 px-1" />
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex bg-white px-10 md:py-10">
-                <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
-                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
-                    {collection_data?.category}
-                  </h1>
-                  <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
-                    {collection_data?.category_details}
-                  </p>
-                </div>
-                <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${collection_data?.category_image})` }} ></div>
-                
-              </div>
-            </>
-          )}
-        </>
-        } */}
 
         {/* filter mobile */}
         <div
@@ -264,7 +146,7 @@ const CategoryPage = () => {
                 </button>
               </div>
 
-              {sortToggle ? (
+              {sortToggle ? ( 
                 <>
                   <div
                     className="absolute left-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
