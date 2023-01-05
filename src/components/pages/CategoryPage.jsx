@@ -348,14 +348,14 @@ const CategoryPage = () => {
                   {/* <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART
                   </button> */}
-                  <div className="pl-1 flex gap-2 items-center w-[70%]">
+                  {/* <div className="pl-1 flex gap-2 items-center w-[70%]">
                     <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
                       ₹{data?.actual_price}
                     </p>
                     <p className="font-[300] poppins text-[0.95rem] md:text-[15px] tracking-[2px] pl-1 line-through">
                       ₹{data?.selling_price}
                     </p>
-                  </div>
+                  </div> */}
                   <p className="pl-2 font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px]">
                     {data?.name}
                   </p>
