@@ -134,14 +134,14 @@ const CategoryPage = () => {
                 <button
                   type="button"
                   onClick={() => setSortToggle(!sortToggle)}
-                  className="inline-flex w-full justify-center items-center gap-6 "
+                  className=""
                   id="menu-button"
                   aria-expanded="true"
                   aria-haspopup="true"
                 >
 
-                  <span>
-                    <img src={down_arrow} className="w-[75%] sm:w-full" />
+                  <span className="">
+                    <img src={down_arrow} className="w-full max-w-[18px]" />
                   </span>
                 </button>
               </div>
@@ -149,7 +149,7 @@ const CategoryPage = () => {
               {sortToggle ? (
                 <>
                   <div
-                    className="absolute left-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute left-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
@@ -159,7 +159,7 @@ const CategoryPage = () => {
                       {sort_data?.sort?.map((data, i) => (
                         <a
                           key={i}
-                          className="text-gray-700 w-[80%] my-2 bg-white mx-auto hover:bg-blue-200 flex justify-between items-center tracking-[2px] poppins px-4 py-2 text-sm active:scale-[1.1] transition-all"
+                          className="text-gray-700 w-[80%] my-2 bg-white mx-auto hover:bg-blue-200 flex justify-between items-center tracking-[2px] poppins px-4 py-2 text-[14px] md:text-[16px] active:scale-[1.1] transition-all"
                           role="menuitem"
                           tabIndex="-1"
                           id="menu-item-0"
@@ -180,7 +180,7 @@ const CategoryPage = () => {
           {/* filter */}
           <div
             id="filter"
-            className={`border cursor-pointer border-[#69696996] flex justify-between gap-5 items-center tracking-[4px] sm:tracking-[6px] p-2 sm:p-4 over ${filterToggle ? "bg-white" : "bg-[#b0b0b00a]"
+            className={`border cursor-pointer border-[#69696996] flex justify-between gap-5 items-center tracking-[4px] sm:tracking-[6px] p-2 text-[14px] md:text-[16px] sm:p-4 over ${filterToggle ? "bg-white" : "bg-[#b0b0b00a]"
               }`}
             onClick={() => setFilterToggle(!filterToggle)}
           >
@@ -345,9 +345,6 @@ const CategoryPage = () => {
                       to={'/product-details' + '/' + data?.id}
                     ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></NavLink>
                   </div>
-                  {/* <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
-                    ADD TO CART
-                  </button> */}
                   {/* <div className="pl-1 flex gap-2 items-center w-[70%]">
                     <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
                       ₹{data?.actual_price}
