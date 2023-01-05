@@ -76,7 +76,7 @@ const Navbar = () => {
                 return localStorage.getItem("status") ?
                 <div className={`${data?.title === 'LOGIN' ? 'hidden' : ''}`} onMouseLeave={() => setNavHoverShow(null)} key={i}>
                   <NavLink to={data?.routes} onMouseEnter={() => { setNavHoverShow(data?.title) }}>
-                    <li className={`cursor-pointer group flex flex-col w-full pb-5`}>
+                    <li className={`cursor-pointer group flex flex-col w-full pb-8`}>
                       <p className="uppercase poppins font-[300] text-[15px] lg:text-[18px]">{data?.title}</p>
                       <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
                     </li>

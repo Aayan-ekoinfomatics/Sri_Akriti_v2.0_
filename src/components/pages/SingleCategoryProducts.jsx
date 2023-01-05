@@ -123,10 +123,10 @@ const SingleCategoryProducts = (props) => {
 
           {/* overlay */}
           <div
-            className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000071] z-[1004] transition-all ${
+            className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000071] z-[1004] transition-all duration-500 ${
               filterToggle
-                ? "h-full ease-in  duration-500"
-                : "h-0 ease-out  duration-500"
+                ? "h-full ease-in"
+                : "h-0 ease-out"
             }`}
             onClick={() => handleClick()}
           ></div>
@@ -201,7 +201,7 @@ const SingleCategoryProducts = (props) => {
 
           <div className="flex self-start w-full md:w-[95%] gap-5 mx-auto mt-16 pt-5 h-full">
             {/* filter desktop*/}
-            <div className="sticky top-0 w-[20%] hidden lg:flex flex-col">
+            <div className="sticky top-0 w-[20%] hidden lg:flex flex-col border border-red-500">
               {collection_data?.filters?.map((data, i) => (
                 <div
                   key={i}

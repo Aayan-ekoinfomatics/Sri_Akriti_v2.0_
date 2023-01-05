@@ -69,7 +69,7 @@ const CategoryPage = () => {
   // useEffect(() => {
   //  console.log( "wishlist toggle",wishlistToggle)
   // }, [wishlistToggle])
-  
+
 
 
   const handleClick = () => {
@@ -102,20 +102,20 @@ const CategoryPage = () => {
               </div>
             </>
           ) : (
-              <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
-                style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}
-              >
-                <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
-                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full uppercase">
-                    {categoryApiData?.category}
-                  </h1>
-                  {/* <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full pl-10">
+            <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
+              style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}
+            >
+              <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
+                <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full uppercase">
+                  {categoryApiData?.category}
+                </h1>
+                {/* <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full pl-10">
                     {categoryApiData?.category_details}
                   </p> */}
-                </div>
-                {/* <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-top4'  ></div> */}
-
               </div>
+              {/* <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-top4'  ></div> */}
+
+            </div>
           )
         }
 
@@ -146,7 +146,7 @@ const CategoryPage = () => {
                 </button>
               </div>
 
-              {sortToggle ? ( 
+              {sortToggle ? (
                 <>
                   <div
                     className="absolute left-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -274,10 +274,12 @@ const CategoryPage = () => {
 
             {/* sort desktop */}
             <label className="poppins text-[10px] pb-1 tracking-[1px]">Sort</label>
-            <div className=" border w-full flex justify-between p-2 relative">
+            <div className=" border w-full flex justify-between items-center p-2 relative">
               <h1 className="lora tracking-[1px] text-[15px] font-[500]">Featured</h1>
-              <img src={down_arrow} className="w-[20px] cursor-pointer" onClick={() => setDesktopSort(!desktopSort)} />
-              <div className={` absolute top-[105%] left-0 shadow-lg z-[1000] bg-white w-full transition-all duration-300 overflow-y-hidden ${desktopSort ? 'h-[230px] ease-in' : 'h-0 ease-out'}`}>
+              <div className="flex justify-center items-center cursor-pointer w-fit p-3" onClick={() => setDesktopSort(!desktopSort)}>
+                <img src={down_arrow} className="w-[20px] cursor-pointer" />
+              </div>
+              <div className={` absolute top-[105%] left-0 shadow-lg z-[1000] bg-white w-full transition-all duration-200 overflow-y-hidden ${desktopSort ? 'h-[230px] ease-in' : 'h-0 ease-out'}`}>
                 {
                   collection_data?.sort?.map((data, i) => (
                     <h1 className="py-[5px] pl-4 lora text-[15px] font-[500] hover:bg-[#D9D9D9] cursor-pointer" key={i}>{data?.title}</h1>
@@ -323,7 +325,7 @@ const CategoryPage = () => {
             {categoryApiData?.data?.map((data, i) => (
               <div className="relative my-2 " key={i}>
                 <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5" onClick={() => {
-                  
+
                   let formdata = new FormData();
                   // formdata.append("id", data?.id);
                   formdata.append("token", localStorage.getItem("token"));
