@@ -61,8 +61,8 @@ const MyAccount = () => {
 
     return (
         <div className='bg-white pb-24 relative'>
-            <span className='inline-block ml-4 md:ml-[250px] mt-4 cursor-pointer'>
-                <img src={img_left} className="w-[32px]" onClick={() => navigate(-1)} />
+            <span className='inline-block ml-4 md:ml-[100px] mt-3 lg:mt-4 cursor-pointer'>
+                <img src={img_left} className="w-[28px] md:w-[30px]" onClick={() => navigate(-1)} />
             </span>
             <div className="w-full text-center pt-5 pb-10">
                 <h1 className="lora italic text-[18px] md:text-[28px] font-[500]">My Account</h1>

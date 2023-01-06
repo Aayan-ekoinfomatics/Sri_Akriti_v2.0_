@@ -30,7 +30,7 @@ const Wishlist = () => {
 
     return (
         <div className="w-full mb-20 md:py-4">
-            <div className="w-full mt-3 ml-3 md:ml-13 pl-64">
+            <div className="w-full mt-3 ml-3 md:ml-13">
                 <img src={img_left} className="w-[25px] md:w-[30px] cursor-pointer" onClick={() => navigate(-1)} />
             </div>
             <div className="w-full text-center mt-4 py-4">

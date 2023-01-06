@@ -28,8 +28,6 @@ const CategoryPage = () => {
   const [filterToggle, setFilterToggle] = useState(false);
   const [desktopSort, setDesktopSort] = useState(false);
 
-  // const [categoryApi, setCategoryApi] = useRecoilState(categoriesApiAtom);
-
   const [filterSubCategory, setFilterSubCategory] = useState(null);
 
   const params = useParams();
