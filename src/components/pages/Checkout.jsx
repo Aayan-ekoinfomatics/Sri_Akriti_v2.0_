@@ -1,14 +1,29 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import checkout from '../../mockapi/checkoutPageApi'
 
+
 const Checkout = () => {
+
+    const [checkoutData, setCheckoutData] = useState();
+
+    useEffect(() => {
+        let formData = new FormData
+        formData?.append("token", localStorage.getItem("token"))
+        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'checkout', formData).then((response) => {
+            console.log(response?.data)
+            setCheckoutData(response?.data)
+        })
+    }, []);
+
+    // useEffect(() => {
+    //   console.log(checkoutData)
+    // }, [checkoutData])
+
+
+
     return (
         <div className='w-full pt-8 pb-10 bg-[#eeeeee]'>
-            {/* <div className='w-[90%] mx-auto text-center poppins flex gap-2 text-[11px] md:text-[12px] md:pb-10'>
-                <h1 className='tracking-[2px] font-[500]'>{checkout?.path?.first}</h1>
-                <h1 className='tracking-[2px] font-[300]'>{checkout?.path?.second}</h1>
-                <h1 className='tracking-[2px] font-[300]'>{checkout?.path?.third}</h1>
-            </div> */}
 
             {/* main flex */}
             <div className='w-[80%] mx-auto md:flex pt-14 mb-10'>
@@ -19,19 +34,37 @@ const Checkout = () => {
 
                         {/* address form */}
                         <div className='w-full py-3 mb-6'>
-                            <div className='w-full flex justify-between my-2'>
-                                <h1 className='lora text-[15px] font-[500]'>{checkout?.form?.header?.heading}</h1>
-                                <p className='poppins tracking-[2px] text-[#696969] text-[14px]'>{checkout?.form?.header?.sub_heading}</p>
+                            <div className='w-full flex justify-between my-2 mb-3'>
+                                <h1 className='lora text-[15px] font-[500]'>{checkoutData?.form?.header?.heading}</h1>
+                                {/* <p className='poppins tracking-[2px] text-[#696969] text-[14px]'>{checkout?.form?.header?.sub_heading}</p> */}
                             </div>
                             <form className='w-full md:grid grid-cols-2 gap-2'>
                                 {
-                                    checkout?.form?.content?.map((data, i) => (
+                                    checkoutData?.form?.content?.map((data, i) => (
                                         <div className='w-full flex flex-col justify-start' key={i}>
                                             <label className='poppins text-[12px]' >{data?.label}</label>
-                                            <input type={data?.input} />
+                                            <input type='text' defaultValue={data?.value} className='px-2 outline-none py-1 text-[14px]' />
                                         </div>
                                     ))
                                 }
+
+                                {/* <div className='w-full flex flex-col justify-start'>
+                                    <label className='poppins text-[12px]' >First Name</label>
+                                    <input type='text' defaultValue={''} className='px-2 outline-none py-1' />
+                                </div>
+                                <div className='w-full flex flex-col justify-start'>
+                                    <label className='poppins text-[12px]' >Last Name</label>
+                                    <input type='text' defaultValue={''} className='px-2 outline-none py-1' />
+                                </div>
+                                <div className='w-full flex flex-col justify-start'>
+                                    <label className='poppins text-[12px]' >Email ID</label>
+                                    <input type='text' defaultValue={''} className='px-2 outline-none py-1' />
+                                </div>
+                                <div className='w-full flex flex-col justify-start'>
+                                    <label className='poppins text-[12px]' >Phone No.</label>
+                                    <input type='text' defaultValue={''} className='px-2 outline-none py-1' />
+                                </div> */}
+                                
                             </form>
                         </div>
 
@@ -41,15 +74,40 @@ const Checkout = () => {
                                 <h1 className='lora text-[15px] font-[500]'>{checkout?.address?.header?.heading}</h1>
                                 <p className='poppins tracking-[2px] text-[#696969] text-[14px]'>{checkout?.address?.header?.sub_heading}</p>
                             </div>
-                            {
-                                checkout?.address?.content?.map((data, i) => (
-                                    <div className='flex flex-col justify-start text-[12px]' key={i}>
-                                        <p className='poppins text-[11px] tracking-[2px]' >{data?.locality}</p>
-                                        <p className='poppins text-[11px] tracking-[2px]' >{data?.city}</p>
-                                        <p className='poppins text-[11px] tracking-[2px]' >{data?.pincode}</p>
-                                    </div>
-                                ))
-                            }
+                            <div className=' w-full max-h-[150px] overflow-y-scroll'>
+                                {/* {
+                                    checkout?.address?.content?.map((data, i) => (
+                                        <div key={i} className='flex w-full justify-between border-b border-b-[#69696927] pt-1 px-2 pb-3 my-3'>
+                                            <div className='flex flex-col justify-start text-[12px]' key={i}>
+                                                <p className='poppins text-[11px] tracking-[2px]' >{data?.locality}</p>
+                                                <p className='poppins text-[11px] tracking-[2px]' >{data?.city}</p>
+                                                <p className='poppins text-[11px] tracking-[2px]' >{data?.pincode}</p>
+                                            </div>
+                                            <div className='flex justify-between items-center gap-3'>
+                                                <div className={`inline w-[12px] h-[12px] rounded-[50%]  ${data?.select === 'Default' ? 'bg-green-400' : 'border-2 border-[#69696975] bg-white'}`} ></div>
+                                                <p className='poppins text-[11px] tracking-[2px] cursor-pointer'>{data?.select}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                } */}
+                                {
+                                    checkoutData?.address?.content?.map((data, i) => {
+                                        return (
+                                            <div key={i} className='flex w-full justify-between border-b border-b-[#69696927] pt-1 px-2 pb-3 my-3'>
+                                            <div className='flex flex-col justify-start text-[12px]' key={i}>
+                                                <p className='poppins text-[11px] tracking-[2px]' >{data?.locality}</p>
+                                                <p className='poppins text-[11px] tracking-[2px]' >{data?.city}</p>
+                                                <p className='poppins text-[11px] tracking-[2px]' >{data?.pincode}</p>
+                                            </div>
+                                            <div className='flex justify-between items-center gap-3'>
+                                                <div className={`inline w-[12px] h-[12px] rounded-[50%] border-2 border-[#69696975] bg-white `} ></div>
+                                                <p className='poppins text-[11px] tracking-[2px] cursor-pointer'>{data?.select}select</p>
+                                            </div>
+                                        </div>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
 
                         {/* card */}

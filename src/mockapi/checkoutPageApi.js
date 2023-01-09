@@ -13,9 +13,12 @@ const checkout = {
         ]
     },
     address: {
-        header:{heading: 'Address', sub_heading: 'Edit'},
+        header:{heading: 'Address', sub_heading: ''},
         content:[
-            {locality: '1, 1 Ashish Shopping Centre, C G Road, Navrangpura', city: 'Ahmedabad, Gujrat', pincode: '380009'},
+            {locality: '1, 1 Ashish Shopping Centre, C G Road, Navrangpura', city: 'Ahmedabad, Gujrat', pincode: '380009', select: 'Default', color:'bg-green-400'},
+            {locality: '1, 1 Ashish Shopping Centre, C G Road, Navrangpura', city: 'Ahmedabad, Gujrat', pincode: '380009', select: 'Select', color:'bg-white'},
+            {locality: '1, 1 Ashish Shopping Centre, C G Road, Navrangpura', city: 'Ahmedabad, Gujrat', pincode: '380009', select: 'Select', color:'bg-white'},
+            {locality: '1, 1 Ashish Shopping Centre, C G Road, Navrangpura', city: 'Ahmedabad, Gujrat', pincode: '380009', select: 'Select', color:'bg-white'},
         ]
     },
     card: {
