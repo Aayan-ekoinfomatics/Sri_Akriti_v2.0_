@@ -24,6 +24,11 @@ const Wishlist = () => {
         })
     }, [])
 
+    useEffect(() => {
+      console.log(wishlistData)
+    }, [wishlistData])
+    
+
 
     const navigate = useNavigate();
 

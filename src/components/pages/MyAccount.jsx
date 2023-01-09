@@ -37,11 +37,11 @@ const MyAccount = () => {
         })
     }, [])
 
-    // useEffect(() => {
-    //     setGender(profileApiData?.gender)
-    //     console.log(gender)
-    //     console.log(profileApiData)
-    // }, [profileApiData]);
+    useEffect(() => {
+        setGender(profileApiData?.gender)
+        console.log(gender)
+        console.log(profileApiData)
+    }, [profileApiData]);
 
     const editProfile = (e) => {
         e.preventDefault()
@@ -262,7 +262,7 @@ const MyAccount = () => {
 
             {/* pop up modal */}
 
-            <div className={`z-[150] h-fit pb-4 w-[85vw] mx-auto fixed top-[60%] left-[50%] translate-x-[-50%] translate-y-[-50%] inset-0 bg-[#dddddd] transition-all duration-300 ${popUpToggle ? 'block ease-in' : 'hidden ease-out'}`}>
+            <div className={`z-[150] pb-4 w-[85vw] mx-auto fixed top-[60%] left-[50%] translate-x-[-50%] translate-y-[-50%] inset-0 bg-[#dddddd] transition-all duration-100 ${popUpToggle ? 'block ease-in bg-opacity-100 h-fit' : 'hidden ease-out h-0'}`}>
                 <div className='w-full flex justify-end '>
                     {/* <img src="" alt="" /> */}
                     {/* <p className='cursor-pointer mt-5 mr-5' onClick={() => setPopUpToggle(false)}>X</p> */}
@@ -318,7 +318,7 @@ const MyAccount = () => {
                     </form>
                 </div>
             </div>
-            <div className={`fixed inset-0 h-screen w-full bg-black opacity-40 z-[100] ${popUpToggle ? 'block' : 'hidden'}`} onClick={() => setPopUpToggle(false)}>
+            <div className={`fixed inset-0 h-screen w-full bg-black opacity-30 z-[100] ${popUpToggle ? 'block ease-in' : 'hidden ease-out'}`} onClick={() => setPopUpToggle(false)}>
 
             </div>
 
