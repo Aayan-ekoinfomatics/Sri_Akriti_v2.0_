@@ -49,26 +49,26 @@ const OrderDetails = () => {
                         <h1 className="poppins text-[12px] md:text-[15px] border-b border-b-black pb-1 tracking-[0.5px] md:tracking-[2px] my-2 cursor-pointer" onClick={() => setViewBreakUp(!viewBreakUp)}>
                             View Breakup
                         </h1>
-                        <div className={`absolute top-[100%] md:top-[265px] w-full min-w-[290px] md:min-w-[350px] bg-white overflow-y-hidden transition-all duration-300 shadow-md ${viewBreakUp ? 'h-[280px] ease-in' : 'h-0 ease-out'}`}>
-                            <div className="w-[85%] mx-auto flex justify-between poppins my-4 pt-5">
-                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Original Price</h1>
-                                <h1 className="font-[500] text-[15px]" >Rs 15,000</h1>
+                        <div className={`absolute top-[100%] md:top-[265px] w-full min-w-[290px] md:min-w-[350px] bg-white overflow-y-hidden transition-all duration-300 shadow-md ${viewBreakUp ? 'h-[250px] md:h-[280px] ease-in' : 'h-0 ease-out'}`}>
+                            <div className="w-[85%] text-[12px] md:text-[14px] mx-auto flex justify-between poppins my-4 pt-5">
+                                <h1 className="tracking-[2px] font-[500] text-[#000000ab]" >Original Price</h1>
+                                <h1 className="font-[500]" >Rs 15,000</h1>
                             </div>
-                            <div className="w-[85%] mx-auto flex justify-between poppins my-4">
-                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Tax</h1>
-                                <h1 className="font-[500] text-[15px]" >Rs 2,000</h1>
+                            <div className="w-[85%] text-[12px] md:text-[14px] mx-auto flex justify-between poppins my-4">
+                                <h1 className="tracking-[2px] font-[500] text-[#000000ab]" >Tax</h1>
+                                <h1 className="font-[500]" >Rs 2,000</h1>
                             </div>
-                            <div className="w-[85%] mx-auto flex justify-between poppins my-4">
-                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Discount Price</h1>
-                                <h1 className="font-[500] text-[15px]" >Rs 1,000</h1>
+                            <div className="w-[85%] text-[12px] md:text-[14px] mx-auto flex justify-between poppins my-4">
+                                <h1 className="tracking-[2px] font-[500] text-[#000000ab]" >Discount Price</h1>
+                                <h1 className="font-[500]" >Rs 1,000</h1>
                             </div>
-                            <div className="w-[85%] mx-auto flex justify-between poppins my-4">
-                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Cupon Discount</h1>
-                                <h1 className="font-[500] text-[15px]" >Rs 18,000</h1>
+                            <div className="w-[85%] text-[12px] md:text-[14px] mx-auto flex justify-between poppins my-4">
+                                <h1 className="tracking-[2px] font-[500] text-[#000000ab]" >Cupon Discount</h1>
+                                <h1 className="font-[500]" >Rs 18,000</h1>
                             </div>
-                            <div className="w-[85%] mx-auto flex justify-between poppins my-6 border-t border-t-[#696969c4] pt-6">
-                                <h1 className=" text-[14px] tracking-[2px] font-[500] text-[#000000ab]">Paid by</h1>
-                                <h1 className="font-[500] text-[14px] text-[#00000062]">Cash On Delivery</h1>
+                            <div className="w-[85%] mx-auto text-[13px] md:text-[14px] flex justify-between poppins my-6 border-t border-t-[#696969c4] pt-6">
+                                <h1 className="tracking-[2px] font-[500] text-[#000000ab]">Paid by</h1>
+                                <h1 className="font-[500] text-[#00000062]">Cash On Delivery</h1>
                             </div>
                         </div>
                     </div>

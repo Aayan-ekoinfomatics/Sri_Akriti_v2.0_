@@ -50,7 +50,7 @@ const OrderList = () => {
 
 
   return (
-      <div className="w-[90%] mx-auto md:w-full">
+      <div className="w-[90%] mx-auto md:w-full px-0 md:px-4">
             <div className="inline-block">
                 <img src={img_left} className="w-[30px] mt-5 md:ml-[180px] md:mt-5 cursor-pointer" onClick={() => navigate(-1)} />
             </div>
@@ -66,7 +66,7 @@ const OrderList = () => {
                 </div>
 
                 {/* filter */}
-                <div className="bg-[#69696900] cursor-pointer flex justify-between gap-8 my-2 md:my-0 items-center w-[150px] md:w-[180px] p-2 px-2 border border-[#696969b6] " onClick={() => setFilterToggle(!filterToggle)}>
+                <div className="bg-[#69696900] cursor-pointer flex justify-between my-2 md:my-0 items-center w-[150px] md:w-[180px] p-2 px-2 border border-[#696969b6] " onClick={() => setFilterToggle(!filterToggle)}>
                     <img src={filter} className="w-[14px] md:w-[16px] ml-2" />
                     <h1 className="text-[13px] md:text-[16px] tracking-[2px] text-[#696969]">FILTERS</h1>
                 </div>

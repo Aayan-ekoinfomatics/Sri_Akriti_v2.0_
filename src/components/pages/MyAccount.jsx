@@ -75,37 +75,41 @@ const MyAccount = () => {
 
                 <div className='md:w-[45%] md:flex flex-col justify-between' >
                     {/* my Orders */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 md:max-h-[250px] overflow-y-scroll pt-[1rem] max-h-[200px]'>
-                        <div className="w-[90%] mx-auto flex justify-between py-2 lora text-[15px]">
+                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 md:max-h-[250px] pt-[1rem] max-h-[200px]'>
+                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
                             <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
                             <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
                         </div>
-                        {
-                            profile_data?.my_orders?.content?.map((data, i) => (
-                                <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
-                                    <img src={data?.image} className="w-[40px]" />
-                                    <h1>{data?.title}</h1>
-                                    <h1>{data?.price}</h1>
-                                </div>
-                            ))
-                        }
+                        <div className='max-h-[150px] md:max-h-[180px] overflow-y-scroll pt-1'>
+                            {
+                                profile_data?.my_orders?.content?.map((data, i) => (
+                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]" key={i}>
+                                        <img src={data?.image} className="w-[40px]" />
+                                        <h1>{data?.title}</h1>
+                                        <h1>{data?.price}</h1>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
 
                     {/* wishlist */}
                     <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 md:max-h-[250px] overflow-y-scroll pt-[1rem] max-h-[200px]'>
-                        <div className="w-[90%] mx-auto flex justify-between py-2 lora text-[15px]">
+                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
                             <h1 className="font-[500] md:text-[17px]">{profile_data?.wishlist?.header?.heading}</h1>
                             <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
                         </div>
-                        {
-                            profile_data?.wishlist?.content?.map((data, i) => (
-                                <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
-                                    <img src={data?.image} className="w-[40px]" />
-                                    <h1>{data?.title}</h1>
-                                    <h1>{data?.price}</h1>
-                                </div>
-                            ))
-                        }
+                        <div className='max-h-[150px] md:max-h-[180px] overflow-y-scroll pt-1'>
+                            {
+                                profile_data?.wishlist?.content?.map((data, i) => (
+                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
+                                        <img src={data?.image} className="w-[40px]" />
+                                        <h1>{data?.title}</h1>
+                                        <h1>{data?.price}</h1>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
 
                     {/* card desktop*/}
@@ -221,7 +225,7 @@ const MyAccount = () => {
                                             let formdata = new FormData();
                                             formdata.append("address_id", data?.id);
                                             formdata.append("token", localStorage.getItem("token"));
-                                            axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'addressEdit', { data: {"address_id": data?.id, "token": localStorage.getItem("token")} }).then((response) => {
+                                            axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'addressEdit', { data: { "address_id": data?.id, "token": localStorage.getItem("token") } }).then((response) => {
                                                 // console.log(response?.data)
                                                 setProfileApiData(response?.data)
                                             })
