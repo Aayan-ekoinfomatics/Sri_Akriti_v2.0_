@@ -7,6 +7,7 @@ import delete_icon from '../../assets/icons/delete.svg'
 import axios from "axios";
 import wishlistApiAtom from "../../recoil/atoms/wishlist/wishlistApiAtom";
 import { useRecoilState } from "recoil";
+import PageBackButton from "../global components/PageBackButton";
 
 const Wishlist = () => {
 
@@ -34,10 +35,11 @@ const Wishlist = () => {
 
 
     return (
-        <div className="w-full mb-20 md:py-4">
-            <div className="w-full mt-3 ml-3 md:ml-13">
+        <div className="w-full mb-20 md:pb-4">
+            {/* <div className="w-full mt-3 ml-3 md:ml-13">
                 <img src={img_left} className="w-[25px] md:w-[30px] cursor-pointer" onClick={() => navigate(-1)} />
-            </div>
+            </div> */}
+            <PageBackButton />
             <div className="w-full text-center mt-4 py-4">
                 <h1 className="lora italic text-[22px] md:text-[32px] font-[500] pb-2 md:py-4">Wishlist</h1>
                 <p className="poppins text-[10px] md:text-[12px] md:tracking-[2px] pt-2 md:py-4" >This is your account wishlist. You can review or share a wishlist  </p>

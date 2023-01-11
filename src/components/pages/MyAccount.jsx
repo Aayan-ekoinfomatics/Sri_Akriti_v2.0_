@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil'
 import profileApiDataAtom from '../../recoil/atoms/profile/profileApiDataAtom'
 import axios from 'axios'
 import cross from '../../assets/icons/cross.svg'
+import PageBackButton from '../global components/PageBackButton'
 
 const MyAccount = () => {
 
@@ -34,13 +35,17 @@ const MyAccount = () => {
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
             // console.log(response?.data)
             setProfileApiData(response?.data)
+            setGender(profileApiData?.user?.gender)
+            // console.log(gender)
         })
     }, [])
 
+
+
     useEffect(() => {
-        setGender(profileApiData?.gender)
-        console.log(gender)
-        console.log(profileApiData)
+        setGender(profileApiData?.user?.gender)
+        // console.log(gender)
+        // console.log(profileApiData)
     }, [profileApiData]);
 
     const editProfile = (e) => {
@@ -59,11 +64,18 @@ const MyAccount = () => {
         })
     }
 
+    // useEffect(() => {
+    //   console.log(gender)
+    // }, [gender])
+
+
+
     return (
         <div className='bg-white pb-24 relative'>
-            <span className='inline-block ml-4 md:ml-[100px] mt-3 lg:mt-4 cursor-pointer'>
+            {/* <span className='inline-block ml-4 md:ml-[100px] mt-3 lg:mt-4 cursor-pointer'>
                 <img src={img_left} className="w-[28px] md:w-[30px]" onClick={() => navigate(-1)} />
-            </span>
+            </span> */}
+            <PageBackButton />
             <div className="w-full text-center pt-5 pb-10">
                 <h1 className="lora italic text-[18px] md:text-[28px] font-[500]">My Account</h1>
             </div>
@@ -75,12 +87,12 @@ const MyAccount = () => {
 
                 <div className='md:w-[45%] md:flex flex-col justify-between' >
                     {/* my Orders */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 md:max-h-[250px] pt-[1rem] max-h-[200px]'>
+                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
                         <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
                             <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
                             <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
                         </div>
-                        <div className='max-h-[150px] md:max-h-[180px] overflow-y-scroll pt-1'>
+                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
                             {
                                 profile_data?.my_orders?.content?.map((data, i) => (
                                     <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]" key={i}>
@@ -94,18 +106,27 @@ const MyAccount = () => {
                     </div>
 
                     {/* wishlist */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 md:max-h-[250px] overflow-y-scroll pt-[1rem] max-h-[200px]'>
+                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
                         <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
                             <h1 className="font-[500] md:text-[17px]">{profile_data?.wishlist?.header?.heading}</h1>
                             <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
                         </div>
-                        <div className='max-h-[150px] md:max-h-[180px] overflow-y-scroll pt-1'>
-                            {
+                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
+                            {/* {
                                 profile_data?.wishlist?.content?.map((data, i) => (
                                     <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
                                         <img src={data?.image} className="w-[40px]" />
                                         <h1>{data?.title}</h1>
                                         <h1>{data?.price}</h1>
+                                    </div>
+                                ))
+                            } */}
+                            {
+                                profileApiData?.wishlist?.map((data, i) => (
+                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
+                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[40px]" />
+                                        <h1>{data?.name}</h1>
+                                        <h1>{data?.category}</h1>
                                     </div>
                                 ))
                             }
@@ -141,12 +162,16 @@ const MyAccount = () => {
 
                 <div className='md:w-[55%] md:flex flex-col justify-between' >
                     {/* my profile */}
-                    <div className='w-full bg-[#E3E3E3] my-4 py-2 px-4 pt-4 max-h-[200px] md:min-h-[350px] overflow-y-scroll md:overflow-auto'>
-                        <div className="w-[95%] mx-auto flex justify-between py-2 lora text-[15px]">
+                    <div className='w-full bg-[#E3E3E3] my-4 py-2 pt-4 md:overflow-auto'>
+                        {/* <div className="w-[95%] mx-auto flex justify-between py-2 lora text-[15px] shadow-sm">
+                            <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.my_profile?.header?.heading}</h1>
+                            <button onClick={() => setPopUpToggle(true)} className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</button>
+                        </div> */}
+                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm md:shadow-none">
                             <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.my_profile?.header?.heading}</h1>
                             <button onClick={() => setPopUpToggle(true)} className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</button>
                         </div>
-                        <div className='md:grid grid-cols-2'>
+                        <div className='md:grid grid-cols-2 max-h-[260px] md:max-h-[320px] overflow-y-scroll md:overflow-auto' >
                             <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
                                 <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
                                     <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Name</label>
@@ -195,45 +220,51 @@ const MyAccount = () => {
                     </div>
 
                     {/* address */}
-                    <div className='w-full bg-[#E3E3E3] my-4 py-2 px-4 md:px-0 md:max-h-[155px] overflow-y-scroll pt-4 max-h-[200px]'>
-                        <div className="w-[95%] mx-auto flex justify-between md:px-3 py-2 lora text-[14px] mb-4">
+                    <div className='w-full bg-[#E3E3E3] my-4 py-2 md:px-0 pt-4'>
+                        {/* <div className="w-[95%] mx-auto flex justify-between md:px-3 py-2 lora text-[14px] mb-4">
+                            <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.address?.header?.heading}</h1>
+                            <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
+                        </div> */}
+                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
                             <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.address?.header?.heading}</h1>
                             <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
                         </div>
-                        {
-                            profileApiData?.address?.content?.map((data, i) => (
-                                <div className='w-[90%] mx-auto flex justify-between items-center my-2 border-b border-b-[#6969696b]' key={i}>
-                                    <div className="w-full flex flex-col justify-start py-2 md:px-3 lora text-[11px] tracking-[1.5px]">
-                                        <div className='w-full flex gap-2'>
-                                            <h1>{data?.add_line_1},</h1>
-                                            <h1>{data?.add_line_2}</h1>
+                        <div className='max-h-[200px] md:max-h-[175px] overflow-y-scroll px-4'>
+                            {
+                                profileApiData?.address?.content?.map((data, i) => (
+                                    <div className='w-full flex justify-between items-center my-2 border-b border-b-[#6969696b]' key={i}>
+                                        <div className="w-full flex flex-col justify-start py-2 md:px-3 lora text-[11px] tracking-[1.5px]">
+                                            <div className='w-full flex gap-2'>
+                                                <h1>{data?.add_line_1},</h1>
+                                                <h1>{data?.add_line_2}</h1>
+                                            </div>
+                                            <h1>{data?.landmark}</h1>
+                                            <h1>{data?.city}</h1>
+                                            <h1>{data?.country}</h1>
+                                            <h1>{data?.state}</h1>
+                                            <h1>{data?.pincode}</h1>
                                         </div>
-                                        <h1>{data?.landmark}</h1>
-                                        <h1>{data?.city}</h1>
-                                        <h1>{data?.country}</h1>
-                                        <h1>{data?.state}</h1>
-                                        <h1>{data?.pincode}</h1>
-                                    </div>
-                                    <Link to={'/edit-address' + '/' + data?.id}>
-                                        <div className='lora text-[12px] pr-1 tracking-[2px]'>
-                                            <p>edit</p>
+                                        <Link to={'/edit-address' + '/' + data?.id}>
+                                            <div className='lora text-[12px] pr-1 tracking-[2px]'>
+                                                <p>edit</p>
+                                            </div>
+                                        </Link>
+                                        <div className='lora text-[12px] pl-1 tracking-[2px] '>
+                                            <p className='border-b border-[#696969] cursor-pointer' onClick={(e) => {
+                                                // e.preventDefault()
+                                                let formdata = new FormData();
+                                                formdata.append("address_id", data?.id);
+                                                formdata.append("token", localStorage.getItem("token"));
+                                                axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'addressEdit', { data: { "address_id": data?.id, "token": localStorage.getItem("token") } }).then((response) => {
+                                                    // console.log(response?.data)
+                                                    setProfileApiData(response?.data)
+                                                })
+                                            }}>delete</p>
                                         </div>
-                                    </Link>
-                                    <div className='lora text-[12px] pl-1 tracking-[2px] '>
-                                        <p className='border-b border-[#696969] cursor-pointer' onClick={(e) => {
-                                            // e.preventDefault()
-                                            let formdata = new FormData();
-                                            formdata.append("address_id", data?.id);
-                                            formdata.append("token", localStorage.getItem("token"));
-                                            axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'addressEdit', { data: { "address_id": data?.id, "token": localStorage.getItem("token") } }).then((response) => {
-                                                // console.log(response?.data)
-                                                setProfileApiData(response?.data)
-                                            })
-                                        }}>delete</p>
                                     </div>
-                                </div>
-                            ))
-                        }
+                                ))
+                            }
+                        </div>
                     </div>
 
                     {/* card mobile*/}
@@ -283,17 +314,20 @@ const MyAccount = () => {
                 <div className='w-full flex justify-center items-center '>
                     <form onSubmit={editProfile} className='w-[80%] md:w-[30%] mx-auto px-2 '>
                         <div className='flex justify-between items-center'>
-                            <div className='' onClick={() => setGender('M')}>
+                            <div className='' onClick={() => setGender('Male')}>
                                 <label className='text-[13px] mr-2' htmlFor="name">Male</label>
-                                <input ref={genderRef} checked={gender === 'M'} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='male' type="radio" name='gender' />
+                                {/* <input ref={genderRef} defaultChecked={gender === 'Male' ? true : false} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='male' type="radio" name='gender' /> */}
+                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'Male' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("Male")}></div>
                             </div>
-                            <div className='' onClick={() => setGender('F')}>
+                            <div className='' onClick={() => setGender('Female')}>
                                 <label className='text-[13px] mr-2' htmlFor="name">Female</label>
-                                <input ref={genderRef} checked={gender === 'F'} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='female' type="radio" name='gender' />
+                                {/* <input ref={genderRef} defaultChecked={gender === 'Female' ? true : false} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='female' type="radio" name='gender' /> */}
+                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'Female' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("Female")}></div>
                             </div>
-                            <div className='' onClick={() => setGender('O')}>
+                            <div className='' onClick={() => setGender('Other')}>
                                 <label className='text-[13px] mr-2' htmlFor="name">Others</label>
-                                <input ref={genderRef} checked={gender === 'O'} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='others' type="radio" name='gender' />
+                                {/* <input ref={genderRef} defaultChecked={gender === 'Other' ? true : false} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='others' type="radio" name='gender' /> */}
+                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'Other' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("Other")}></div>
                             </div>
                         </div>
                         <div className='w-full flex flex-col my-8'>
@@ -322,7 +356,7 @@ const MyAccount = () => {
                     </form>
                 </div>
             </div>
-            <div className={`fixed inset-0 h-screen w-full bg-black opacity-30 z-[100] ${popUpToggle ? 'block ease-in' : 'hidden ease-out'}`} onClick={() => setPopUpToggle(false)}>
+            <div className={`fixed inset-0 h-screen w-full bg-black opacity-50 z-[100] ${popUpToggle ? 'block ease-in' : 'hidden ease-out'}`} onClick={() => setPopUpToggle(false)}>
 
             </div>
 

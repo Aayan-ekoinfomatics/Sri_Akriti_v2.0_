@@ -41,6 +41,7 @@ import ProductsInventoryPage from "./components/admin-components/ProductsInvento
 import OrdersInventoryPage from "./components/admin-components/OrdersInventoryPage";
 import AddNewProductInventoryPage from "./components/admin-components/AddNewProductInventoryPage";
 import AdminEditSingleProduct from "./components/admin-components/AdminEditSingleProduct";
+import PageBackButton from "./components/global components/PageBackButton";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -75,6 +76,7 @@ function App() {
       <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
         <Navbar />
       </div>
+      
       <div>
         <Routes>
           <Route path='*' element={<Navigate to={localStorage.getItem("status") === 'true' ? '/' : '/login'} replace={true} />} />
@@ -95,7 +97,7 @@ function App() {
             <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} /> */}
           {/* </Route> */}
 
-          {/* <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} /> */}
+          <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />
 
           <Route element={<ProtectedRoute />}  >
             {/* <Route path="/" element /> */}

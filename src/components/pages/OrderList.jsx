@@ -8,6 +8,7 @@ import img_left from "../../assets/icons/black-arrow-left.svg";
 import aboutus_img from "../../assets/images/about-us.png";
 import orders from "../../mockapi/orderListApi";
 import { NavLink, useNavigate } from "react-router-dom";
+import PageBackButton from "../global components/PageBackButton";
 
 const OrderList = () => {
   const [currValue, setCurrValue] = useState(0);
@@ -50,10 +51,13 @@ const OrderList = () => {
 
 
   return (
+    <div className="w-full">
+        <PageBackButton  />
       <div className="w-[90%] mx-auto md:w-full px-0 md:px-4">
-            <div className="inline-block">
+            {/* <div className="inline-block">
                 <img src={img_left} className="w-[30px] mt-5 md:ml-[180px] md:mt-5 cursor-pointer" onClick={() => navigate(-1)} />
-            </div>
+            </div> */}
+            
             <div className="w-full my-4 md:mb-24">
                 <h1 className="text-[25px] md:text-[30px] lora italic font-[500] text-center">My Orders</h1>
             </div>
@@ -144,6 +148,7 @@ const OrderList = () => {
                 }
             </div>
         </div>
+    </div>
   );
 };
 

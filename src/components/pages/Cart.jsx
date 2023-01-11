@@ -5,6 +5,7 @@ import left_img from '../../assets/icons/black-arrow-left.svg';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import PageBackButton from "../global components/PageBackButton";
 
 const Cart = () => {
 
@@ -27,7 +28,8 @@ const Cart = () => {
   return (
 
     <div className="w-full pb-24">
-      <span className=" w-[100px]"><img onClick={() => navigate(-1)} src={left_img} className="cursor-pointer ml-[10px] md:ml-[200px] lg::ml-[270px] mt-7 w-[30px]" /></span>
+      {/* <span className=" w-[100px]"><img onClick={() => navigate(-1)} src={left_img} className="cursor-pointer ml-[10px] md:ml-[200px] lg::ml-[270px] mt-7 w-[30px]" /></span> */}
+      <PageBackButton />
       <div className="w-[90%] mx-auto text-center lora italic text-[22px] py-8">
         <h1>My Cart</h1>
       </div>
