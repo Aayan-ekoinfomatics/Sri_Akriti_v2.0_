@@ -8,6 +8,107 @@ const Checkout = () => {
 
     const [checkoutData, setCheckoutData] = useState();
 
+    const [name, setName] = useState("");
+    const [amount, setAmount] = useState("");
+
+    // this function will handel payment when user submit his/her money
+    // and it will confim if payment is successfull or not
+    const handlePaymentSuccess = async (response) => {
+        try {
+            let bodyData = new FormData();
+
+            // we will send the response we've got from razorpay to the backend to validate the payment
+            bodyData.append("response", JSON.stringify(response));
+
+            await axios({
+                url: `http://192.168.1.16:3000/success`,
+                method: "POST",
+                data: bodyData,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            })
+                .then((res) => {
+                    console.log("Everything is OK!");
+                    setName("");
+                    setAmount("");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(console.error());
+        }
+    };
+
+    // this will load a script tag which will open up Razorpay payment card to make //transactions
+    const loadScript = () => {
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        document.body.appendChild(script);
+    };
+
+    const showRazorpay = async (product) => {
+        console.log(product)
+        const res = await loadScript();
+
+        let bodyData = new FormData();
+
+        // we will pass the amount and product name to the backend using form data
+        // bodyData.append("amount", product?.price.toString());
+        // bodyData.append("name", product?.product_name);
+
+        bodyData.append("amount", '400');
+        bodyData.append("name", 'p1');
+
+        const data = await axios({
+            url: `http://192.168.1.16:3000/start_payment`,
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            data: bodyData,
+        }).then((res) => {
+            console.log(res)
+            return res;
+        });
+
+        // in data we will receive an object from the backend with the information about the payment
+        //that has been made by the user
+
+        var options = {
+            key_id: 'rzp_test_gHJS0k5aSWUMQc', // in react your environment variable must start with REACT_APP_
+            key_secret: '8hPVwKRnj4DZ7SB1wyW1miaf',
+            amount: data.data.payment.amount,
+            currency: "INR",
+            name: "Org. Name",
+            description: "Test teansaction",
+            image: "", // add image url
+            order_id: data.data.payment.id,
+            handler: function (response) {
+                // we will handle success by calling handlePaymentSuccess method and
+                // will pass the response that we've got from razorpay
+                handlePaymentSuccess(response);
+            },
+            prefill: {
+                name: "User's name",
+                email: "User's email",
+                contact: "User's phone",
+            },
+            notes: {
+                address: "Razorpay Corporate Office",
+            },
+            theme: {
+                color: "#3399cc",
+            },
+        };
+
+        var rzp1 = new window.Razorpay(options);
+        rzp1.open();
+    };
+
     useEffect(() => {
         let formData = new FormData
         formData?.append("token", localStorage.getItem("token"))
@@ -146,7 +247,7 @@ const Checkout = () => {
 
                 {/* flex child 2 */}
                 <div className='my-2 w-full md:w-[45%] border-t border-t-black md:border-t-0 flex justify-center items-center'>
-                    {/* address card */}
+                    {/* checkout details */}
                     <div className='md:mt-16 w-full md:w-[70%] md:ml-auto '>
                         <div className='w-full flex justify-between my-3 md:my-5'>
                             <h1 className='poppins text-[12px] md:text-[14px] tracking-[3px] text-[#696969d2]' >{checkoutData?.checkout_data?.sub_total?.title}</h1>
@@ -165,7 +266,7 @@ const Checkout = () => {
                             <p className='poppins text-[12px] md:text-[14px] tracking-[3px]' >₹ {checkoutData?.checkout_data?.total?.amount}</p>
                         </div>
                         <div className='w-full flex justify-center items-center pt-10 md:my-5'>
-                            <button className='bg-black text-white p-4 px-14 text-[12px] md:text-[15px] font-[300] tracking-[3px] md:w-full'>{checkout?.checkout_data?.checkout_button}</button>
+                            <button className='bg-black text-white p-4 px-14 text-[12px] md:text-[15px] font-[300] tracking-[3px] md:w-full' onClick={( ) => showRazorpay(data)}>{checkout?.checkout_data?.checkout_button}</button>
                         </div>
                         
                     </div>

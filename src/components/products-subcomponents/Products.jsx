@@ -17,8 +17,8 @@ const Products = (props) => {
             // we will send the response we've got from razorpay to the backend to validate the payment
             bodyData.append("response", JSON.stringify(response));
 
-            await Axios({
-                url: `${server}/razorpay/payment/success/`,
+            await axios({
+                url: `http://192.168.1.16:3000/success`,
                 method: "POST",
                 data: bodyData,
                 headers: {
@@ -53,11 +53,14 @@ const Products = (props) => {
         let bodyData = new FormData();
 
         // we will pass the amount and product name to the backend using form data
-        bodyData.append("amount", product?.price.toString());
-        bodyData.append("name", product?.product_name);
+        // bodyData.append("amount", product?.price.toString());
+        // bodyData.append("name", product?.product_name);
+
+        bodyData.append("amount", '400');
+        bodyData.append("name", 'p1');
 
         const data = await axios({
-            url: `${import.meta.env.VITE_APP_BASE_API_LINK}/razorpay/pay/`,
+            url: `http://192.168.1.16:3000/start_payment`,
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -65,6 +68,7 @@ const Products = (props) => {
             },
             data: bodyData,
         }).then((res) => {
+            console.log(res)
             return res;
         });
 
@@ -72,8 +76,8 @@ const Products = (props) => {
         //that has been made by the user
 
         var options = {
-            key_id: process.env.REACT_APP_PUBLIC_KEY, // in react your environment variable must start with REACT_APP_
-            key_secret: process.env.REACT_APP_SECRET_KEY,
+            key_id: 'rzp_test_gHJS0k5aSWUMQc', // in react your environment variable must start with REACT_APP_
+            key_secret: '8hPVwKRnj4DZ7SB1wyW1miaf',
             amount: data.data.payment.amount,
             currency: "INR",
             name: "Org. Name",
