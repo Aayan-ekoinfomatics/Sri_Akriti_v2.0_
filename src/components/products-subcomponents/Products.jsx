@@ -18,7 +18,7 @@ const Products = (props) => {
             bodyData.append("response", JSON.stringify(response));
 
             await axios({
-                url: `http://192.168.1.16:3000/success`,
+                url: `http://192.168.1.23:5000/success`,
                 method: "POST",
                 data: bodyData,
                 headers: {
@@ -60,7 +60,7 @@ const Products = (props) => {
         bodyData.append("name", 'p1');
 
         const data = await axios({
-            url: `http://192.168.1.16:3000/start_payment`,
+            url: `http://192.168.1.23:5000/start_payment`,
             method: "POST",
             headers: {
                 Accept: "application/json",

@@ -74,7 +74,7 @@ const OrderList = () => {
                     <img src={filter} className="w-[14px] md:w-[16px] ml-2" />
                     <h1 className="text-[13px] md:text-[16px] tracking-[2px] text-[#696969]">FILTERS</h1>
                 </div>
-                <div className={`absolute md:top-[50px] left-0 bg-white min-w-[240px] md:min-w-[370px] pl-10 z-[10] border border-[#696969af] transition-all duration-[400ms] overflow-hidden ${filterToggle ? 'h-[470px] ease-in' : 'h-0 border-none ease-out'}`}>
+                <div className={`absolute md:top-[50px] left-0 bg-[white] min-w-[240px] md:min-w-[370px] pl-10 z-[10] border shadow-md transition-all duration-[400ms] overflow-hidden ${filterToggle ? 'h-[470px] ease-in' : 'h-0 border-none ease-out'}`}>
                     <h1 className="border-b border-b-[#6969692c] w-[70%] my-2 poppins text-[18px] font-[500] tracking-[2px] py-2 pt-4">Status</h1>
                     <ul className="lora text-[12px]">
                         <li className="my-4 flex justify-start gap-4 items-center" ><input type="checkbox" name="" id="" /> All</li>

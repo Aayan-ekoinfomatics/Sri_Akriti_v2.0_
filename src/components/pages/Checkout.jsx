@@ -11,6 +11,21 @@ const Checkout = () => {
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
 
+    useEffect(() => {
+        let formData = new FormData
+        formData?.append("token", localStorage.getItem("token"))
+        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'checkout', formData).then((response) => {
+            // console.log(response?.data)
+            setCheckoutData(response?.data)
+        })
+    }, []);
+
+    // useEffect(() => {
+    //     setName(checkoutData?.form?.content[0]?.value);
+    //     setAmount(checkoutData?.checkout_data?.total?.amount);
+    // }, [])
+    
+
     // this function will handel payment when user submit his/her money
     // and it will confim if payment is successfull or not
     const handlePaymentSuccess = async (response) => {
@@ -21,7 +36,7 @@ const Checkout = () => {
             bodyData.append("response", JSON.stringify(response));
 
             await axios({
-                url: `http://192.168.1.16:3000/success`,
+                url: `http://192.168.1.23:5000/success`,
                 method: "POST",
                 data: bodyData,
                 headers: {
@@ -31,8 +46,8 @@ const Checkout = () => {
             })
                 .then((res) => {
                     console.log("Everything is OK!");
-                    setName("");
-                    setAmount("");
+                    // setName(checkoutData?.form?.content[0]?.value);
+                    // setAmount(checkoutData?.checkout_data?.total?.amount);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -49,8 +64,8 @@ const Checkout = () => {
         document.body.appendChild(script);
     };
 
-    const showRazorpay = async (product) => {
-        console.log(product)
+    const showRazorpay = async () => {
+        // console.log()
         const res = await loadScript();
 
         let bodyData = new FormData();
@@ -59,11 +74,12 @@ const Checkout = () => {
         // bodyData.append("amount", product?.price.toString());
         // bodyData.append("name", product?.product_name);
 
-        bodyData.append("amount", '400');
-        bodyData.append("name", 'p1');
+        bodyData.append("amount", checkoutData?.checkout_data?.total?.amount);
+        bodyData.append("name", checkoutData?.form?.content[0]?.value);
+        bodyData.append("token", localStorage.getItem("token"));
 
         const data = await axios({
-            url: `http://192.168.1.16:3000/start_payment`,
+            url: `http://192.168.1.23:5000/start_payment`,
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -110,17 +126,9 @@ const Checkout = () => {
     };
 
     useEffect(() => {
-        let formData = new FormData
-        formData?.append("token", localStorage.getItem("token"))
-        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'checkout', formData).then((response) => {
-            // console.log(response?.data)
-            setCheckoutData(response?.data)
-        })
-    }, []);
-
-    // useEffect(() => {
-    //   console.log(checkoutData)
-    // }, [checkoutData])
+        console.log(checkoutData)
+        // console.log(checkoutData?.form?.content[0]?.value, checkoutData?.checkout_data?.total?.amount)
+    }, [checkoutData])
 
 
 
@@ -266,9 +274,9 @@ const Checkout = () => {
                             <p className='poppins text-[12px] md:text-[14px] tracking-[3px]' >₹ {checkoutData?.checkout_data?.total?.amount}</p>
                         </div>
                         <div className='w-full flex justify-center items-center pt-10 md:my-5'>
-                            <button className='bg-black text-white p-4 px-14 text-[12px] md:text-[15px] font-[300] tracking-[3px] md:w-full' onClick={( ) => showRazorpay(data)}>{checkout?.checkout_data?.checkout_button}</button>
+                            <button className='bg-black text-white p-4 px-14 text-[12px] md:text-[15px] font-[300] tracking-[3px] md:w-full' onClick={() => showRazorpay()}>{checkout?.checkout_data?.checkout_button}</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
