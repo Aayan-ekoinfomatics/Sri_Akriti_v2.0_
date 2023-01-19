@@ -23,35 +23,33 @@ const ProductsInventoryPage = () => {
 
     const [filterValue, setFilteredValue] = useState();
 
-    const [singleProduct, setSingleProducts] = useState();
-    const [allProducts, setAllProducts] = useState();
-    const [pageNumber, setPageNumber] = useState(0);
-    const usersPerPage = 10;
-    const pagesVisited = pageNumber * usersPerPage;
+        // const [singleProduct, setSingleProducts] = useState();
+        const [allProducts, setAllProducts] = useState();
+        // const [pageNumber, setPageNumber] = useState(0);
+        // const usersPerPage = 10;
+        // const pagesVisited = pageNumber * usersPerPage;
 
-    const displayUsers = allProducts?.slice(pagesVisited, pagesVisited + usersPerPage)
+        // const displayUsers = allProducts?.slice(pagesVisited, pagesVisited + usersPerPage)
+        // const displayUsers = admiProductsApi?.products?.slice(pagesVisited, pagesVisited + usersPerPage)
 
-    const pageCount = Math.ceil(allProducts?.length / usersPerPage);
+        // const pageCount = Math.ceil(allProducts?.length / usersPerPage);
 
-    const params = useParams()
+        // const params = useParams()
 
-    const changePage = ({ selected }) => {
-        setPageNumber(selected)
-    }
+        // const changePage = ({ selected }) => {
+        //     setPageNumber(selected)
+        // }
 
     useEffect(() => {
         // let formdata = new FormData();
         // formdata.append("token", localStorage.getItem("token"));
-        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
-            // console.log(response?.data)
-            setAllProducts(response?.data?.data)
-            console.log(Math.ceil(allProducts?.length / usersPerPage))
-        })
+        // axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
+        //     // console.log(response?.data)
+        //     setAllProducts(response?.data?.data)
+        //     console.log(Math.ceil(allProducts?.length / usersPerPage))
+        // })
+        console.log(admiProductsApi)
     }, [])
-
-    // useEffect(() => {
-    //     console.log(Math.ceil(allProducts?.length / usersPerPage))
-    // }, [])
 
     useEffect(() => {
         setFilteredValue(admiProductsApi?.products?.filter((filterValue) => {
@@ -62,13 +60,6 @@ const ProductsInventoryPage = () => {
             }
         }).length)
     }, [searchData])
-
-    // useEffect(() => {
-    //     axios.post((import.meta.env.VITE_APP_BASE_API_LINK + 'allProducts', {data: {id:8}}).then((response) => {
-    //         console.log(response?.data)
-    //         setAllProducts(response?.data)
-    //     }))
-    // }, [])
 
 
     return (
@@ -144,12 +135,13 @@ const ProductsInventoryPage = () => {
                                         <h1 className='text-[#718096]'>Action</h1>
                                     </div>
                                 </div>
-                                <div className='w-full'>
+                                <div className='w-full max-h-[700px] overflow-y-scroll'>
                                     {
                                         filterValue > 0 ?
-                                            <div>
+                                            <div className=''>
                                                 {
-                                                    displayUsers?.filter((filterValue) => {
+                                                    // allProducts?.filter((filter) => {
+                                                    admiProductsApi?.products?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
                                                         } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
@@ -159,13 +151,16 @@ const ProductsInventoryPage = () => {
                                                         <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7'>
                                                             <div className='grid grid-cols-4 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.id}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.product_id}</h1>
+                                                                    {/* <h1 className='text-[#718096]'>{data?.id}</h1> */}
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.name}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.product_name}</h1>
+                                                                    {/* <h1 className='text-[#718096]'>{data?.name}</h1> */}
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.category}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.product_category}</h1>
+                                                                    {/* <h1 className='text-[#718096]'>{data?.category}</h1> */}
                                                                 </div>
                                                                 {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
                                                                     <div key={sub_index} className='flex items-center border border-red-500'>
@@ -214,7 +209,7 @@ const ProductsInventoryPage = () => {
 
                 {/* mani flex - 2 */}
                 <div className='w-full flex justify-center items-center pt-4 relative'>
-                    <div className='flex items-center gap-3'>
+                    {/* <div className='flex items-center gap-3'>
                         <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
                         {
                             admiProductsApi?.page_number_data?.map((num_data, num_index) => (
@@ -224,8 +219,8 @@ const ProductsInventoryPage = () => {
                             ))
                         }
                         <span className='ml-3' ><img src={right_arrow} className="w-[11px]" /></span>
-                    </div>
-                    <ReactPaginate
+                    </div> */}
+                    {/* <ReactPaginate
                         // previousLabel={'←'}
                         previousLabel={<img src={left_arrow} />}
                         // nextLabel={'→'}
@@ -237,10 +232,10 @@ const ProductsInventoryPage = () => {
                         nextLinkClassName={'nextBtn'}
                         disabledClassName={'paginationDisabled'}
                         activeClassName={'paginationActive'}
-                    />
-                    <div className='absolute right-[13%]'>
+                    /> */}
+                    {/* <div className='absolute right-[13%]'>
                         <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

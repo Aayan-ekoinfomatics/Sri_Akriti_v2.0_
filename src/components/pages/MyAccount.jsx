@@ -317,17 +317,17 @@ const MyAccount = () => {
                             <div className='' onClick={() => setGender('Male')}>
                                 <label className='text-[13px] mr-2' htmlFor="name">Male</label>
                                 {/* <input ref={genderRef} defaultChecked={gender === 'Male' ? true : false} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='male' type="radio" name='gender' /> */}
-                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'Male' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("Male")}></div>
+                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'M' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("M")}></div>
                             </div>
                             <div className='' onClick={() => setGender('Female')}>
                                 <label className='text-[13px] mr-2' htmlFor="name">Female</label>
                                 {/* <input ref={genderRef} defaultChecked={gender === 'Female' ? true : false} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='female' type="radio" name='gender' /> */}
-                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'Female' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("Female")}></div>
+                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'F' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("F")}></div>
                             </div>
                             <div className='' onClick={() => setGender('Other')}>
                                 <label className='text-[13px] mr-2' htmlFor="name">Others</label>
                                 {/* <input ref={genderRef} defaultChecked={gender === 'Other' ? true : false} onChange={() => setGender(profileApiData?.user?.gender)} className='text-[13px] outline-none p-1 accent-[#696969] ' htmlFor='others' type="radio" name='gender' /> */}
-                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'Other' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("Other")}></div>
+                                <div className={`w-[12px] h-[12px] rounded-[50%] inline-block ${gender === 'O' ? 'bg-[#696969b9] border border-white' : 'bg-white border border-[#6969694a]'}`} onClick={() => setGender("O")}></div>
                             </div>
                         </div>
                         <div className='w-full flex flex-col my-8'>

@@ -90,12 +90,12 @@ function App() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* <Route element={<ProtectedRouteAdmin />} > */}
-            {/* <Route path="/admin-products" element={<ProductsInventoryPage />} />
-            <Route path="/admin-orders" element={<OrdersInventoryPage />} />  
+          {/* <Route element={<ProtectedRouteAdmin />} >
+            <Route path="/admin-products" element={<ProductsInventoryPage />} />
+            <Route path="/admin-orders" element={<OrdersInventoryPage />} />
             <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
-            <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} /> */}
-          {/* </Route> */}
+            <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
+          </Route> */}
 
           <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />
 

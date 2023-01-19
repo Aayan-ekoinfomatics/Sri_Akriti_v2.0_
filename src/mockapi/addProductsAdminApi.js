@@ -1,10 +1,10 @@
-import grey from '../assets/icons/grey-rectangle.svg'
+import grey from "../assets/icons/grey-rectangle.svg";
 
 const addProductsAdminApi = {
-    add_product : {
-        main_img: grey,
-        images: [grey, grey, grey]
-    }
-}
+  add_product: {
+    main_img: grey,
+    images: [grey, grey, grey],
+  },
+};
 
-export default addProductsAdminApi
+export default addProductsAdminApi;

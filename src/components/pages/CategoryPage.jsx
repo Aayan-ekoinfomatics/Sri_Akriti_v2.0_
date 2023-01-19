@@ -330,8 +330,12 @@ const CategoryPage = () => {
                   formdata.append("product_id", data?.id);
                   axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'userWishlist', formdata).then((response) => {
                     // console.log(response?.data)
-                    localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
-                    setWishlistToggle(response?.data?.wishlist_array)
+                    if (response?.data?.status) {
+                      localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
+                      setWishlistToggle(response?.data?.wishlist_array)
+                    } else {
+                      alert("Please log in to add to wishlist")
+                    }
                     // setProfileApiData(response?.data)
                   })
                 }}>

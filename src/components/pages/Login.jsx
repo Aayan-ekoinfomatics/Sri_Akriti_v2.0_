@@ -22,16 +22,18 @@ const Login = () => {
 
     if (emailRef?.current?.value?.length === 0 || passwordRef?.current?.value?.length === 0) {
       setErrorText('Please fill all fields')
-    } else if (emailRef?.current?.value?.length > 5 && passwordRef?.current?.value?.length >= 5) {
+    } else if (emailRef?.current?.value?.length > 1 && passwordRef?.current?.value?.length >= 1) {
 
       axios({
           method: "post",
           url: import.meta.env.VITE_APP_BASE_API_LINK + "login",
           data: userCredentials,
       }).then(function (response) {
+        console.log(response)
+        console.log(localStorage.getItem('token'))
           localStorage.setItem("token", response?.data?.token);
           localStorage.setItem("status", response?.data?.status);
-          if (localStorage.getItem("token") === response?.data?.token) {
+          if (response?.data?.token) {
               navigate("/");
           } else {
               setErrorText("Wrong Credentials")

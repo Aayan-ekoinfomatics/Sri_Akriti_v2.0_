@@ -6,6 +6,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import PageBackButton from "../global components/PageBackButton";
+import delete_icon from '../../assets/icons/delete.svg'
 
 const Cart = () => {
 
@@ -35,7 +36,7 @@ const Cart = () => {
       </div>
 
       {
-        card_data?.products?.length != 0 ?
+        cartData?.products?.length != 0 ?
           <div className="w-[90%] md:flex md:w-[80%] mx-auto md:h-[400px]">
 
             <div className="w-full mx-auto my-auto h-[400px] overflow-y-scroll mb-5 md:mb-0">
@@ -47,10 +48,27 @@ const Cart = () => {
                       {/* <img src={data?.image} className="w-[95px]" /> */}
                     </div>
                     <div className="w-full max-w-[300px] md:max-w-none flex flex-col items-start">
-                      <div className="pt-2">
-                        <h1 className="lora font-[600] text-[15px] ">{data?.title}</h1>
-                        <h1 className="lora font-[600] text-[15px] ">ID : {data?.id}</h1>
-                        <h1 className="lora font-[600] text-[15px] ">₹ {data?.price}</h1>
+                      <div className="pt-2 flex justify-between items-center w-full">
+                        <div>
+                          <h1 className="lora font-[600] text-[15px] ">{data?.title}</h1>
+                          <h1 className="lora font-[600] text-[15px] ">ID : {data?.id}</h1>
+                          <h1 className="lora font-[600] text-[15px] ">₹ {data?.price}</h1>
+                        </div>
+                        <div className="flex flex-col justify-start -translate-y-[15px]">
+                          <img src={delete_icon} className="w-[15px]" onClick={async () => {
+                            let text = confirm("Confirm product delete ?")
+                            if(text) {
+                              let formdata = new FormData();
+                              formdata.append("token", localStorage.getItem("token"));
+                              formdata.append("cart_product_id", data?.cart_product_id);
+                              await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartProductDelete', formdata).then((response) => setCartData(response?.data))
+                              await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
+                                console.log(response?.data)
+                                setCartData(response?.data)
+                              })
+                            }
+                          }}/>
+                        </div>
                       </div>
                       <div className="flex items-center w-full justify-end">
                         <button className="text-[19px] bg-[#ffffff] font-[500] px-2 flex justify-center items-center" onClick={async () => {
@@ -64,7 +82,7 @@ const Cart = () => {
                             setCartData(response?.data)
                           })
                         }} >-</button>
-                        <p className="text-[17px] bg-[#3EDCFF] font-[500] px-2 flex pt-1 justify-center items-center" >{data?.quantity}</p>
+                        <p className="text-[17px] bg-[#3EDCFF] font-[500] px-2 flex pt-1 justify-center items-center" >{data?.qty}</p>
                         <button className="text-[19px] bg-[#ffffff] font-[500] px-2 flex justify-center items-center" onClick={async () => {
                           let formdata = new FormData();
                           formdata.append("token", localStorage.getItem("token"));

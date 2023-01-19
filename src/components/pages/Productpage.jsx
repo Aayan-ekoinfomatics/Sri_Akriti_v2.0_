@@ -229,7 +229,13 @@ const Productpage = () => {
                 formdata.append("weight", productDetailsToBackend?.weight);
                 formdata.append("diamond_size", productDetailsToBackend?.diamond_size);
                 formdata.append("diamond_quality", productDetailsToBackend?.diamond_quality);
-                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => console.log(response?.data))
+                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
+                  if(response?.data?.status === true){
+                    alert(response?.data?.message)
+                  }else {
+                    alert("Please login first")
+                  }
+                })
               }} className="bg-black text-white min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">ADD TO CART</button>
               <button className="bg-[#3EDCFF] min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">BUY NOW</button>
             </div>

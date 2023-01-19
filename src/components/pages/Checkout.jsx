@@ -34,6 +34,8 @@ const Checkout = () => {
 
             // we will send the response we've got from razorpay to the backend to validate the payment
             bodyData.append("response", JSON.stringify(response));
+            bodyData.append("token", localStorage.getItem("token"));
+            bodyData.append("amount", checkoutData?.checkout_data?.total?.amount);
 
             await axios({
                 url: `http://192.168.1.23:5000/success`,
@@ -45,6 +47,7 @@ const Checkout = () => {
                 },
             })
                 .then((res) => {
+                    console.log(res)
                     console.log("Everything is OK!");
                     // setName(checkoutData?.form?.content[0]?.value);
                     // setAmount(checkoutData?.checkout_data?.total?.amount);

@@ -13,8 +13,14 @@ import { NavLink } from 'react-router-dom'
 const AddNewProductInventoryPage = () => {
 
     const [searchData, setSearchData] = useState('');
+
+    const addProduct = (e) => {
+        e.preventDefault()
+    }
+
+
     return (
-        <div className='w-full bg-[#F5F5F5] flex justify-center items-center'>
+        <div className='w-full bg-[#F5F5F5] flex flex-col gap-10 justify-center items-center'>
             <div className='w-full pt-10 flex justify-center items-center'>
 
                 {/* mani flex - 1 */}
@@ -67,7 +73,7 @@ const AddNewProductInventoryPage = () => {
                         </div>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[85%] px-3'>
+                        <form onSubmit={addProduct} className='w-[85%] px-3'>
                             <div className='w-full mb-3'>
                                 <h1 className='text-[30px] font-[] roboto'>Add new product</h1>
                                 <h1 className='text-[13px] font-[] roboto'>Enter the product details</h1>
@@ -118,7 +124,7 @@ const AddNewProductInventoryPage = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
 
 
                     </div>
@@ -152,6 +158,9 @@ const AddNewProductInventoryPage = () => {
                         </p>
                     </div>
                 </div> */}
+            </div>
+            <div className='flex justify-end items-center w-[80%] mx-auto px-2'>
+                <button className='w-full max-w-[170px] py-2 bg-[#3EDCFF] active:scale-[0.98] active:bg-[#29c9ec] shadow-md font-[500] rounded-[10px]'>ADD PRODUCT</button>
             </div>
         </div>
     )
