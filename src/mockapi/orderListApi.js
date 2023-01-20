@@ -5,29 +5,26 @@ const orders = {
         {
             status: 'Delivered',
             date: '12/11/22',
-            product_img: img,
-            product_name: 'A Quiet Dawn Necklace in Platinum',
-            product_code: 'SJ PTB 307',
-            product_price: '23,000',
-            rating: '4'
+            order_img: img,
+            order_name: 'A Quiet Dawn Necklace in Platinum',
+            order_id: 'SJ PTB 307',
+            order_price: '23,000',
         },
         {
             status: 'On Way',
             date: '12/11/22',
-            product_img: img,
-            product_name: 'A Quiet Dawn Necklace in Platinum',
-            product_code: 'SJ PTB 307',
-            product_price: '18,000',
-            rating: '3'
+            order_img: img,
+            order_name: 'A Quiet Dawn Necklace in Platinum',
+            order_id: 'SJ PTB 307',
+            order_price: '18,000',
         },
         {
             status: 'Delivered',
             date: '12/11/22',
-            product_img: img,
-            product_name: 'A Quiet Dawn Necklace in Platinum',
-            product_code: 'SJ PTB 307',
-            product_price: '35,500',
-            rating: '4'
+            order_img: img,
+            order_name: 'A Quiet Dawn Necklace in Platinum',
+            order_id: 'SJ PTB 307',
+            order_price: '35,500',
         },
     ] 
 };

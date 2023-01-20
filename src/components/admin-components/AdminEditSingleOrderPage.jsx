@@ -14,7 +14,7 @@ import down from '../../assets/icons/down-arrow-admin.svg'
 import PageBackButton from '../global components/PageBackButton'
 
 
-const AdmitEditSingleProduct = () => {
+const AdminEditSingleOrderPage = () => {
 
     const [searchData, setSearchData] = useState('');
     const [filterValue, setFilteredValue] = useState();
@@ -86,8 +86,9 @@ const AdmitEditSingleProduct = () => {
     }
     
 
+
     return (
-        <div className='w-full bg-[#F5F5F5] flex flex-col justify-center items-center relative pt-8'>
+        <div className='w-full'>
             <PageBackButton />
             <div className='w-full pt-5'>
 
@@ -143,8 +144,8 @@ const AdmitEditSingleProduct = () => {
                         {/* content-flex - 1 */}
                         <div className='w-[82%] px-3'>
                             <div className='w-full min-h-[70vh] pt-[20px]'>
-                                <form onSubmit={submitForm} className='w-fit min-w-[1000px] roboto'>
-                                    <div className='w-full flex'>
+                                <form onSubmit={submitForm} className='w-fit min-w-[1000px] roboto border border-red-500'>
+                                    {/* <div className='w-full flex'>
                                         <div className='w-full pt-10'>
 
                                             <div className='flex gap-5 my-2 max-w-[500px]'>
@@ -165,11 +166,6 @@ const AdmitEditSingleProduct = () => {
                                                 </div>
                                             </div>
                                             {
-                                                // defaultData?.variants?.map((data, i) => {
-                                                //     <div key={i}>
-                                                //         {data?.diamond_quality}
-                                                //     </div>
-                                                // })
                                                 <div className='w-full flex flex-col my-2 max-w-[500px]'>
                                                     <input type="text" name="product name" value={defaultData?.name} onChange={(e) => {
                                                         setDefaultData({
@@ -188,7 +184,7 @@ const AdmitEditSingleProduct = () => {
                                             <h1 className='my-1 pt-14 font-[500]'>Diamond Quality</h1>
                                             <div className='w-full flex flex-col my-2 max-w-[500px]'>
 
-                                                {/* dropdown */}
+
                                                 <div className='w-full rounded-[10px] z-[110] bg-white shadow-md py-[5px] pl-3 my-1 cursor-pointer flex justify-between items-center pr-3' onClick={() => setDropdown(!dropdown)}>
                                                     <div className='text-[15px] text-[#696969b6]'>{!selectedDiamondQuality ? 'Select a diamond quality' : selectedDiamondQuality}</div>
                                                     <div><img src={down} className="" /></div>
@@ -215,12 +211,12 @@ const AdmitEditSingleProduct = () => {
                                                     setDefaultData({
                                                         ...defaultData,
                                                         variants: defaultData?.variants?.map((v_data, v_index) => {
-                                                            if(v_data?.diamond_quality === selectedDiamondQuality) {
+                                                            if (v_data?.diamond_quality === selectedDiamondQuality) {
                                                                 return {
                                                                     ...v_data,
                                                                     diamond_quality: e.target.value,
                                                                 }
-                                                            }else {
+                                                            } else {
                                                                 return v_data
                                                             }
                                                         })
@@ -315,11 +311,9 @@ const AdmitEditSingleProduct = () => {
                                     </div>
                                     <div className='w-full flex justify-end pr-16'>
                                         <button className=' py-[4px] px-6 rounded-[10px] text-[14px] active:bg-[#d6d6d6] active:scale-[0.91]'>Add more</button>
-                                    </div>
-                                    {/* <div className='w-full my-2'>
-                                        <input type="file" name="files" id="files" className="inputfile" />
-                                        <label htmlFor="files">Add Image</label>
                                     </div> */}
+
+                                    
 
                                 </form>
                             </div>
@@ -348,43 +342,4 @@ const AdmitEditSingleProduct = () => {
     )
 }
 
-export default AdmitEditSingleProduct
-
-
-
-
-
-
-{/* <div className='w-full grid grid-cols-4 px-3 py-1' key={size_index}>
-<div className='text-[15px]'>
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={size_data} onClick={() => {
-        setActiveIndex(size_index)
-        setActiveKey('size')
-    }} 
-    onChange={(e) => {
-        setDefaultData({
-            ...defaultData,
-            variants: defaultData?.variants?.map((data, index) => {
-              
-                data?.size?.map((size_specific_data, size_specific_index) => {
-                    if (size_specific_index === activeIndex) {
-                        return 'got chya'
-                    }else {
-                        return 'size_specific_data'
-                    }
-                })
-            })
-        })
-    }}
-    />
-</div>
-<div className='text-[15px]'>
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={data?.weight[size_index] + ' gms'} onClick={() => setActiveIndex(size_index)} />
-</div>
-<div className='text-[15px]'>\
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={'₹ ' + data?.actual_price[size_index]} onClick={() => setActiveIndex(size_index)} />
-</div>
-<div className='text-[15px]'>
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={'₹ ' + data?.selling_price[size_index]} onClick={() => setActiveIndex(size_index)} />
-</div>
-</div> */}
+export default AdminEditSingleOrderPage

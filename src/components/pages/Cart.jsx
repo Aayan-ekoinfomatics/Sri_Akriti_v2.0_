@@ -55,7 +55,7 @@ const Cart = () => {
                           <h1 className="lora font-[600] text-[15px] ">₹ {data?.price}</h1>
                         </div>
                         <div className="flex flex-col justify-start -translate-y-[15px]">
-                          <img src={delete_icon} className="w-[15px]" onClick={async () => {
+                          <img src={delete_icon} className="w-[15px] cursor-pointer" onClick={async () => {
                             let text = confirm("Confirm product delete ?")
                             if(text) {
                               let formdata = new FormData();

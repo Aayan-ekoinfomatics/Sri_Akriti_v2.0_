@@ -110,23 +110,23 @@ const OrderList = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="w-full max-w-[1000px] mx-auto mt-10 h-fit max-h-[250px] md:max-h-[400px] overflow-y-scroll px-2">
+                <div className="w-full max-w-[800px] mx-auto mt-10 h-fit max-h-[250px] md:max-h-[400px] overflow-y-scroll px-2">
                     {
-                        orderListData?.map((data, i) => (
+                        orderListData?.order_list?.map((data, i) => (
                             <div key={i} className='my-4'>
                                 <div onMouseEnter={() => setActiveItem(i)} onMouseLeave={() => setActiveItem(null)} className="border-b flex flex-col items-cente mx-auto pb-2 relative" >
                                     <div className="w-full flex justify-between poppins tracking-[1px]">
-                                        <h1 className={`text-[12px] md:text-[16px] ${data?.delivery_status === 'Delivered' ? 'text-[#1E9923]' : data?.delivery_status === 'Placed'? 'text-[#FE9D00]' : data?.delivery_status === 'On the way' ? 'text-[#4d6eff]' : data?.delivery_status === 'Cancelled' ? 'text-red-600' : ''} font-[500]`} >{data?.delivery_status}</h1>
+                                        <div className="flex items-center gap-3"><h1 className="text-[14px]">Order status: </h1> <h1 className={`text-[12px] md:text-[16px] ${data?.delivery_status === 'Delivered' ? 'text-[#1E9923]' : data?.delivery_status === 'Placed'? 'text-[#FE9D00]' : data?.delivery_status === 'On the way' ? 'text-[#4d6eff]' : data?.delivery_status === 'Cancelled' ? 'text-red-600' : ''} font-[500]`} >{data?.delivery_status}</h1></div>
                                         <h1 className="text-[10px] md:text-[13px] text-[#00000085] md:text-[black] md:font-[400]">{data?.date}</h1>
                                     </div>
                                     <NavLink to='/order-details' className="w-full flex gap-2 items-center md:gap-3">
-                                        <div >
+                                        {/* <div >
                                             <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.product_img} className="w-[100px] md:w-[130px]" />
-                                        </div>
+                                        </div> */}
                                         <div className="flex flex-col gap-4 w-full poppins">
                                             <div className="flex flex-col justify-evenly items-start">
-                                                <h1 className="text-[13px] md:text-[18px] font-[500] leading-0" >{data?.product_name}</h1>
-                                                <h1 className="text- font-[500] text-[12px] md:text-[17px]">₹{data?.total_amount}</h1>
+                                                <h1 className="text-[13px] md:text-[18px] font-[500] leading-0" >{data?.order_name}</h1>
+                                                <h1 className="text- font-[500] text-[12px] md:text-[17px]">₹{data?.order_price}</h1>
                                             </div>
                                             <h1 className="text mt-1 text-[12px]">order id: <span className="poppins font-[500] text-[13px]">{data?.order_id}</span></h1>
                                         </div>

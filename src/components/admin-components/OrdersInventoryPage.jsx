@@ -19,18 +19,18 @@ const OrdersInventoryPage = () => {
 
     const [allOrders, setAllOrders] = useState()
 
-    const [pageNumber, setPageNumber] = useState(0);
-    const usersPerPage = 10;
-    const pagesVisited = pageNumber * usersPerPage;
+    // const [pageNumber, setPageNumber] = useState(0);
+    // const usersPerPage = 10;
+    // const pagesVisited = pageNumber * usersPerPage;
 
-    const displayUsers = adminOrdersApi?.products?.slice(pagesVisited, pagesVisited + usersPerPage)
+    // const displayUsers = adminOrdersApi?.products?.slice(pagesVisited, pagesVisited + usersPerPage)
 
-    const pageCount = Math.ceil(adminOrdersApi?.products?.length / usersPerPage);
+    // const pageCount = Math.ceil(adminOrdersApi?.products?.length / usersPerPage);
 
 
-    const changePage = ({ selected }) => {
-        setPageNumber(selected)
-    }
+    // const changePage = ({ selected }) => {
+    //     setPageNumber(selected)
+    // }
 
     // useEffect(() => {
     //     let formdata = new FormData();
@@ -81,9 +81,9 @@ const OrdersInventoryPage = () => {
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Orders</h1>
                             </div>
-                            {/* <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Orders</button>
-                            </div> */}
+                            <div className='w-fit mr-4'>
+                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md active:scale-[0.98] active:bg-[#f0f0f0]'>Add Orders</button>
+                            </div>
                         </div>
                     </div>
 
@@ -136,12 +136,12 @@ const OrdersInventoryPage = () => {
                                         <h1 className='text-[#718096]'>Action</h1>
                                     </div>
                                 </div>
-                                <div className='w-full'>
+                                <div className='w-full max-h-[700px] overflow-y-scroll'>
                                     {
                                         filterValue > 0 ?
                                             <div>
                                                 {
-                                                    displayUsers?.filter((filterValue) => {
+                                                    adminOrdersApi?.products?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
                                                         } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
@@ -214,7 +214,7 @@ const OrdersInventoryPage = () => {
                     <div className='absolute right-[13%]'>
                         <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
                     </div> */}
-                    <ReactPaginate
+                    {/* <ReactPaginate
                         previousLabel={<img src={left_arrow} />}
                         nextLabel={<img src={right_arrow} />}
                         pageCount={pageCount}
@@ -224,10 +224,10 @@ const OrdersInventoryPage = () => {
                         nextLinkClassName={'nextBtn'}
                         disabledClassName={'paginationDisabled'}
                         activeClassName={'paginationActive'}
-                    />
-                    <div className='absolute right-[13%]'>
+                    /> */}
+                    {/* <div className='absolute right-[13%]'>
                         <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

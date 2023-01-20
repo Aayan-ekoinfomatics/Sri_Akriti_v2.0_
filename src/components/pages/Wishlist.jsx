@@ -72,6 +72,7 @@ const Wishlist = () => {
                                 </div>
                                 <div className="w-[10%] flex items-center justify-end">
                                     <button className="font-[500] px-4 py-2 flex justify-center items-center" onClick={() => {
+                                        let text = confirm("Confirm product delete ?")
                                         let formdata = new FormData();
                                         formdata.append("token", localStorage.getItem("token"));
                                         formdata.append("product_id", data?.id);
@@ -81,7 +82,7 @@ const Wishlist = () => {
                                             setWishlistData(response?.data?.wishlist_data)
                                             setWishlistToggle(response?.data?.wishlist_array)
                                             localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
-                                            alert("Confirm product delete")
+                                            alert("Product removed from wishlist")
                                         })
                                     }}>
                                         <img src={delete_icon} className="w-[15px]" />

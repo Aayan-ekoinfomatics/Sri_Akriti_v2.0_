@@ -35,10 +35,10 @@ const Productpage = () => {
   const [selectedWeight, setSelectedWeight] = useState(0);
 
   const [productDetailsToBackend, setProductDetailsToBackend] = useState({
-    diamond_quality: '',
-    diamond_size: '',
-    size: '',
-    weight: '',
+    // diamond_quality: '',
+    // diamond_size: '',
+    // size: '',
+    // weight: '',
   })
 
   useEffect(() => {
@@ -57,9 +57,9 @@ const Productpage = () => {
     // console.log(response?.data)
   }, [params])
 
-  // useEffect(() => {
-  //   console.log(productApiData)
-  // }, [productApiData])
+  useEffect(() => {
+    console.log(productApiData)
+  }, [productApiData])
 
 
   // useEffect(() => {
@@ -73,6 +73,12 @@ const Productpage = () => {
           ...productApiData,
           actual_price: response?.data?.actual_price,
           selling_price: response?.data?.selling_price,
+          diamond_charges: response?.data?.diamond_charges,
+          metal_charges: response?.data?.metal_charges,
+          making_charges: response?.data?.making_charges,
+          discount_price: response?.data?.discount_price,
+          total_charges: response?.data?.total_charges,
+
         })
       }
     })
@@ -81,15 +87,15 @@ const Productpage = () => {
 
   return (
     <>
-      <div className="md:flex gap-5 w-[95%] mx-auto ">
-        <div className=" md:w-[50%]">
+      <div className="md:flex w-[95%] mx-auto ">
+        <div className=" md:w-[45%]">
           <div className="pl-6 flex gap-4 items-center md:tracking-[2px] text-[12px] md:text-[18px] mb-8 my-5 md:my-10">
             <Link to='/'>Home</Link>/
             {/* <Link className="capitalize" to={'/single-category/' + 'rings'}>rings</Link>/ */}
             <Link className="capitalize" to={'/single-category/' + productApiData?.category}>{productApiData?.category}</Link>/
             <Link>{productApiData?.name}</Link>
           </div>
-          <div className="w-[95%] mx-auto object-cover mb-2 md:flex gap-1 justify-center items-center md:pb-16 md:pr-12 lg:pb-24 lg:pr-24">
+          <div className="w-[95%] mx-auto object-cover mb-2 md:flex gap-1 justify-center items-center md:pb-16 lg:pb-24">
             {/* mobile slider */}
             {
               productApiData?.image?.length > 1 ?
@@ -123,15 +129,19 @@ const Productpage = () => {
 
             {/* desktop pictures */}
 
-            <div>
-              <div className="hidden md:block w-full">
-                <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image} className=" min-w-[300px] w-[90%]" />
+            <div className="w-full ">
+              <div className="hidden md:flex w-full justify-center">
+                <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image} className=" max-w-[700px] w-[96%]" />
               </div>
             </div>
           </div>
         </div>
-        <div className="lora w-[95%] md:w-[50%] pt-12 mx-auto tracking-[2px] mt-6">
-          <div className='relative'>
+
+        <div className="pt-6 md:pt-0 lora w-[95%] md:w-[55%] mx-auto tracking-[2px] flex flex-col md:flex-row md:justify-between md:items-center mb-10 md:mb-0">
+
+
+
+          <div className='relative w-full md:border-r-2 md:border-r-[#D9D9D9] md:pl-16 px-4'>
             <h1 className="text-[20px] sm:text-[30px] md:text-[36px] mb-2 font-[600]">
               {productApiData?.name}
             </h1>
@@ -151,7 +161,7 @@ const Productpage = () => {
             </div>
             <div className="w-full mx-auto md:my-8">
               <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">Diamond Quality</h1>
-              <div className="flex justify-between md:w-[30%] text-[#6969698a] ">
+              <div className="flex justify-start gap-5 text-[#6969698a] ">
                 {
                   productApiData?.diamond_quality?.map((data, i) => (
                     <h1 key={i} className={`text-[12px] md:text-[14px] lora cursor-pointer ${data === productDetailsToBackend?.diamond_quality ? 'text-black' : ''} `} onClick={() => {
@@ -220,7 +230,34 @@ const Productpage = () => {
                 }
               </div>
             </div>
-            <div className="w-full md:w-[80%] flex gap-2 justify-between sticky botton-0 right-0 text-black py-4 ">
+          </div>
+
+          <div className="w-full md:w-[70%] flex flex-col justify-end items-center text-black">
+            <div className="w-full flex flex-col md:translate-y-[100px] pt-10 md:pt-0">
+              <div className="py-3 px-3 flex justify-between items-center">
+                <h1 className="lora text-[12px] md:text-[18px]">Diamond Charges</h1>
+                <h1 className="lora text-[12px] md:text-[18px]">₹ {productApiData?.diamond_charges}</h1>
+              </div>
+              <div className="py-3 px-3 flex justify-between items-center">
+                <h1 className="lora text-[12px] md:text-[18px]">Metal Charges</h1>
+                <h1 className="lora text-[12px] md:text-[18px]">₹ {productApiData?.metal_charges}</h1>
+              </div>
+              <div className="py-3 px-3 flex justify-between items-center">
+                <h1 className="lora text-[12px] md:text-[18px]">Making Charges</h1>
+                <h1 className="lora text-[12px] md:text-[18px]">₹ {productApiData?.making_charges}</h1>
+              </div>
+              <div className="py-3 px-3 flex justify-between items-center">
+                <h1 className="lora text-[12px] md:text-[18px]">Discount<span className="poppins text-[11px] pl-2">&#40;10%&#41;</span></h1>
+                <h1 className="lora text-[12px] md:text-[18px]">- ₹ {productApiData?.discount_price}</h1>
+              </div>
+            </div>
+
+            <div className="w-full flex flex-col border-t-2 border-t-[#D9D9D9] md:translate-y-[100px] ">
+
+              <div className="py-3 px-3 flex justify-between items-center">
+                <h1 className="lora text-[15px] md:text-[18px]">Total</h1>
+                <h1 className="lora text-[15px] md:text-[18px]">₹ {productApiData?.total_charges}</h1>
+              </div>
               <button onClick={() => {
                 let formdata = new FormData();
                 formdata.append("token", localStorage.getItem("token"));
@@ -230,16 +267,18 @@ const Productpage = () => {
                 formdata.append("diamond_size", productDetailsToBackend?.diamond_size);
                 formdata.append("diamond_quality", productDetailsToBackend?.diamond_quality);
                 axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
-                  if(response?.data?.status === true){
+                  if (response?.data?.status === true) {
                     alert(response?.data?.message)
-                  }else {
+                  } else {
                     alert("Please login first")
                   }
                 })
-              }} className="bg-black text-white min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">ADD TO CART</button>
-              <button className="bg-[#3EDCFF] min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">BUY NOW</button>
+              }} className="bg-[#3EDCFF] text-black w-[80%] mt-10 mx-auto py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px] active:scale-[0.97] active:bg-[#202020]">ADD TO CART</button>
             </div>
           </div>
+
+
+
         </div>
       </div>
 

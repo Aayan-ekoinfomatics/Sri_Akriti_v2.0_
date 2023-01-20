@@ -42,6 +42,7 @@ import OrdersInventoryPage from "./components/admin-components/OrdersInventoryPa
 import AddNewProductInventoryPage from "./components/admin-components/AddNewProductInventoryPage";
 import AdminEditSingleProduct from "./components/admin-components/AdminEditSingleProduct";
 import PageBackButton from "./components/global components/PageBackButton";
+import AdminEditSingleOrderPage from "./components/admin-components/AdminEditSingleOrderPage";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -92,9 +93,12 @@ function App() {
 
           {/* <Route element={<ProtectedRouteAdmin />} >
             <Route path="/admin-products" element={<ProductsInventoryPage />} />
-            <Route path="/admin-orders" element={<OrdersInventoryPage />} />
             <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
             <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
+
+            <Route path="/admin-orders" element={<OrdersInventoryPage />} />
+            <Route path="/admin-add-order" element='' />
+            <Route path="/admin-orders/:order_id" element={<AdminEditSingleOrderPage />} />
           </Route> */}
 
           <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />

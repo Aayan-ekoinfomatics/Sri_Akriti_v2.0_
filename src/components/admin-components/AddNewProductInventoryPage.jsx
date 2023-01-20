@@ -8,6 +8,7 @@ import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
 import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
 import { NavLink } from 'react-router-dom'
+import PageBackButton from '../global components/PageBackButton'
 
 
 const AddNewProductInventoryPage = () => {
@@ -20,8 +21,9 @@ const AddNewProductInventoryPage = () => {
 
 
     return (
-        <div className='w-full bg-[#F5F5F5] flex flex-col gap-10 justify-center items-center'>
-            <div className='w-full pt-10 flex justify-center items-center'>
+        <div className='w-full bg-[#F5F5F5] flex flex-col gap-10 justify-center items-center pt-10'>
+            <PageBackButton />
+            <div className='w-full flex justify-center items-center'>
 
                 {/* mani flex - 1 */}
                 <div className='w-[80%] mx-auto'>
