@@ -1,7 +1,9 @@
-import axios from 'axios'; 
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -25,21 +27,31 @@ const Login = () => {
     } else if (emailRef?.current?.value?.length > 1 && passwordRef?.current?.value?.length >= 1) {
 
       axios({
-          method: "post",
-          url: import.meta.env.VITE_APP_BASE_API_LINK + "login",
-          data: userCredentials,
+        method: "post",
+        url: import.meta.env.VITE_APP_BASE_API_LINK + "login",
+        data: userCredentials,
       }).then(function (response) {
         console.log(response)
-        console.log(localStorage.getItem('token'))
-          localStorage.setItem("token", response?.data?.token);
-          localStorage.setItem("status", response?.data?.status);
-          if (response?.data?.token) {
-              navigate("/");
-          } else {
-              setErrorText("Wrong Credentials")
-          }
+        // console.log(localStorage.getItem('token'))
+        localStorage.setItem("token", response?.data?.token);
+        localStorage.setItem("status", response?.data?.status);
+        if (response?.data?.status === true) {
+          toast.success("Login Successful", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            // draggable: true,
+            progress: undefined,
+            theme: "light",
+          })
+          navigate("/");
+        } else {
+          setErrorText("Wrong Credentials")
+        }
       }).catch(function (error) {
-          console.log(error);
+        console.log(error);
       });
 
       // if (emailRef?.current?.value === 'demo@demo.com' && passwordRef?.current?.value === 'demo1234demo') {
@@ -89,6 +101,7 @@ const Login = () => {
           <button className='bg-black text-white p-3 mb-2 px-12 text-[14px] poppins tracking-[4px] font-[300]'>LOGIN</button>
         </div>
       </form>
+      {/* <ToastContainer /> */}
     </div>
   )
 }

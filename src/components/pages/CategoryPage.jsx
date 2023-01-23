@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
 import axios from "axios";
 import wishlistApiAtom from "../../recoil/atoms/wishlist/wishlistApiAtom";
+import { toast } from "react-toastify";
 
 
 const CategoryPage = () => {
@@ -329,10 +330,20 @@ const CategoryPage = () => {
                   formdata.append("token", localStorage.getItem("token"));
                   formdata.append("product_id", data?.id);
                   axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'userWishlist', formdata).then((response) => {
-                    // console.log(response?.data)
+                    console.log(response?.data)
                     if (response?.data?.status) {
                       localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
                       setWishlistToggle(response?.data?.wishlist_array)
+                      toast.info(`${response?.data?.message}`, {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        // draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                      })
                     } else {
                       alert("Please log in to add to wishlist")
                     }

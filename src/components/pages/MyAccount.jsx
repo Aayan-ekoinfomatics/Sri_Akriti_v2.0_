@@ -7,6 +7,7 @@ import profileApiDataAtom from '../../recoil/atoms/profile/profileApiDataAtom'
 import axios from 'axios'
 import cross from '../../assets/icons/cross.svg'
 import PageBackButton from '../global components/PageBackButton'
+import { toast } from 'react-toastify'
 
 const MyAccount = () => {
 
@@ -33,7 +34,7 @@ const MyAccount = () => {
         // formdata.append("id", data?.id);
         formdata.append("token", localStorage.getItem("token"));
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
-            // console.log(response?.data)
+            console.log(response?.data)
             setProfileApiData(response?.data)
             setGender(profileApiData?.user?.gender)
             // console.log(gender)
@@ -92,13 +93,28 @@ const MyAccount = () => {
                             <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
                             <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
                         </div>
+                        <div className='w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]'>
+                            <h1 className='w-full text-start'>ID</h1>
+                            <h1 className='w-full text-center'>Amount</h1>
+                            <h1 className='w-full text-end'>Status</h1>
+                        </div>
                         <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
-                            {
+                            {/* {
                                 profile_data?.my_orders?.content?.map((data, i) => (
                                     <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]" key={i}>
                                         <img src={data?.image} className="w-[40px]" />
                                         <h1>{data?.title}</h1>
                                         <h1>{data?.price}</h1>
+                                    </div>
+                                ))
+                            } */}
+                            {
+                                profileApiData?.my_orders?.map((data, i) => (
+                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]" key={i}>
+                                        {/* <img src={data?.image} className="w-[40px]" /> */}
+                                        <h1 className='w-full'>{data?.id}</h1>
+                                        <h1 className='w-full text-center'>₹ {data?.order_amount}</h1>
+                                        <h1 className='w-full text-end'>{data?.order_status}</h1>
                                     </div>
                                 ))
                             }
@@ -123,10 +139,11 @@ const MyAccount = () => {
                             } */}
                             {
                                 profileApiData?.wishlist?.map((data, i) => (
-                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
+                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px] my-2" key={i}>
                                         <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[40px]" />
                                         <h1>{data?.name}</h1>
-                                        <h1>{data?.category}</h1>
+                                        <h1>{data?.id}</h1>
+                                        {/* <h1>{data?.category}</h1> */}
                                     </div>
                                 ))
                             }
@@ -231,10 +248,10 @@ const MyAccount = () => {
                         </div>
                         <div className='max-h-[200px] md:max-h-[175px] overflow-y-scroll px-4'>
                             {
-                                profileApiData?.address?.content?.map((data, i) => (
+                                profileApiData?.address?.map((data, i) => (
                                     <div className='w-full flex justify-between items-center my-2 border-b border-b-[#6969696b]' key={i}>
                                         <div className="w-full flex flex-col justify-start py-2 md:px-3 lora text-[11px] tracking-[1.5px]">
-                                            <div className='w-full flex gap-2'>
+                                            <div className='w-full flex flex-col'>
                                                 <h1>{data?.add_line_1},</h1>
                                                 <h1>{data?.add_line_2}</h1>
                                             </div>
@@ -258,6 +275,15 @@ const MyAccount = () => {
                                                 axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'addressEdit', { data: { "address_id": data?.id, "token": localStorage.getItem("token") } }).then((response) => {
                                                     // console.log(response?.data)
                                                     setProfileApiData(response?.data)
+                                                    toast.info("Address deleted successfully", {
+                                                        position: "top-right",
+                                                        autoClose: 2000,
+                                                        hideProgressBar: false,
+                                                        closeOnClick: true,
+                                                        pauseOnHover: true,
+                                                        progress: undefined,
+                                                        theme: "light",
+                                                    })
                                                 })
                                             }}>delete</p>
                                         </div>

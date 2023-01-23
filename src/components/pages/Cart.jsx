@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 import PageBackButton from "../global components/PageBackButton";
 import delete_icon from '../../assets/icons/delete.svg'
+import { toast } from "react-toastify";
 
 const Cart = () => {
 
@@ -43,21 +44,21 @@ const Cart = () => {
               {
                 cartData?.products?.map((data, i) => (
                   <div className="flex justify-center items-center gap-2 md:gap-12 py-2 md:px-3 md:pr-10" key={i}>
-                    <div className=" flex justify-center items-center">
+                    <Link to={'/product-details' + '/' + data?.id} className=" flex justify-center items-center">
                       <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[95px]" />
                       {/* <img src={data?.image} className="w-[95px]" /> */}
-                    </div>
+                    </Link>
                     <div className="w-full max-w-[300px] md:max-w-none flex flex-col items-start">
                       <div className="pt-2 flex justify-between items-center w-full">
-                        <div>
+                        <Link to={'/product-details' + '/' + data?.id} className="">
                           <h1 className="lora font-[600] text-[15px] ">{data?.title}</h1>
                           <h1 className="lora font-[600] text-[15px] ">ID : {data?.id}</h1>
                           <h1 className="lora font-[600] text-[15px] ">₹ {data?.price}</h1>
-                        </div>
+                        </Link>
                         <div className="flex flex-col justify-start -translate-y-[15px]">
                           <img src={delete_icon} className="w-[15px] cursor-pointer" onClick={async () => {
-                            let text = confirm("Confirm product delete ?")
-                            if(text) {
+                            // let text = confirm("Confirm product delete ?")
+                            if(true === true) {
                               let formdata = new FormData();
                               formdata.append("token", localStorage.getItem("token"));
                               formdata.append("cart_product_id", data?.cart_product_id);
@@ -66,7 +67,18 @@ const Cart = () => {
                                 console.log(response?.data)
                                 setCartData(response?.data)
                               })
+                              toast.warn(`Product removed from cart`, {
+                                position: "top-right",
+                                autoClose: 2000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                // draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                              })
                             }
+
                           }}/>
                         </div>
                       </div>
@@ -80,6 +92,16 @@ const Cart = () => {
                           await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
                             console.log(response?.data)
                             setCartData(response?.data)
+                            toast.info(`Product quantity decreased`, {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              // draggable: true,
+                              progress: undefined,
+                              theme: "light",
+                            })
                           })
                         }} >-</button>
                         <p className="text-[17px] bg-[#3EDCFF] font-[500] px-2 flex pt-1 justify-center items-center" >{data?.qty}</p>
@@ -92,6 +114,16 @@ const Cart = () => {
                           await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
                             console.log(response?.data)
                             setCartData(response?.data)
+                            toast.info(`Product quantity increased`, {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              // draggable: true,
+                              progress: undefined,
+                              theme: "light",
+                            })
                           })
                         }} >+</button>
                       </div>
@@ -152,6 +184,8 @@ const Cart = () => {
           </div>
       }
 
+
+      {/* more product recomendations */}
       <div className="w-[90%] mx-auto pt-24 text-center">
         <h1 className="lora text-[18px] md:text-[24px] font-[500]">Our recommendations for you</h1>
       </div>

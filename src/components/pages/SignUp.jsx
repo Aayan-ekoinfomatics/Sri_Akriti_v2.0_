@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import arrow from '../../assets/icons/dropdown-arrow.svg'
 import country_names from '../../mockapi/countrySelectorApi'
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,6 +14,8 @@ const SignUp = () => {
     const [countryDropdown, setCountryDropdown] = useState(false);
     const [countryCode, setCountryCode] = useState('+91')
     const [gender, setGender] = useState('')
+
+    const navigate = useNavigate()
 
     const genderRef = useRef();
     const nameRef = useRef();
@@ -298,6 +300,19 @@ const SignUp = () => {
             formdata.append("gender", gender);
             formdata.append("terms&conditions", termsandConditionsRef?.current?.checked);
             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'signUp', formdata).then((response) => console.log(response?.data));
+            if(response?.data?.status === true) {
+                toast.success(`${response?.data?.message}`, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    // draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  })
+                navigate('/')
+            }
         } else if (termsandConditionsRef?.current?.checked !== true) {
             setErrorText("Please agree to the terms and conditions")
         } else if (passwordRef?.current?.value !== confirmPasswordRef?.current?.value) {

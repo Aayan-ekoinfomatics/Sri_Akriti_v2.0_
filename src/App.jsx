@@ -7,6 +7,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 import LandingPage from "./components/pages/LandingPage";
 import Navbar from "./components/global components/Navbar";
 import Footer from "./components/global components/Footer";
@@ -43,6 +44,7 @@ import AddNewProductInventoryPage from "./components/admin-components/AddNewProd
 import AdminEditSingleProduct from "./components/admin-components/AdminEditSingleProduct";
 import PageBackButton from "./components/global components/PageBackButton";
 import AdminEditSingleOrderPage from "./components/admin-components/AdminEditSingleOrderPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -74,9 +76,9 @@ function App() {
         />
       </div>
 
-      <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
+      {/* <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
         <Navbar />
-      </div>
+      </div> */}
       
       <div>
         <Routes>
@@ -91,7 +93,7 @@ function App() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* <Route element={<ProtectedRouteAdmin />} >
+          <Route element={<ProtectedRouteAdmin />} >
             <Route path="/admin-products" element={<ProductsInventoryPage />} />
             <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
             <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
@@ -99,7 +101,7 @@ function App() {
             <Route path="/admin-orders" element={<OrdersInventoryPage />} />
             <Route path="/admin-add-order" element='' />
             <Route path="/admin-orders/:order_id" element={<AdminEditSingleOrderPage />} />
-          </Route> */}
+          </Route>
 
           <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />
 
@@ -110,7 +112,7 @@ function App() {
             <Route path="/add-address" element={<AddressAdd />} />
             <Route path="/edit-address/:id" element={<EditAddress />} />
             <Route path="/orders" element={<OrderList />} />
-            <Route path="/order-details" element={<OrderDetails />} />
+            <Route path="/order-details/:order_id" element={<OrderDetails />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/checkout" element={<Checkout />} />
           </Route>
@@ -121,7 +123,8 @@ function App() {
 
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
+      <ToastContainer />
     </div>
   );
 }

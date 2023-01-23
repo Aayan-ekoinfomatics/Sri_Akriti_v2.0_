@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import checkout from '../../mockapi/checkoutPageApi'
 
 
@@ -51,7 +52,16 @@ const Checkout = () => {
                 .then((res) => {
                     console.log(res)
                     console.log("Everything is OK!");
-                    alert('Payment completed')
+                    toast.success(`Payment completed successfully`, {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        // draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                      })
                     navigate('/cart')
                     // setName(checkoutData?.form?.content[0]?.value);
                     // setAmount(checkoutData?.checkout_data?.total?.amount);

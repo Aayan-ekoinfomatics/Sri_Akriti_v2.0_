@@ -14,10 +14,13 @@ import { useRecoilState } from "recoil";
 import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
 import axios from "axios";
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
+import { toast } from "react-toastify";
 
 const Productpage = () => {
 
   const params = useParams();
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const [productApiData, setProductApiData] = useRecoilState(singleProductApiAtom);
 
@@ -46,6 +49,7 @@ const Productpage = () => {
     // formdata.append("id", data?.id);
     formdata.append("product_id", params?.product_id);
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'productDetails', formdata).then((response) => {
+      // console.log(response?.data)
       setProductApiData(response?.data)
       setProductDetailsToBackend({
         diamond_quality: response?.data?.diamond_quality[0],
@@ -54,11 +58,11 @@ const Productpage = () => {
         weight: response?.data?.weight[0],
       })
     })
-    // console.log(response?.data)
   }, [params])
 
   useEffect(() => {
-    console.log(productApiData)
+    // console.log(productApiData)
+    console.log(productApiData?.image_all[selectedImageIndex])
   }, [productApiData])
 
 
@@ -129,9 +133,19 @@ const Productpage = () => {
 
             {/* desktop pictures */}
 
-            <div className="w-full ">
+            <div className="w-full">
               <div className="hidden md:flex w-full justify-center">
-                <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image} className=" max-w-[700px] w-[96%]" />
+                <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image_all[selectedImageIndex]} className=" max-w-[630px] w-full shadow-md" />
+                {/* <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image} className=" max-w-[630px] w-full" /> */}
+              </div>
+              <div className="w-full flex justify-evenly px-4 items-center mt-2">
+                {
+                  productApiData?.image_all.map((data, i) => (
+                    <div className={`w-fit cursor-pointer ${i === selectedImageIndex ? 'border border-black' : ''}`} onClick={() => setSelectedImageIndex(i)}>
+                      <img src={import.meta.env.VITE_APP_BASE_API_LINK + data} className='w-full max-w-[100px]' alt="" />
+                    </div>
+                  ))
+                }
               </div>
             </div>
           </div>
@@ -194,7 +208,7 @@ const Productpage = () => {
             </div>
             <div className="w-full mx-auto md:my-8">
               <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">Size</h1>
-              <div className="flex justify-between md:w-[30%] text-[#6969698a] ">
+              <div className="flex justify-between gap-2 md:w-[30%] text-[#6969698a] ">
                 {
                   productApiData?.size?.map((data, i) => (
                     <h1 key={i} className={`text-[13px] md:text-[14px] lora cursor-pointer ${i === selectedSizeIndex ? 'text-black' : ''} `} onClick={() => {
@@ -268,7 +282,17 @@ const Productpage = () => {
                 formdata.append("diamond_quality", productDetailsToBackend?.diamond_quality);
                 axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
                   if (response?.data?.status === true) {
-                    alert(response?.data?.message)
+                    // alert(response?.data?.message)
+                    toast.info(`${response?.data?.message}`, {
+                      position: "top-right",
+                      autoClose: 2000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      // draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    })
                   } else {
                     alert("Please login first")
                   }

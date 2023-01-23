@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import img from '../../assets/images/chain.png'
 import img_left from "../../assets/icons/black-arrow-left.svg";
 import checkout from '../../mockapi/checkoutPageApi'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import delete_icon from '../../assets/icons/delete.svg'
 import axios from "axios";
 import wishlistApiAtom from "../../recoil/atoms/wishlist/wishlistApiAtom";
 import { useRecoilState } from "recoil";
 import PageBackButton from "../global components/PageBackButton";
+import { toast } from "react-toastify";
 
 const Wishlist = () => {
 
@@ -72,7 +73,7 @@ const Wishlist = () => {
                                 </div>
                                 <div className="w-[10%] flex items-center justify-end">
                                     <button className="font-[500] px-4 py-2 flex justify-center items-center" onClick={() => {
-                                        let text = confirm("Confirm product delete ?")
+                                        // let text = confirm("Confirm product delete ?")
                                         let formdata = new FormData();
                                         formdata.append("token", localStorage.getItem("token"));
                                         formdata.append("product_id", data?.id);
@@ -82,7 +83,17 @@ const Wishlist = () => {
                                             setWishlistData(response?.data?.wishlist_data)
                                             setWishlistToggle(response?.data?.wishlist_array)
                                             localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
-                                            alert("Product removed from wishlist")
+                                            toast.info("Product removed from wishlist", {
+                                                position: "top-right",
+                                                autoClose: 2000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                // draggable: true,
+                                                progress: undefined,
+                                                theme: "light",
+                                              })
+                                            // alert("Product removed from wishlist")
                                         })
                                     }}>
                                         <img src={delete_icon} className="w-[15px]" />
@@ -90,7 +101,7 @@ const Wishlist = () => {
                                 </div>
                             </div>
                             <div className="w-[90%] mx-auto flex justify-end border-b border-b-[#0000002d] pb-2">
-                                <button className="bg-[#3EDCFF] poppins tracking-[2px] text-[12px] p-2 px-4 md:p-4 md:px-6 font-[500]">View Product</button>
+                                <Link to={'/product-details' + '/' + data?.id} className="bg-[#3EDCFF] poppins tracking-[2px] text-[12px] p-2 px-4 md:p-4 md:px-6 font-[500]">View Product</Link>
                             </div>
                         </React.Fragment>
                     ))
