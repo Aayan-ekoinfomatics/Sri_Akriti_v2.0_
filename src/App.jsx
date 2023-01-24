@@ -45,6 +45,7 @@ import AdminEditSingleProduct from "./components/admin-components/AdminEditSingl
 import PageBackButton from "./components/global components/PageBackButton";
 import AdminEditSingleOrderPage from "./components/admin-components/AdminEditSingleOrderPage";
 import { ToastContainer } from "react-toastify";
+import AdminAddNewOrder from "./components/admin-components/AdminAddNewOrder";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -99,7 +100,7 @@ function App() {
             <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
 
             <Route path="/admin-orders" element={<OrdersInventoryPage />} />
-            <Route path="/admin-add-order" element='' />
+            <Route path="/admin-add-order" element={<AdminAddNewOrder />} />
             <Route path="/admin-orders/:order_id" element={<AdminEditSingleOrderPage />} />
           </Route>
 

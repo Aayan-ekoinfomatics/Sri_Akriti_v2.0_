@@ -41,13 +41,13 @@ const ProductsInventoryPage = () => {
         // }
 
     useEffect(() => {
-        // let formdata = new FormData();
-        // formdata.append("token", localStorage.getItem("token"));
-        // axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
-        //     // console.log(response?.data)
-        //     setAllProducts(response?.data?.data)
-        //     console.log(Math.ceil(allProducts?.length / usersPerPage))
-        // })
+        let formdata = new FormData();
+        formdata.append("token", localStorage.getItem("token"));
+        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
+            console.log(response?.data)
+            setAllProducts(response?.data?.data)
+            // console.log(Math.ceil(allProducts?.length / usersPerPage))
+        })
         console.log(admiProductsApi)
     }, [])
 
@@ -140,8 +140,8 @@ const ProductsInventoryPage = () => {
                                         filterValue > 0 ?
                                             <div className=''>
                                                 {
-                                                    // allProducts?.filter((filter) => {
-                                                    admiProductsApi?.products?.filter((filterValue) => {
+                                                    allProducts?.filter((filterValue) => {
+                                                    // admiProductsApi?.products?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
                                                         } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
@@ -151,15 +151,15 @@ const ProductsInventoryPage = () => {
                                                         <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7'>
                                                             <div className='grid grid-cols-4 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.product_id}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.id}</h1>
                                                                     {/* <h1 className='text-[#718096]'>{data?.id}</h1> */}
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.product_name}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.name}</h1>
                                                                     {/* <h1 className='text-[#718096]'>{data?.name}</h1> */}
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.product_category}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.category}</h1>
                                                                     {/* <h1 className='text-[#718096]'>{data?.category}</h1> */}
                                                                 </div>
                                                                 {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
