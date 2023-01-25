@@ -149,31 +149,6 @@ const MyAccount = () => {
                             }
                         </div>
                     </div>
-
-                    {/* card desktop*/}
-                    {/* <div className="w-full px-3 bg-[#E3E3E3] my-4 mx-10 md:my-0 hidden md:block md:max-h-[160px] overflow-y-scroll pt-[1rem]">
-                        <div className="w-[95%] mx-auto flex justify-between py-2 lora text-[15px]">
-                            <h1 className="font-[500] md:text-[17px]">{profile_data?.card?.header?.heading}</h1>
-                            <h1 className="tracking-[2px] cursor-pointer">{profile_data?.card?.header?.sub_heading}</h1>
-                        </div>
-                        {
-                            profile_data?.card?.content?.map((data, i) => (
-                                <div key={i} className='w-[95%] mx-auto border-b border-b-[#696969b6] py-3'>
-                                    <div className="flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]">
-                                        <h1 className="poppins text-[10px]">{data?.card_number}</h1>
-                                        <h1 className="poppins text-[10px]">{data?.cvv}</h1>
-                                    </div>
-                                    <div className="flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]">
-                                        <h1 className="poppins text-[10px]">{data?.name}</h1>
-                                        <span className='flex justify-between gap-4'>
-                                            <a className="poppins text-[10px] border-b border-b-[#696969b6] cursor-pointer">edit</a>
-                                            <h1 className="poppins text-[10px]">{data?.expiry}</h1>
-                                        </span>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div> */}
                 </div>
                 {/* second sub-main flex item */}
 
@@ -244,9 +219,14 @@ const MyAccount = () => {
                         </div> */}
                         <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
                             <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.address?.header?.heading}</h1>
-                            <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
+                            {
+                                profileApiData?.address?.length === 0 ?
+                                <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
+                                :
+                                ''
+                            }
                         </div>
-                        <div className='max-h-[200px] md:max-h-[175px] overflow-y-scroll px-4'>
+                        <div className='max-h-[200px] md:max-h-[175px] px-4'>
                             {
                                 profileApiData?.address?.map((data, i) => (
                                     <div className='w-full flex justify-between items-center my-2 border-b border-b-[#6969696b]' key={i}>
@@ -263,60 +243,15 @@ const MyAccount = () => {
                                         </div>
                                         <Link to={'/edit-address' + '/' + data?.id}>
                                             <div className='lora text-[12px] pr-1 tracking-[2px]'>
-                                                <p>edit</p>
+                                                <p className='underline'>edit</p>
                                             </div>
                                         </Link>
-                                        <div className='lora text-[12px] pl-1 tracking-[2px] '>
-                                            <p className='border-b border-[#696969] cursor-pointer' onClick={(e) => {
-                                                // e.preventDefault()
-                                                let formdata = new FormData();
-                                                formdata.append("address_id", data?.id);
-                                                formdata.append("token", localStorage.getItem("token"));
-                                                axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'addressEdit', { data: { "address_id": data?.id, "token": localStorage.getItem("token") } }).then((response) => {
-                                                    // console.log(response?.data)
-                                                    setProfileApiData(response?.data)
-                                                    toast.info("Address deleted successfully", {
-                                                        position: "top-right",
-                                                        autoClose: 2000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        progress: undefined,
-                                                        theme: "light",
-                                                    })
-                                                })
-                                            }}>delete</p>
-                                        </div>
                                     </div>
                                 ))
                             }
                         </div>
                     </div>
 
-                    {/* card mobile*/}
-                    {/* <div className="w-full px-3 bg-[#E3E3E3] my-4  md:my-0 block md:hidden overflow-y-scroll pt-4 max-h-[200px] md:max-h-max">
-                        <div className="w-full flex justify-between md:px-3 py-2 lora text-[15px]">
-                            <h1 className="font-[500] md:text-[17px]">{profile_data?.card?.header?.heading}</h1>
-                            <h1 className="tracking-[2px]">{profile_data?.card?.header?.sub_heading}</h1>
-                        </div>
-                        {
-                            profile_data?.card?.content?.map((data, i) => (
-                                <div className='w-full border border-b-[#696969]' key={i}>
-                                    <div className="flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]">
-                                        <h1 className="poppins text-[10px]">{data?.card_number}</h1>
-                                        <h1 className="poppins text-[10px]">{data?.cvv}</h1>
-                                    </div>
-                                    <div className="flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]">
-                                        <h1 className="poppins text-[10px]">{data?.name}</h1>
-                                        <span className='flex justify-between gap-4'>
-                                            <a className="poppins text-[10px] border-b border-b-[#696969b6] cursor-pointer">edit</a>
-                                            <h1 className="poppins text-[10px]">{data?.expiry}</h1>
-                                        </span>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div> */}
                 </div>
             </div>
 

@@ -1,114 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import logo from '../../assets/icons/sri-aakriti-logo.svg'
-import order_logo from '../../assets/icons/admin-order-logo.svg'
-import products_logo from '../../assets/icons/admin-products-logo.svg'
-import admiProductsApi from '../../mockapi/admiProductsApi'
-import adminOrdersApi from '../../mockapi/adminOrdersApi'
-import left_arrow from '../../assets/icons/admin-left-pointer.svg'
-import right_arrow from '../../assets/icons/admin-right-pointer.svg'
-import search from '../../assets/icons/admin-search-icon.svg'
-import img from '../../assets/icons/no-data-found.svg'
-import { NavLink, useParams } from 'react-router-dom'
+import AdminSidebar from '../global components/AdminSidebar'
+import add from '../../assets/icons/add.svg'
+import editOrderData from '../../mockapi/adminEditOrderApi'
+import imgs from '../../assets/images/ring-1.png'
+import delete_icon from '../../assets/icons/admin-delete.svg'
 import axios from 'axios'
-import down from '../../assets/icons/down-arrow-admin.svg'
-import PageBackButton from '../global components/PageBackButton'
+import { useParams } from 'react-router-dom'
 
 
 const AdminEditSingleOrderPage = () => {
 
-    const [searchData, setSearchData] = useState('');
-    const [filterValue, setFilteredValue] = useState();
-
-    const [dropdown, setDropdown] = useState(false);
-    const [selectedDiamondQuality, setSelectedDiamondQuality] = useState(null);
-
-    const [defaultData, setDefaultData] = useState();
-
-    const [gender, setGender] = useState();
+    const [editData, setEditData] = useState()
 
     const params = useParams()
 
-    const [activeIndex, setActiveIndex] = useState();
-
-    const [activeParentIndex, setActiveParentIndex] = useState();
-
-    const [selectedDiamondQualityIndex, setSelectedDiamondQualityIndex] = useState();
-
-    const [activeKey, setActiveKey] = useState();
-
-    const [image, setImage] = useState()
-
-    useEffect(() => {
-        setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
-            if (searchData === '') {
-                return filterValue
-            } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
-                return filterValue
-            }
-        }).length)
-    }, [searchData])
-
-    useEffect(() => {
-      console.log(selectedDiamondQualityIndex)
-    }, [selectedDiamondQualityIndex])
-    
-
-    useEffect(() => {
-        setGender(defaultData?.gender)
-        console.log(defaultData)
-    }, [defaultData])
-
-
     useEffect(() => {
         // let formdata = new FormData();
-        // formdata.append("id", params?.product_id);
-        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=  ' + params?.product_id).then((response) => {
-            // console.log(response?.data)
-            setDefaultData(response?.data)
-            setSelectedDiamondQuality(response?.data?.variants[0]?.diamond_quality)
+        // formdata.append("token", localStorage.getItem("token"));
+        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleOrder?order_id=' + params?.order_id).then((response) => {
+            console.log(response?.data)
+            // console.log(params)
+            setEditData(response?.data)
         })
     }, [])
 
 
-    // useEffect(() => {
-    //     console.log(selectedDiamondQuality)
-    // }, [selectedDiamondQuality])
-
-
-    const submitForm = (e) => {
-        e.preventDefault()
-        // let formdata = new FormData();
-        // formdata.append("id", params?.product_id);
-        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=  ' + params?.product_id).then((response) => {
-            // console.log(response?.data)
-            setDefaultData(response?.data)
-        })
-    }
-    
-
-
     return (
         <div className='w-full'>
-            <PageBackButton />
-            <div className='w-full pt-5'>
+            {/* <PageBackButton /> */}
+            <div className='w-full pt-20'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='w-full pl-[380px] pt-24'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[18%] pb-4'>
-                            <div className='w-full flex flex-col justify-end items-center'>
-                                <img src={logo} className="w-[85px]" />
-                            </div>
-                        </div>
                         <div className='w-[82%] flex justify-between items-center'>
                             <div className='w-full'>
-                                {/* <h1 className='roboto text-[50px] font-[900]'>Orders</h1> */}
                             </div>
-                            {/* <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Orders</button>
-                            </div> */}
                         </div>
                     </div>
 
@@ -116,206 +45,148 @@ const AdminEditSingleOrderPage = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[18%] px-3'>
-                            <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <NavLink to='/admin-orders' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] lg:pl-5 py-2 cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={order_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Order</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                                <NavLink to='/admin-products' className='w-full block'>
-                                    <div className='w-full bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={products_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div>
+                        <AdminSidebar />
 
                         {/* content-flex - 1 */}
-                        <div className='w-[82%] px-3'>
-                            <div className='w-full min-h-[70vh] pt-[20px]'>
-                                <form onSubmit={submitForm} className='w-fit min-w-[1000px] roboto border border-red-500'>
-                                    {/* <div className='w-full flex'>
-                                        <div className='w-full pt-10'>
+                        <div className='w-[90%] px-3'>
 
-                                            <div className='flex gap-5 my-2 max-w-[500px]'>
-                                                <div className='flex gap-4 items-center' onClick={() => setGender('Male')}>
-                                                    <div className={`w-[10px] h-[10px] rounded-[50%] ${gender === 'Male' ? 'bg-[#3EDCFF] border-none' : 'bg-[#c5c5c5]'}`}>
-                                                    </div>
-                                                    <label htmlFor='gender' className='text-[15px] font-[500]'>Male</label>
-                                                </div>
-                                                <div className='flex gap-4 items-center' onClick={() => setGender('Female')}>
-                                                    <div className={`w-[10px] h-[10px] rounded-[50%] ${gender === 'Female' ? 'bg-[#3EDCFF] border-none' : 'bg-[#c5c5c5]'}`}>
-                                                    </div>
-                                                    <label htmlFor='gender' className='text-[15px] font-[500]'>Female</label>
-                                                </div>
-                                                <div className='flex gap-4 items-center' onClick={() => setGender('Unisex')}>
-                                                    <div className={`w-[10px] h-[10px] rounded-[50%] ${gender === 'Unisex' ? 'bg-[#3EDCFF] border-none' : 'bg-[#c5c5c5]'}`}>
-                                                    </div>
-                                                    <label htmlFor='gender' className='text-[15px] font-[500]'>Unisex</label>
-                                                </div>
-                                            </div>
-                                            {
-                                                <div className='w-full flex flex-col my-2 max-w-[500px]'>
-                                                    <input type="text" name="product name" value={defaultData?.name} onChange={(e) => {
-                                                        setDefaultData({
-                                                            ...defaultData,
-                                                            name: e.target.value
-                                                        })
-                                                    }} className='outline-none py-[6px] px-3 my-1 rounded-[8px] shadow-md text-[13px]' placeholder='Product Name' />
-                                                    <input type="text" name="product category" value={defaultData?.category} onChange={(e) => {
-                                                        setDefaultData({
-                                                            ...defaultData,
-                                                            category: e.target.value
-                                                        })
-                                                    }} className='outline-none py-[6px] px-3 my-1 rounded-[8px] shadow-md text-[13px]' placeholder='Product Category' />
-                                                </div>
-                                            }
-                                            <h1 className='my-1 pt-14 font-[500]'>Diamond Quality</h1>
-                                            <div className='w-full flex flex-col my-2 max-w-[500px]'>
+                            <div className='w-full flex'>
 
-
-                                                <div className='w-full rounded-[10px] z-[110] bg-white shadow-md py-[5px] pl-3 my-1 cursor-pointer flex justify-between items-center pr-3' onClick={() => setDropdown(!dropdown)}>
-                                                    <div className='text-[15px] text-[#696969b6]'>{!selectedDiamondQuality ? 'Select a diamond quality' : selectedDiamondQuality}</div>
-                                                    <div><img src={down} className="" /></div>
-                                                </div>
-                                                <div className={`fixed max-w-[500px] z-[110] mt-10 rounded-[10px] shadow-md bg-white w-full overflow-hidden transition-all duration-300 ${dropdown ? 'max-h-[180px] ease-in  px-4 py-2' : 'max-h-0 ease-out p-0'}`}>
-                                                    {
-                                                        defaultData?.variants?.map((data, i) => {
-                                                            return (
-                                                                <li key={i} className='text-[16px] list-none roboto w-full hover:bg-[#dddddd] my-1 px-2 py-1 cursor-pointer rounded-md' onClick={() => {
-                                                                    setSelectedDiamondQuality(data?.diamond_quality)
-                                                                    setSelectedDiamondQualityIndex(i)
-                                                                    setDropdown(false)
-                                                                }}>{data?.diamond_quality}</li>
-                                                            )
-                                                        })
-                                                    }
-                                                </div>
-                                                <div className={`fixed bottom-0 top-0 left-0 right-0 bg-black opacity-40 z-[100] ${dropdown ? 'block' : 'hidden'}`} onClick={() => setDropdown(false)}>
-
-                                                </div>
-
-
-                                                <input type="text" value={selectedDiamondQuality} onChange={(e) => {
-                                                    setDefaultData({
-                                                        ...defaultData,
-                                                        variants: defaultData?.variants?.map((v_data, v_index) => {
-                                                            if (v_data?.diamond_quality === selectedDiamondQuality) {
-                                                                return {
-                                                                    ...v_data,
-                                                                    diamond_quality: e.target.value,
-                                                                }
-                                                            } else {
-                                                                return v_data
-                                                            }
-                                                        })
-
-                                                    })
-                                                }} name="product name" className='outline-none py-[6px] px-3 my-1 rounded-[8px] shadow-md text-[13px]' placeholder='Category Name' />
-                                            </div>
-                                            <div className='w-full flex justify-end max-w-[500px]'>
-                                                <button className=' py-[4px] px-6 rounded-[10px] text-[14px] active:bg-[#d6d6d6] active:scale-[0.91]'>Add more</button>
-                                            </div>
-                                        </div>
-                                        <div className='w-full flex flex-col gap-2 justify-end pr-[120px]'>
-                                            <div className='w-full flex justify-end gap-4'>
-                                                <input type="file" name="files" id="files" className="inputfile" onChange={(e) => {
-                                                    console.log(e.target.files[0])
-
-                                                }} />
-                                                <label htmlFor="files">Add Image</label>
-                                                <button className='bg-[#3EDCFF] text-white active:bg-[#d6d6d6] active:scale-[0.91] active:text-[#696363] px-6 py-[5px] shadow-md rounded-[10px]'>Submit</button>
-                                            </div>
-                                            <div className='w-full pt-14 flex justify-end gap-2'>
-                                                <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="max-w-[300px]" />
-                                                <div className='w-[20%] flex flex-col justify-evenly gap-2'>
-                                                    <div className='w-full'>
-                                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="w-full" />
-                                                    </div>
-                                                    <div className='w-full'>
-                                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="w-full" />
-                                                    </div>
-                                                    <div className='w-full'>
-                                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="w-full" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                {/* flex-1 */}
+                                <div className='w-full pr-6'>
+                                    <div className='w-full'>
+                                        <h1 className='text-[18px] font-[600]'>Add Customer Details</h1>
                                     </div>
-
-                                    <h1 className='my-1 mt-4 font-[500] pt-6'>Variants</h1>
-                                    <div className='w-full '>
-                                        <div className='grid grid-cols-4 py-4 px-3'>
-                                            <div className='text-[14px]'>Size</div>
-                                            <div className='text-[14px]'>Weight</div>
-                                            <div className='text-[14px]'>Actual Price</div>
-                                            <div className='text-[14px]'>Selling Price</div>
-                                        </div>
-                                        <div className=' max-h-[230px] overflow-y-scroll'>
-                                            {
-                                                defaultData?.variants?.filter((filter_data, filter_index) => {
-                                                    if (selectedDiamondQuality === null) {
-                                                        return filter_data
-                                                    } else if (filter_data?.diamond_quality === selectedDiamondQuality) {
-                                                        return filter_data
-                                                    }
-                                                })?.map((data, i) => {
-                                                    return (
-                                                        <div key={i} className='px-2 mb-6 w-full grid grid-cols-4 py-1 gap-2'>
-
-                                                            {
-                                                                data?.sub_variants_data?.map((sub_variants_data, sub_variants_index) => {
-                                                                    return (
-                                                                        <div className='' key={sub_variants_index}>
-                                                                            <div className='w-full'>
-                                                                                <input type="text" className='py-1 pl-3 rounded-[10px] shadow-md outline-none' onChange={(e) => {
-                                                                                    setDefaultData({
-                                                                                        ...defaultData,
-                                                                                        variants: defaultData?.variants?.map((variant_data, variant_index) => {
-                                                                                            return {
-                                                                                                ...variant_data,
-                                                                                                sub_variants_data: variant_data?.sub_variants_data?.map((sub_variant_data_2, sub_variant_index_2) => {
-                                                                                                    if (sub_variant_index_2 === activeIndex) {
-                                                                                                        return {
-                                                                                                            ...sub_variant_data_2,
-                                                                                                            value: e.target.value
-                                                                                                        }
-                                                                                                    }
-                                                                                                    return sub_variant_data_2
-                                                                                                })
-                                                                                            }
-                                                                                        }),
-                                                                                    })
-                                                                                }} onClick={() => setActiveIndex(sub_variants_index)} name="" id={sub_variants_data?.id} value={sub_variants_data?.value} placeholder={sub_variants_data?.title} />
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </div>
-                                                    )
+                                    <div className='w-full px-2 flex justify-between gap-5 items-start my-2'>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Customer Name</label>
+                                            <input type="text" value={editData?.customer_name} onChange={(e) => {
+                                                setEditData({
+                                                    ...editData,
+                                                    customer_name: e?.target?.value
                                                 })
+                                            }} placeholder='Type Name here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Customer Contact</label>
+                                            <input type="text" min={0} value={editData?.customer_phone} onChange={(e) => {
+                                                setEditData({
+                                                    ...editData,
+                                                    customer_phone: e?.target?.value
+                                                })
+                                            }} placeholder='Type Number here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                    </div>
+                                    <div className='w-full px-2 flex justify-between gap-5 items-start my-2'>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Delivery Address</label>
+                                            <textarea type="" value={editData?.customer_address} onChange={(e) => {
+                                                setEditData({
+                                                    ...editData,
+                                                    customer_address: e?.target?.value
+                                                })
+                                            }} placeholder='Type Address here...' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Customer Email</label>
+                                            <input type="text" value={editData?.customer_email} onChange={(e) => {
+                                                setEditData({
+                                                    ...editData,
+                                                    customer_email: e?.target?.value
+                                                })
+                                            }} placeholder='Type Email here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                    </div>
+
+                                    {/* final items */}
+                                    <div className='w-full px-2 mt-5'>
+                                        <h1 className='text-[18px] font-[600]'>Final Items</h1>
+                                        <div className='max-h-[200px] overflow-y-scroll'>
+                                            {
+                                                editData?.items?.map((data, i) => (
+                                                    <div className='w-full flex gap-2 my-5 py-1 bg-white shadow-md rounded-[15px] '>
+                                                        <div className='flex justify-center items-center pl-3'>
+                                                            <img src={imgs} className='w-full max-w-[50px]' alt="" />
+                                                        </div>
+                                                        <div className='flex w-full pr-3 flex-col justify-center gap-5'>
+                                                            <div className='w-full flex justify-between items-start'>
+                                                                <h1 className='text-[16px] font-[500]'>{data?.title}</h1>
+                                                                <img src={delete_icon} className='w-[13px] pt-1' alt="" />
+                                                            </div>
+                                                            <div className='flex w-full border border-white'>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w-full min-w-[75px]'>Diamond Quality</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-full'>{data?.diamond_quality}</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w-'>Metal Size</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.metal_size}cm</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w-full min-w-[80px]'>Diamond Weight</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.diamond_weight}gms</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w- '>Metal Weight</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.metal_weight}gms</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w- '>Sub Total</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>₹ {data?.sub_total}</h1>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))
                                             }
                                         </div>
                                     </div>
-                                    <div className='w-full flex justify-end pr-16'>
-                                        <button className=' py-[4px] px-6 rounded-[10px] text-[14px] active:bg-[#d6d6d6] active:scale-[0.91]'>Add more</button>
-                                    </div> */}
+                                </div>
 
-                                    
 
-                                </form>
+                                {/* flex-2 */}
+                                <div className='w-[60%] pb-4 pl-2 flex flex-col justify-end border-l-2 border-[#696969]'>
+                                    <h1 className='text-[18px] font-[600] px-4 pb-4'>Price Breakdown</h1>
+                                    <h1 className='text-[13px] font-[500] px-4 pt-4'>Items</h1>
+                                    <div className='w-[90%] mx-auto px-1 max-h-[300px] overflow-y-scroll mb-4'>
+                                        {
+                                            editData?.items?.map((data, i) => (
+                                                <div key={i} className='w-full my-6'>
+                                                    <h1 className='text-[14px] pb-2 font-[500]'>{data?.title}</h1>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Diamond Charges :</h1>
+                                                        <h1 className='text-[13px]'>₹ {data?.diamond_charges}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Metal Charges :</h1>
+                                                        <h1 className='text-[13px]'>₹ {data?.metal_charges}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Making Charges :</h1>
+                                                        <h1 className='text-[13px]'>₹ {data?.making_charges_1}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Add Discount :</h1>
+                                                        <h1 className='text-[13px]'>- ₹ {data?.discount}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-end items-center'>
+                                                        <div className='flex gap-3'>
+                                                            <h1 className='text-[12px] font-[500]'>Sub Total :</h1>
+                                                            <h1 className='text-[13px]'>₹ {data?.sub_total}</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className='w-[90%] mx-auto flex justify-between items-center pt-4 border-t-2 border-t-[#6969695b]'>
+                                        <h1 className='text-[16px]'>Grand Total</h1>
+                                        <h1 className='text-[18px] font-[500]'>₹ {editData?.grand_total}</h1>
+                                    </div>
+                                    <div className='w-[95%] flex justify-end items-center mt-5'>
+                                        <button className='bg-[#3EDCFF] py-2 px-2 text-[14px] font-[500] rounded-[8px]'>+ Create Order</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

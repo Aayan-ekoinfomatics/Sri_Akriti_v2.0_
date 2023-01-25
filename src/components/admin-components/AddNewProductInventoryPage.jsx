@@ -9,6 +9,7 @@ import search from '../../assets/icons/admin-search-icon.svg'
 import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
 import { NavLink } from 'react-router-dom'
 import PageBackButton from '../global components/PageBackButton'
+import AdminSidebar from '../global components/AdminSidebar'
 
 
 const AddNewProductInventoryPage = () => {
@@ -22,57 +23,22 @@ const AddNewProductInventoryPage = () => {
 
     return (
         <div className='w-full bg-[#F5F5F5] flex flex-col gap-10 justify-center items-center pt-10'>
-            <PageBackButton />
+            {/* <PageBackButton /> */}
             <div className='w-full flex justify-center items-center'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='w-[80%] pl-[250px] pt-[190px] mx-auto'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[15%] pb-4'>
-                            <div className='w-full flex flex-col justify-end items-center'>
-                                <img src={logo} className="w-[85px]" />
-                            </div>
-                        </div>
-                        <div className='w-[85%] flex justify-between items-center'>
-                            {/* <div className='w-full'>
-                                <h1 className='roboto text-[50px] font-[900]'>Products</h1>
-                            </div>
-                            <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Products</button>
-                            </div> */}
-                        </div>
+                     
                     </div>
 
                     {/* sub-flex - 2 */}
-                    <div className='w-full flex gap-3'>
+                    <div className='w-full flex gap-3 '>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[15%] px-3'>
-                            <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <NavLink to='/admin-orders' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] lg:pl-3 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={order_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Order</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                                <NavLink to='/admin-products' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2 lg:pl-3 cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={products_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div>
+                        <AdminSidebar />
 
                         {/* content-flex - 1 */}
                         <form onSubmit={addProduct} className='w-[85%] px-3'>

@@ -8,8 +8,12 @@ import left_arrow from '../../assets/icons/admin-left-pointer.svg'
 import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
 import img from '../../assets/icons/no-data-found.svg'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
+import AdminSidebar from '../global components/AdminSidebar'
+import axios from 'axios'
+import edit_icon from '../../assets/icons/admit-edit.svg'
+import delete_icon from '../../assets/icons/admin-delete.svg'
 
 
 const OrdersInventoryPage = () => {
@@ -17,35 +21,22 @@ const OrdersInventoryPage = () => {
     const [searchData, setSearchData] = useState('');
     const [filterValue, setFilteredValue] = useState();
 
+    const params = useParams()
+
     const [allOrders, setAllOrders] = useState()
 
-    // const [pageNumber, setPageNumber] = useState(0);
-    // const usersPerPage = 10;
-    // const pagesVisited = pageNumber * usersPerPage;
-
-    // const displayUsers = adminOrdersApi?.products?.slice(pagesVisited, pagesVisited + usersPerPage)
-
-    // const pageCount = Math.ceil(adminOrdersApi?.products?.length / usersPerPage);
-
-
-    // const changePage = ({ selected }) => {
-    //     setPageNumber(selected)
-    // }
+    useEffect(() => {
+        // let formdata = new FormData();
+        // formdata.append("token", localStorage.getItem("token"));
+        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
+            console.log(response?.data)
+            setAllOrders(response?.data)
+        })
+    }, [])
 
     // useEffect(() => {
-    //     let formdata = new FormData();
-    //     formdata.append("token", localStorage.getItem("token"));
-    //     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
-    //         console.log(response?.data)
-    //         setAllOrders(response?.data?.data)
-    //     })
-    // }, [])
-
-    useEffect(() => {
-        // setAllOrders(adminOrdersApi?.orders)
-        // console.log(Math.ceil(adminOrdersApi?.products?.length / usersPerPage))
-        // console.log(adminOrdersApi?.products?.length)
-    }, [])
+    //     console.log(allOrders)
+    // }, [allOrders])
 
     useEffect(() => {
         setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
@@ -68,22 +59,22 @@ const OrdersInventoryPage = () => {
             <div className='w-full pt-10'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='w-full pl-[400px]  pt-10'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[18%] pb-4'>
+                        {/* <div className='w-[18%] pb-4'>
                             <div className='w-full flex flex-col justify-end items-center'>
                                 <img src={logo} className="w-[85px]" />
                             </div>
-                        </div>
+                        </div> */}
                         <div className='w-[82%] flex justify-between items-center'>
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Orders</h1>
                             </div>
-                            <div className='w-fit mr-4'>
+                            <Link to='/admin-add-order' className='w-fit mr-4'>
                                 <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md active:scale-[0.98] active:bg-[#f0f0f0]'>Add Orders</button>
-                            </div>
+                            </Link>
                         </div>
                     </div>
 
@@ -91,7 +82,7 @@ const OrdersInventoryPage = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[18%] px-3'>
+                        {/* <div className='w-[18%] px-3'>
                             <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
                                 <div className='w-full bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
                                     <div>
@@ -112,7 +103,8 @@ const OrdersInventoryPage = () => {
                                     </div>
                                 </NavLink>
                             </div>
-                        </div>
+                        </div> */}
+                        <AdminSidebar />
 
                         {/* content-flex - 1 */}
                         <div className='w-[82%]  px-3'>
@@ -122,15 +114,18 @@ const OrdersInventoryPage = () => {
                                 </div>
                             </div>
                             <div className='w-full mt-8  min-h-[70vh]'>
-                                <div className='w-full grid grid-cols-4 gap-4 justify-center items-center px-[12px]'>
+                                <div className='w-full grid grid-cols-5 gap-4 justify-center items-center px-[12px]'>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>#</h1>
+                                        <h1 className='text-[#718096]'>User ID</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>Name</h1>
+                                        <h1 className='text-[#718096]'>Email</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>Category</h1>
+                                        <h1 className='text-[#718096]'>Order Amount</h1>
+                                    </div>
+                                    <div className='flex justify-center items-center'>
+                                        <h1 className='text-[#718096]'>Pincode</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
                                         <h1 className='text-[#718096]'>Action</h1>
@@ -141,33 +136,31 @@ const OrdersInventoryPage = () => {
                                         filterValue > 0 ?
                                             <div>
                                                 {
-                                                    adminOrdersApi?.products?.filter((filterValue) => {
+                                                    allOrders?.orders?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
-                                                        } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
+                                                        } else if (filterValue?.user_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.email?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_amount?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.pincode?.toLowerCase()?.includes(searchData?.toLowerCase())) {
                                                             return filterValue
                                                         }
                                                     }).map((data, i) => (
                                                         <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7 h-full'>
-                                                            <div className='grid grid-cols-4 gap-4 justify-center items-center'>
+                                                            <div className='grid grid-cols-5 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.order_id}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.user_id}</h1>
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.order_name}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.email}</h1>
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.order_category}</h1>
+                                                                    <h1 className='text-[#718096]'>₹ {data?.order_amount}</h1>
                                                                 </div>
-                                                                {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
-                                                                    <div key={sub_index} className='flex items-center border border-red-500'>
-                                                                        <span className='border border-red-500'><img src={sub_data?.img} className="w-[20px]" /></span>
-                                                                    </div>
-                                                                ))}</div> */}
+                                                                <div className='flex justify-center items-center'>
+                                                                    <h1 className='text-[#718096]'>{data?.pincode}</h1>
+                                                                </div>
                                                                 <div className='flex justify-center items-center'>
                                                                     <div className='flex gap-5 w-fit items-center'>
-                                                                        <Link to={'' + data?.id}><span className='cursor-pointer'><img src={data?.icon_edit} className="w-[16px]" /></span></Link>
-                                                                        <span className='cursor-pointer'><img src={data?.icon_delete} className="w-[14px]" onClick={() => {
+                                                                        <Link to={'' + data?.id}><span className='cursor-pointer'><img src={edit_icon} className="w-[16px]" /></span></Link>
+                                                                        <span className='cursor-pointer'><img src={delete_icon} className="w-[14px]" onClick={() => {
                                                                             let formdata = new FormData();
                                                                             formdata.append("id", data?.id);
                                                                             formdata.append("token", localStorage.getItem("token"));

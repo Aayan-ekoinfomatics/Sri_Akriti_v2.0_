@@ -15,6 +15,7 @@ import PageBackButton from '../global components/PageBackButton'
 import variants_data from '../../mockapi/variantsMockApi'
 import delete_icon from '../../assets/icons/admin-delete.svg'
 import { toast } from 'react-toastify'
+import AdminSidebar from '../global components/AdminSidebar'
 
 
 const AdmitEditSingleProduct = () => {
@@ -94,19 +95,19 @@ const AdmitEditSingleProduct = () => {
 
     return (
         <div className='w-full bg-[#F5F5F5] flex flex-col justify-center items-center relative mb-24'>
-            <PageBackButton />
+            {/* <PageBackButton /> */}
             <div className='w-full pt-5'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='w-full pl-[380px] pt-32'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[18%] pb-4'>
+                        {/* <div className='w-[18%] pb-4'>
                             <div className='w-full flex flex-col justify-end items-center'>
                                 <img src={logo} className="w-[85px]" />
                             </div>
-                        </div>
+                        </div> */}
                         <div className='w-[82%] flex justify-between items-center'>
                             <div className='w-full'>
                                 {/* <h1 className='roboto text-[50px] font-[900]'>Orders</h1> */}
@@ -121,7 +122,7 @@ const AdmitEditSingleProduct = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[18%] px-3'>
+                        {/* <div className='w-[18%] px-3'>
                             <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
                                 <NavLink to='/admin-orders' className='w-full block'>
                                     <div className='w-full hover:bg-[#19C7EE] lg:pl-5 py-2 cursor-pointer flex justify-start gap-4 my-2'>
@@ -144,12 +145,13 @@ const AdmitEditSingleProduct = () => {
                                     </div>
                                 </NavLink>
                             </div>
-                        </div>
+                        </div> */}
+                        <AdminSidebar />
 
                         {/* content-flex - 1 */}
-                        <div className='w-[82%] px-3'>
+                        <div className='w-full px-3'>
                             <div className='w-full min-h-[70vh] pt-[20px]'>
-                                <div className='w-fit min-w-[1000px] roboto'>
+                                <div className='w-full min-w-[1000px] roboto'>
                                     <div className='w-full flex'>
                                         <div className='w-full pt-10'>
 
@@ -257,7 +259,9 @@ const AdmitEditSingleProduct = () => {
                                                                 defaultData?.image_1 ?
                                                                 <img id='file_image' src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_1} className={`w-full aspect-square z-[100] `} />
                                                                 :
-                                                                <div className='w-full aspect-square border border-black'></div>
+                                                                <div className='w-full flex justify-center items-center aspect-square border border-black'>
+                                                                    <span className='text-[#696969b6] text-[18px]'>Add Image</span>
+                                                                </div>
                                                             }
                                                     </div>
                                                 </label>

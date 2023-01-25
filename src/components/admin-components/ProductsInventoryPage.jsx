@@ -14,6 +14,7 @@ import edit_icon from '../../assets/icons/admit-edit.svg'
 import cross from '../../assets/icons/cross.svg'
 import delete_icon from '../../assets/icons/admin-delete.svg'
 import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
+import AdminSidebar from '../global components/AdminSidebar'
 
 const ProductsInventoryPage = () => {
 
@@ -67,15 +68,10 @@ const ProductsInventoryPage = () => {
             <div className='w-full pt-10'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='w-full pl-[380px] mx-auto pt-10'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[18%] pb-4'>
-                            <div className='w-full flex flex-col justify-end items-center'>
-                                <img src={logo} className="w-[85px]" />
-                            </div>
-                        </div>
                         <div className='w-[82%] flex justify-between items-center'>
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Products</h1>
@@ -90,28 +86,7 @@ const ProductsInventoryPage = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[18%] px-3'>
-                            <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <NavLink to='/admin-orders' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] lg:pl-5 py-2 cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={order_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Order</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                                <div className='w-full bg-[#19C7EE] lg:pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                    <div>
-                                        <img src={products_logo} className="w-[20px]" />
-                                    </div>
-                                    <div>
-                                        <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <AdminSidebar />
 
                         {/* content-flex - 1 */}
                         <div className='w-[82%]  px-3'>
@@ -141,7 +116,6 @@ const ProductsInventoryPage = () => {
                                             <div className=''>
                                                 {
                                                     allProducts?.filter((filterValue) => {
-                                                    // admiProductsApi?.products?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
                                                         } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
@@ -152,21 +126,13 @@ const ProductsInventoryPage = () => {
                                                             <div className='grid grid-cols-4 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>
                                                                     <h1 className='text-[#718096]'>{data?.id}</h1>
-                                                                    {/* <h1 className='text-[#718096]'>{data?.id}</h1> */}
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
                                                                     <h1 className='text-[#718096]'>{data?.name}</h1>
-                                                                    {/* <h1 className='text-[#718096]'>{data?.name}</h1> */}
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
                                                                     <h1 className='text-[#718096]'>{data?.category}</h1>
-                                                                    {/* <h1 className='text-[#718096]'>{data?.category}</h1> */}
                                                                 </div>
-                                                                {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
-                                                                    <div key={sub_index} className='flex items-center border border-red-500'>
-                                                                        <span className='border border-red-500'><img src={sub_data?.img} className="w-[20px]" /></span>
-                                                                    </div>
-                                                                ))}</div> */}
                                                                 <div className='flex justify-center items-center'>
                                                                     <div className='flex gap-5 w-fit items-center'>
                                                                         <Link to={'' + data?.id}>
@@ -180,7 +146,7 @@ const ProductsInventoryPage = () => {
                                                                             formdata.append("token", localStorage.getItem("token"));
                                                                             axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
                                                                                 // console.log(response?.data)
-                                                                                // setAllProducts(response?.data?.data)
+                                                                                setAllProducts(response?.data?.data)
                                                                             })
                                                                         }}><img src={delete_icon} className="w-[14px]" /></span>
                                                                     </div>

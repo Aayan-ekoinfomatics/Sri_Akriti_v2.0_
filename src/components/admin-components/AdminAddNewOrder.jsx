@@ -1,47 +1,27 @@
-import React, { useState } from 'react'
-import logo from '../../assets/icons/sri-aakriti-logo.svg'
-import order_logo from '../../assets/icons/admin-order-logo.svg'
-import products_logo from '../../assets/icons/admin-products-logo.svg'
-import admiProductsApi from '../../mockapi/admiProductsApi'
-import left_arrow from '../../assets/icons/admin-left-pointer.svg'
-import right_arrow from '../../assets/icons/admin-right-pointer.svg'
-import search from '../../assets/icons/admin-search-icon.svg'
-import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
-import { NavLink } from 'react-router-dom'
-import PageBackButton from '../global components/PageBackButton'
+import React, { useEffect, useState } from 'react'
+import AdminSidebar from '../global components/AdminSidebar'
+import add from '../../assets/icons/add.svg'
+import editOrderData from '../../mockapi/adminEditOrderApi'
+import imgs from '../../assets/images/ring-1.png'
+import delete_icon from '../../assets/icons/admin-delete.svg'
 
 
-const AddNewProductInventoryPage = () => {
-
-    const [searchData, setSearchData] = useState('');
-
-    const addProduct = (e) => {
-        e.preventDefault()
-    }
+const AdminAddNewOrder = () => {
 
 
     return (
-        <div className='w-full bg-[#F5F5F5] flex flex-col gap-10 justify-center items-center pt-10'>
-            <PageBackButton />
-            <div className='w-full flex justify-center items-center'>
+        <div className='w-full'>
+            {/* <PageBackButton /> */}
+            <div className='w-full pt-20'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='w-full pl-[380px] pt-24'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[15%] pb-4'>
-                            <div className='w-full flex flex-col justify-end items-center'>
-                                <img src={logo} className="w-[85px]" />
+                        <div className='w-[82%] flex justify-between items-center'>
+                            <div className='w-full'>
                             </div>
-                        </div>
-                        <div className='w-[85%] flex justify-between items-center'>
-                            {/* <div className='w-full'>
-                                <h1 className='roboto text-[50px] font-[900]'>Products</h1>
-                            </div>
-                            <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Products</button>
-                            </div> */}
                         </div>
                     </div>
 
@@ -49,92 +29,222 @@ const AddNewProductInventoryPage = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[15%] px-3'>
-                            <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <NavLink to='/admin-orders' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] lg:pl-3 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={order_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Order</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                                <NavLink to='/admin-products' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2 lg:pl-3 cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={products_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div>
+                        <AdminSidebar />
 
                         {/* content-flex - 1 */}
-                        <form onSubmit={addProduct} className='w-[85%] px-3'>
-                            <div className='w-full mb-3'>
-                                <h1 className='text-[30px] font-[] roboto'>Add new product</h1>
-                                <h1 className='text-[13px] font-[] roboto'>Enter the product details</h1>
-                            </div>
-                            <div className='flex gap-5 mt-3'>
-                                <div className='border-r border-r-[#D9D9D9] pr-9'>
-                                    <div><img src={addProductsAdminApi?.add_product?.main_img} className="w-[550px]" /></div>
-                                    <div className='w-full flex gap-2 justify-center items-center mt-3'>
+                        <div className='w-[90%] px-3'>
+
+                            <div className='w-full flex'>
+
+                                {/* flex-1 */}
+                                <div className='w-full pr-6'>
+                                    <div className='w-full'>
+                                        <h1 className='text-[18px] font-[600]'>Add Customer Details</h1>
+                                    </div>
+                                    <div className='w-full px-2 flex justify-between gap-5 items-start my-2'>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Customer Name</label>
+                                            <input type="text" placeholder='Type Name here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Customer Contact</label>
+                                            <input type="text" placeholder='Type Number here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                    </div>
+                                    <div className='w-full px-2 flex justify-between gap-5 items-start my-2'>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Delivery Address</label>
+                                            <textarea type="" placeholder='Type Address here...' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Customer Email</label>
+                                            <input type="text" placeholder='Type Email here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                    </div>
+                                    <div className='w-full'>
+                                        <h1 className='text-[18px] font-[600]'>Search for product</h1>
+                                    </div>
+                                    <div className='w-full px-2 flex justify-between gap-5 items-start my-1'>
+                                        <div className='w-full'>
+                                            <input type="text" placeholder='Type Name here' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                        </div>
+                                        <div className='w-full'>
+                                            <button className='text-[13px] font-[500] shadow-md rounded-[14px] flex gap-4 py-2 px-2 bg-[#fff]'>Add <span className=''><img src={add} className='' alt="" /></span></button>
+                                        </div>
+                                    </div>
+                                    <div className='w-full max-w-[400px] px-2 flex justify-between gap-5 items-start my-2 mt-4'>
+                                        <div className='w-full flex flex-col gap-1'>
+                                            <label className='text-[12px] font-[500]'>Item Name</label>
+                                            <input type="text" placeholder='Type Email here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full]' />
+                                        </div>
+                                    </div>
+                                    <div className='flex gap-4 w-full mt-3'>
+                                        <div className='w-full px-2 flex justify-between gap-2 items-end my-2'>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                <label className='text-[12px] font-[500]'>Diamond Quality</label>
+                                                <input type="text" placeholder='Type' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                        </div>
+                                        <div className='w-full px-2 flex justify-between gap-2 items-end my-2'>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                <label className='text-[12px] font-[500]'>Diamond Weight</label>
+                                                <input type="text" placeholder='Type' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='flex gap-4 w-full mb-3'>
+                                        <div className='w-full px-2 flex justify-between gap-2 items-end my-2'>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                <label className='text-[12px] font-[500]'>Size</label>
+                                                <input type="text" placeholder='Type' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                        </div>
+                                        <div className='w-full px-2 flex justify-between gap-2 items-end my-2'>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                <label className='text-[12px] font-[500]'>Weight</label>
+                                                <input type="text" placeholder='Type' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                            <div className='w-full max-w-[100px] flex flex-col gap-1'>
+                                                {/* <label className='text-[12px] font-[500]'>Customer Email</label> */}
+                                                <input type="text" placeholder='Type' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* final items */}
+                                    <div className='w-full px-2 mt-5'>
+                                        <h1 className='text-[18px] font-[600]'>Final Items</h1>
+                                        <div className='max-h-[200px] overflow-y-scroll'>
+                                            {
+                                                editOrderData?.order_data?.items?.map((data, i) => (
+                                                    <div className='w-full flex gap-2 my-5 py-1 bg-white shadow-md rounded-[15px] '>
+                                                        <div className='flex justify-center items-center pl-3'>
+                                                            <img src={imgs} className='w-full max-w-[50px]' alt="" />
+                                                        </div>
+                                                        <div className='flex w-full pr-3 flex-col justify-center gap-5'>
+                                                            <div className='w-full flex justify-between items-start'>
+                                                                <h1 className='text-[16px] font-[500]'>{data?.title}</h1>
+                                                                <img src={delete_icon} className='w-[13px] pt-1' alt="" />
+                                                            </div>
+                                                            <div className='flex w-full border border-white'>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w-full min-w-[75px]'>Diamond Quality</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-full'>{data?.diamond_quality}</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w-'>Metal Size</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.metal_size}cm</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w-full min-w-[80px]'>Diamond Weight</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.diamond_weight}gms</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w- '>Metal Weight</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.metal_weight}gms</h1>
+                                                                </div>
+                                                                <div className='flex justify-center w-full items-end gap-2 mx-1'>
+                                                                    <h1 className='text-[10px] font-[400] w- '>Sub Total</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>₹ {data?.sub_total}</h1>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {/* flex-2 */}
+                                <div className='w-[60%] pb-4 pl-2 flex flex-col justify-end border-l-2 border-[#696969]'>
+                                    <h1 className='text-[18px] font-[600] px-4 pb-4'>Price Breakdown</h1>
+                                    <h1 className='text-[13px] font-[500] px-4 pt-4'>Items</h1>
+                                    <div className='w-[90%] mx-auto px-1 max-h-[300px] overflow-y-scroll mb-4'>
                                         {
-                                            addProductsAdminApi?.add_product?.images?.map((data, i) => (
-                                                <img src={data} className="w-[80px]" />
+                                            editOrderData?.order_data?.items?.map((data, i) => (
+                                                <div className='w-full my-6'>
+                                                    <h1 className='text-[14px] pb-2 font-[500]'>{data?.title}</h1>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Diamond Charges :</h1>
+                                                        <h1 className='text-[13px]'>₹ {data?.diamond_charges}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Metal Charges :</h1>
+                                                        <h1 className='text-[13px]'>₹ {data?.metal_charges}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Making Charges :</h1>
+                                                        <h1 className='text-[13px]'>₹ {data?.making_charges}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                        <h1 className='text-[12px] font-[400]'>Add Discount :</h1>
+                                                        <h1 className='text-[13px]'>- ₹ {data?.discount}</h1>
+                                                    </div>
+                                                    <div className='w-full flex justify-end items-center'>
+                                                        <div className='flex gap-3'>
+                                                            <h1 className='text-[12px] font-[500]'>Sub Total :</h1>
+                                                            <h1 className='text-[13px]'>₹ {data?.sub_total}</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             ))
                                         }
                                     </div>
-                                </div>
-                                <div className='flex-1 pl-4'>
-                                    <div className='w-full rounded-[14px] mt-3 mb-6'>
-                                        <label className='text-[11px] text-[#7C7A7A]'>Products Name</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
+                                    <div className='w-[90%] mx-auto flex justify-between items-center pt-4 border-t-2 border-t-[#6969695b]'>
+                                        <h1 className='text-[16px]'>Grand Total</h1>
+                                        <h1 className='text-[18px] font-[500]'>₹ {editOrderData?.order_data?.grand_total}</h1>
                                     </div>
-                                    <div className='w-full rounded-[14px] mt-3 mb-6'>
-                                        <label className='text-[11px] text-[#7C7A7A]'>Products Code</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
-                                    </div>
-                                    <div className='w-full rounded-[14px] mt-3 mb-6'>
-                                        <label className='text-[11px] text-[#7C7A7A]'>Diamond Quality</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
-                                    </div>
-                                    <div className='w-full flex gap-4 rounded-[14px] mt-3 mb-6'>
-                                        <div className='w-full'>
-                                            <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
-                                        </div>
-                                        <div className='w-full'>
-                                            <label className='text-[11px] text-[#7C7A7A]'>Products Weight</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
-                                        </div>
-                                    </div>
-                                    <div className='w-full flex gap-4 rounded-[14px] mt-3 mb-6'>
-                                        <div className='w-full'>
-                                            <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
-                                        </div>
-                                        <div className='w-full'>
-                                            <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
-                                        </div>
+                                    <div className='w-[95%] flex justify-end items-center mt-5'>
+                                        <button className='bg-[#3EDCFF] py-2 px-2 text-[14px] font-[500] rounded-[8px]'>+ Create Order</button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-
+                        </div>
 
                     </div>
                 </div>
 
                 {/* mani flex - 2 */}
-                {/* <div className='w-full flex justify-center items-center pt-4 relative'>
-                    <div className='flex items-center gap-3'>
+                <div className='w-full flex justify-center items-center pt-10 relative'>
+                    {/* <div className='flex items-center gap-3'>
                         <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
                         {
                             admiProductsApi?.page_number_data?.map((num_data, num_index) => (
@@ -145,27 +255,11 @@ const AddNewProductInventoryPage = () => {
                     </div>
                     <div className='absolute right-[13%]'>
                         <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
-                        <p>
-                            {
-                                admiProductsApi?.products?.map((data, i) => {
-                                    return (
-                                        <div className='border border-red-500'>
-                                            <p>{data?.product_id}</p>
-                                            <p>{data?.product_name}</p>
-                                            <p>{data?.product_category}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </p>
-                    </div>
-                </div> */}
-            </div>
-            <div className='flex justify-end items-center w-[80%] mx-auto px-2'>
-                <button className='w-full max-w-[170px] py-2 bg-[#3EDCFF] active:scale-[0.98] active:bg-[#29c9ec] shadow-md font-[500] rounded-[10px]'>ADD PRODUCT</button>
+                    </div> */}
+                </div>
             </div>
         </div>
     )
 }
 
-export default AddNewProductInventoryPage
+export default AdminAddNewOrder
