@@ -15,11 +15,8 @@ const AdminEditSingleOrderPage = () => {
     const params = useParams()
 
     useEffect(() => {
-        // let formdata = new FormData();
-        // formdata.append("token", localStorage.getItem("token"));
         axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleOrder?order_id=' + params?.order_id).then((response) => {
-            console.log(response?.data)
-            // console.log(params)
+            // console.log(response?.data)
             setEditData(response?.data)
         })
     }, [])
@@ -28,10 +25,10 @@ const AdminEditSingleOrderPage = () => {
     return (
         <div className='w-full'>
             {/* <PageBackButton /> */}
-            <div className='w-full pt-20'>
+            <div className='w-full pt-20 mt-24'>
 
                 {/* mani flex - 1 */}
-                <div className='w-full pl-[380px] pt-24'>
+                <div className='w-full pl-[380px] pt-24 '>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
@@ -104,7 +101,7 @@ const AdminEditSingleOrderPage = () => {
                                         <div className='max-h-[200px] overflow-y-scroll'>
                                             {
                                                 editData?.items?.map((data, i) => (
-                                                    <div className='w-full flex gap-2 my-5 py-1 bg-white shadow-md rounded-[15px] '>
+                                                    <div key={i} className='w-full flex gap-2 my-5 py-1 bg-white shadow-md rounded-[15px] '>
                                                         <div className='flex justify-center items-center pl-3'>
                                                             <img src={imgs} className='w-full max-w-[50px]' alt="" />
                                                         </div>
@@ -115,16 +112,16 @@ const AdminEditSingleOrderPage = () => {
                                                             </div>
                                                             <div className='flex w-full border border-white'>
                                                                 <div className='flex justify-center w-full items-end gap-2 mx-1'>
-                                                                    <h1 className='text-[10px] font-[400] w-full min-w-[75px]'>Diamond Quality</h1>
-                                                                    <h1 className='text-[11px] font-[700] w-full'>{data?.diamond_quality}</h1>
+                                                                    <h1 className='text-[10px] font-[400] w-fit min-w-[75px]'>Diamond Quality</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-full  min-w-[75px]'>{data?.diamond_quality}</h1>
                                                                 </div>
                                                                 <div className='flex justify-center w-full items-end gap-2 mx-1'>
                                                                     <h1 className='text-[10px] font-[400] w-'>Metal Size</h1>
-                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.metal_size}cm</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.metal_size}</h1>
                                                                 </div>
                                                                 <div className='flex justify-center w-full items-end gap-2 mx-1'>
-                                                                    <h1 className='text-[10px] font-[400] w-full min-w-[80px]'>Diamond Weight</h1>
-                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.diamond_weight}gms</h1>
+                                                                    <h1 className='text-[10px] font-[400] w-fit'>Diamond Size</h1>
+                                                                    <h1 className='text-[11px] font-[700] w-fit'>{data?.diamond_size}</h1>
                                                                 </div>
                                                                 <div className='flex justify-center w-full items-end gap-2 mx-1'>
                                                                     <h1 className='text-[10px] font-[400] w- '>Metal Weight</h1>
@@ -183,9 +180,11 @@ const AdminEditSingleOrderPage = () => {
                                         <h1 className='text-[16px]'>Grand Total</h1>
                                         <h1 className='text-[18px] font-[500]'>₹ {editData?.grand_total}</h1>
                                     </div>
-                                    <div className='w-[95%] flex justify-end items-center mt-5'>
-                                        <button className='bg-[#3EDCFF] py-2 px-2 text-[14px] font-[500] rounded-[8px]'>+ Create Order</button>
-                                    </div>
+                                    {/* <div className='w-[95%] flex justify-end items-center mt-5'>
+                                        <button className='bg-[#3EDCFF] py-2 px-2 text-[14px] font-[500] rounded-[8px]' onClick={() => {
+
+                                        }}>+ Create Order</button>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

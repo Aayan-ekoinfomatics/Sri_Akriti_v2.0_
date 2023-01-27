@@ -14,6 +14,8 @@ import AdminSidebar from '../global components/AdminSidebar'
 import axios from 'axios'
 import edit_icon from '../../assets/icons/admit-edit.svg'
 import delete_icon from '../../assets/icons/admin-delete.svg'
+import see from '../../assets/icons/eyes_open.svg'
+import dont_see from '../../assets/icons/eyes_closed.svg'
 
 
 const OrdersInventoryPage = () => {
@@ -114,7 +116,7 @@ const OrdersInventoryPage = () => {
                                 </div>
                             </div>
                             <div className='w-full mt-8  min-h-[70vh]'>
-                                <div className='w-full grid grid-cols-5 gap-4 justify-center items-center px-[12px]'>
+                                <div className='w-full grid grid-cols-5 pr-[70px] gap-4 justify-center items-center px-[12px]'>
                                     <div className='flex justify-center items-center'>
                                         <h1 className='text-[#718096]'>User ID</h1>
                                     </div>
@@ -128,8 +130,11 @@ const OrdersInventoryPage = () => {
                                         <h1 className='text-[#718096]'>Pincode</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>Action</h1>
+                                        <h1 className='text-[#718096]'>Actions</h1>
                                     </div>
+                                    {/* <div className='flex justify-center items-center'>
+                                        <h1 className='text-[#718096]'></h1>
+                                    </div> */}
                                 </div>
                                 <div className='w-full max-h-[700px] overflow-y-scroll'>
                                     {
@@ -143,8 +148,8 @@ const OrdersInventoryPage = () => {
                                                             return filterValue
                                                         }
                                                     }).map((data, i) => (
-                                                        <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7 h-full'>
-                                                            <div className='grid grid-cols-5 gap-4 justify-center items-center'>
+                                                        <div key={i} className='relative flex justify-between items-center w-full my-7 h-full'>
+                                                            <div className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] grid grid-cols-5 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>
                                                                     <h1 className='text-[#718096]'>{data?.user_id}</h1>
                                                                 </div>
@@ -159,19 +164,29 @@ const OrdersInventoryPage = () => {
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
                                                                     <div className='flex gap-5 w-fit items-center'>
-                                                                        <Link to={'' + data?.id}><span className='cursor-pointer'><img src={edit_icon} className="w-[16px]" /></span></Link>
-                                                                        <span className='cursor-pointer'><img src={delete_icon} className="w-[14px]" onClick={() => {
+                                                                        {/* <Link to={'' + data?.id}><span className='cursor-pointer'><img src={see} className="w-[16px]" /></span></Link> */}
+                                                                        {/* <span className='cursor-pointer'><img src={delete_icon} className="w-[14px]" onClick={() => {
                                                                             let formdata = new FormData();
                                                                             formdata.append("id", data?.id);
                                                                             formdata.append("token", localStorage.getItem("token"));
                                                                             axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'singleOrderDelete', formdata).then((response) => {
-                                                                                // console.log(response?.data)
-                                                                                // setAllOrders(response?.data?.data)
                                                                             })
-                                                                        }} /></span>
+                                                                        }} /></span> */}
+                                                                        <div><button className='bg-[#30b18434] py-1 rounded-[6px] border border-[#30b183]  px-3 text-[14px] text-[#30b183]'>Accept</button></div>
+                                                                        <div><button className='bg-[#de496c48] py-1 rounded-[6px] border border-[#de496c] text-[#de496c] px-3 text-[14px]'>Decline</button></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <Link to={'' + data?.id}>
+                                                                <div className='w-fit max-w-[120px] ml-5 shadow-md p-2 rounded-[10px] active:scale-[0.96] bg-white'>
+                                                                    <span className='cursor-pointer flex justify-between items-center w-full'>
+                                                                        <img src={see} className="w-[18px]" />
+                                                                        {/* <span className='w-fit text-[14px]'>
+                                                                            View Order
+                                                                        </span> */}
+                                                                    </span>
+                                                                </div>
+                                                            </Link>
                                                         </div>
                                                     ))
                                                 }

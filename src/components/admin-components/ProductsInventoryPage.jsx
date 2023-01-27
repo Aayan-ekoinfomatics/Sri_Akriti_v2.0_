@@ -45,11 +45,11 @@ const ProductsInventoryPage = () => {
         let formdata = new FormData();
         formdata.append("token", localStorage.getItem("token"));
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setAllProducts(response?.data?.data)
             // console.log(Math.ceil(allProducts?.length / usersPerPage))
         })
-        console.log(admiProductsApi)
+        // console.log(admiProductsApi)
     }, [])
 
     useEffect(() => {
