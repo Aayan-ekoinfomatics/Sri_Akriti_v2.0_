@@ -8,7 +8,7 @@ import left_arrow from '../../assets/icons/admin-left-pointer.svg'
 import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
 import img from '../../assets/icons/no-data-found.svg'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import down from '../../assets/icons/down-arrow-admin.svg'
 import PageBackButton from '../global components/PageBackButton'
@@ -33,6 +33,8 @@ const AdmitEditSingleProduct = () => {
     const [gender, setGender] = useState();
 
     const params = useParams()
+
+    const navigate = useNavigate()
 
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -83,12 +85,22 @@ const AdmitEditSingleProduct = () => {
 
 
     const submitForm = (e) => {
-        e.preventDefault()
-        // let formdata = new FormData();
-        // formdata.append("id", params?.product_id);
-        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=  ' + params?.product_id).then((response) => {
-            // console.log(response?.data)
-            setDefaultData(response?.data)
+        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminEditSingleProduct', defaultData).then((response) => {
+            console.log(response?.data)
+            // setDefaultData(response?.data)
+            if (response?.data?.status) {
+                navigate('/admin-products')
+                toast.success(response?.data?.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    // draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                })
+            }
         })
     }
 
@@ -249,11 +261,27 @@ const AdmitEditSingleProduct = () => {
 
                                                 }} />
                                                 {/* <label htmlFor="files">Add Image</label> */}
-                                                <button className='bg-[#3EDCFF] text-white active:bg-[#d6d6d6] active:scale-[0.91] active:text-[#696363] px-6 py-[5px] shadow-md rounded-[10px]'>Submit</button>
+                                                <button className='bg-[#3EDCFF] text-white active:bg-[#d6d6d6] active:scale-[0.91] active:text-[#696363] px-6 py-[5px] shadow-md rounded-[10px]' onClick={submitForm}>Submit</button>
                                             </div>
                                             <div className='w-full pt-14 flex justify-end gap-2 relative'>
                                                 <label htmlFor="file_image" className=' h-full min-h-[200px] relative flex aspect-square'>
-                                                    <input type="file" name='file' className='opacity-0 z-[200]' />
+                                                    <input type="file" name='file' className='opacity-0 z-[200]' onChange={(e) => {
+                                                        console.log(e.target.files[0])
+                                                        let formdata = new FormData()
+                                                        formdata.append('file', e?.target?.files[0])
+                                                        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminAddImageNewProduct', formdata).then((response) => {
+                                                            console.log(response?.data)
+
+                                                            if (response?.data?.status) {
+                                                                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminImageNameUpdate', { data: defaultData, fileName: response?.data?.file, index: 0 }).then((res) => {
+                                                                    console.log(res)
+                                                                    setDefaultData(res?.data)
+                                                                })
+                                                            } else {
+                                                                console.log('laura bhi nahi chala')
+                                                            }
+                                                        })
+                                                    }}/>
                                                     <div className=' absolute inset-0 '>
                                                         {
                                                                 defaultData?.image_1 ?
@@ -267,7 +295,23 @@ const AdmitEditSingleProduct = () => {
                                                 </label>
                                                 <div className='w-[20%] flex flex-col justify-evenly gap-2'>
                                                     <label htmlFor="file_image" className=' h-full min-h-[100px] relative flex aspect-square'>
-                                                        <input type="file" name='file' className='opacity-0 z-[200]' />
+                                                        <input type="file" name='file' className='opacity-0 z-[200]' onChange={(e) => {
+                                                        console.log(e.target.files[0])
+                                                        let formdata = new FormData()
+                                                        formdata.append('file', e?.target?.files[0])
+                                                        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminAddImageNewProduct', formdata).then((response) => {
+                                                            console.log(response?.data)
+
+                                                            if (response?.data?.status) {
+                                                                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminImageNameUpdate', { data: defaultData, fileName: response?.data?.file, index: 1 }).then((res) => {
+                                                                    console.log(res)
+                                                                    setDefaultData(res?.data)
+                                                                })
+                                                            } else {
+                                                                console.log('laura bhi nahi chala')
+                                                            }
+                                                        })
+                                                    }}/>
                                                         <div className=' absolute inset-0 '>
                                                             {
                                                                 defaultData?.image_2 ?
@@ -280,11 +324,27 @@ const AdmitEditSingleProduct = () => {
                                                         </div>
                                                     </label>
                                                     <label htmlFor="file_image" className=' h-full min-h-[100px] relative flex aspect-square'>
-                                                        <input type="file" name='file' className='opacity-0 z-[200]' />
+                                                        <input type="file" name='file' className='opacity-0 z-[200]' onChange={(e) => {
+                                                        console.log(e.target.files[0])
+                                                        let formdata = new FormData()
+                                                        formdata.append('file', e?.target?.files[0])
+                                                        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminAddImageNewProduct', formdata).then((response) => {
+                                                            console.log(response?.data)
+
+                                                            if (response?.data?.status) {
+                                                                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminImageNameUpdate', { data: defaultData, fileName: response?.data?.file, index: 2 }).then((res) => {
+                                                                    console.log(res)
+                                                                    setDefaultData(res?.data)
+                                                                })
+                                                            } else {
+                                                                console.log('laura bhi nahi chala')
+                                                            }
+                                                        })
+                                                    }}/>
                                                         <div className=' absolute inset-0 '>
                                                             {
                                                                 defaultData?.image_3 ?
-                                                                <img id='file_image' src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_2} className={`w-full aspect-square z-[100]}`}/>
+                                                                <img id='file_image' src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_3} className={`w-full aspect-square z-[100]}`}/>
                                                                 :
                                                                 <div className='w-full flex justify-center items-center aspect-square border border-black'>
                                                                     <span className='text-[#696969b6] text-[14px]'>Add Image</span>
@@ -293,11 +353,27 @@ const AdmitEditSingleProduct = () => {
                                                         </div>
                                                     </label>
                                                     <label htmlFor="file_image" className=' h-full min-h-[100px] relative flex aspect-square'>
-                                                        <input type="file" name='file' className='opacity-0 z-[200]' />
+                                                        <input type="file" name='file' className='opacity-0 z-[200]' onChange={(e) => {
+                                                        console.log(e.target.files[0])
+                                                        let formdata = new FormData()
+                                                        formdata.append('file', e?.target?.files[0])
+                                                        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminAddImageNewProduct', formdata).then((response) => {
+                                                            console.log(response?.data)
+
+                                                            if (response?.data?.status) {
+                                                                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminImageNameUpdate', { data: defaultData, fileName: response?.data?.file, index: 3 }).then((res) => {
+                                                                    console.log(res)
+                                                                    setDefaultData(res?.data)
+                                                                })
+                                                            } else {
+                                                                console.log('laura bhi nahi chala')
+                                                            }
+                                                        })
+                                                    }}/>
                                                         <div className=' absolute inset-0 '>
                                                             {
                                                                 defaultData?.image_4 ?
-                                                                <img id='file_image' src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_2} className={`w-full aspect-square z-[100]}`}/>
+                                                                <img id='file_image' src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_4} className={`w-full aspect-square z-[100]}`}/>
                                                                 :
                                                                 <div className='w-full flex justify-center items-center aspect-square border border-black'>
                                                                     <span className='text-[#696969b6] text-[14px]'>Add Image</span>
