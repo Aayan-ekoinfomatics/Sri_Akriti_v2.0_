@@ -36,6 +36,10 @@ const AdminAddNewOrder = () => {
             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminCreateOrderFinalPriceCalculation', defaultData?.items).then((response) => {
                 // console.log(response?.data)
                 setFinalPricing(response?.data)
+                setDefaultData({
+                    ...defaultData,
+                    grand_total: response?.data?.grand_total
+                })
             })
         }
     }, [defaultData?.items])
@@ -84,7 +88,7 @@ const AdminAddNewOrder = () => {
                                             <input type="text" value={defaultData?.name} placeholder='Type Name here...' onChange={(e) => {
                                                 setDefaultData({
                                                     ...defaultData,
-                                                    name: e?.target?.value
+                                                    customer_name: e?.target?.value
                                                 })
                                             }} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
                                         </div>
@@ -93,7 +97,7 @@ const AdminAddNewOrder = () => {
                                             <input type="text" value={defaultData?.phone} onChange={(e) => {
                                                 setDefaultData({
                                                     ...defaultData,
-                                                    phone: e?.target?.value
+                                                    customer_phone: e?.target?.value
                                                 })
                                             }} placeholder='Type Number here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
                                         </div>
@@ -104,7 +108,7 @@ const AdminAddNewOrder = () => {
                                             <textarea type="" value={defaultData?.address} onChange={(e) => {
                                                 setDefaultData({
                                                     ...defaultData,
-                                                    address: e?.target?.value
+                                                    customer_address: e?.target?.value
                                                 })
                                             }} placeholder='Type Address here...' rows={3} cols={2} className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
                                         </div>
@@ -113,7 +117,7 @@ const AdminAddNewOrder = () => {
                                             <input type="text" value={defaultData?.email} onChange={(e) => {
                                                 setDefaultData({
                                                     ...defaultData,
-                                                    email: e?.target?.value
+                                                    customer_email: e?.target?.value
                                                 })
                                             }} placeholder='Type Email here...' className='p-2 rounded-[13px] outline-none text-[14px] w-full' />
                                         </div>
@@ -381,7 +385,34 @@ const AdminAddNewOrder = () => {
                                         <h1 className='text-[18px] font-[500]'>₹ {finalPricing?.grand_total}</h1>
                                     </div>
                                     <div className='w-[95%] flex justify-end items-center mt-5'>
-                                        <button className='bg-[#3EDCFF] py-2 px-2 text-[14px] font-[500] rounded-[8px]'>+ Create Order</button>
+                                        <button className='bg-[#3EDCFF] py-2 px-2 text-[14px] font-[500] rounded-[8px]' onClick={() => {
+                                            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminAddNewOrder', defaultData).then((response) => {
+                                                console.log(response?.data)
+                                                if ( response?.data?.status === true) {
+                                                    toast.info(response?.data?.message, {
+                                                        position: "top-right",
+                                                        autoClose: 2000,
+                                                        hideProgressBar: false,
+                                                        closeOnClick: true,
+                                                        pauseOnHover: true,
+                                                        // draggable: true,
+                                                        progress: undefined,
+                                                        theme: "light",
+                                                    })
+                                                }else {
+                                                    toast.error(response?.data?.message, {
+                                                        position: "top-right",
+                                                        autoClose: 2000,
+                                                        hideProgressBar: false,
+                                                        closeOnClick: true,
+                                                        pauseOnHover: true,
+                                                        // draggable: true,
+                                                        progress: undefined,
+                                                        theme: "light",
+                                                    })
+                                                }
+                                            })
+                                        }}>+ Add Order</button>
                                     </div>
                                 </div>
                             </div>

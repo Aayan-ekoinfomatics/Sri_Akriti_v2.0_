@@ -53,14 +53,18 @@ const ProductsInventoryPage = () => {
     }, [])
 
     useEffect(() => {
-        setFilteredValue(admiProductsApi?.products?.filter((filterValue) => {
+        setFilteredValue(allProducts?.filter((filterValue) => {
             if (searchData === '') {
                 return filterValue
             } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
                 return filterValue
             }
         }).length)
-    }, [searchData])
+        console.log(allProducts)
+    }, [
+        searchData,
+        // allProducts
+    ])
 
 
     return (
@@ -121,7 +125,8 @@ const ProductsInventoryPage = () => {
                                                         } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
                                                             return filterValue
                                                         }
-                                                    }).map((data, i) => (
+                                                    })
+                                                    .map((data, i) => (
                                                         <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7'>
                                                             <div className='grid grid-cols-4 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>

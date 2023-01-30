@@ -108,7 +108,7 @@ const AdminEditSingleOrderPage = () => {
                                                         <div className='flex w-full pr-3 flex-col justify-center gap-5'>
                                                             <div className='w-full flex justify-between items-start'>
                                                                 <h1 className='text-[16px] font-[500]'>{data?.title}</h1>
-                                                                <img src={delete_icon} className='w-[13px] pt-1' alt="" />
+                                                                {/* <img src={delete_icon} className='w-[13px] pt-1' alt="" /> */}
                                                             </div>
                                                             <div className='flex w-full border border-white'>
                                                                 <div className='flex justify-center w-full items-end gap-2 mx-1'>

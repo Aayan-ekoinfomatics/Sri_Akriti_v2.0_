@@ -31,7 +31,7 @@ const OrdersInventoryPage = () => {
         // let formdata = new FormData();
         // formdata.append("token", localStorage.getItem("token"));
         axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setAllOrders(response?.data)
         })
     }, [])
@@ -132,9 +132,6 @@ const OrdersInventoryPage = () => {
                                     <div className='flex justify-center items-center'>
                                         <h1 className='text-[#718096]'>Actions</h1>
                                     </div>
-                                    {/* <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'></h1>
-                                    </div> */}
                                 </div>
                                 <div className='w-full max-h-[700px] overflow-y-scroll'>
                                     {
@@ -163,27 +160,40 @@ const OrdersInventoryPage = () => {
                                                                     <h1 className='text-[#718096]'>{data?.pincode}</h1>
                                                                 </div>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <div className='flex gap-5 w-fit items-center'>
-                                                                        {/* <Link to={'' + data?.id}><span className='cursor-pointer'><img src={see} className="w-[16px]" /></span></Link> */}
-                                                                        {/* <span className='cursor-pointer'><img src={delete_icon} className="w-[14px]" onClick={() => {
-                                                                            let formdata = new FormData();
-                                                                            formdata.append("id", data?.id);
-                                                                            formdata.append("token", localStorage.getItem("token"));
-                                                                            axios.delete(import.meta.env.VITE_APP_BASE_API_LINK + 'singleOrderDelete', formdata).then((response) => {
-                                                                            })
-                                                                        }} /></span> */}
-                                                                        <div><button className='bg-[#30b18434] py-1 rounded-[6px] border border-[#30b183]  px-3 text-[14px] text-[#30b183]'>Accept</button></div>
-                                                                        <div><button className='bg-[#de496c48] py-1 rounded-[6px] border border-[#de496c] text-[#de496c] px-3 text-[14px]'>Decline</button></div>
-                                                                    </div>
+                                                                    {
+                                                                        data?.admin_accept_status === 'p' ?
+                                                                            <div className='flex gap-5 w-fit items-center'>
+                                                                                <div><button className='bg-[#30b18434] py-1 rounded-[6px] border border-[#30b183]  px-3 text-[14px] text-[#30b183]' onClick={async () => {
+                                                                                    let call_1 = await axios.patch(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders', { id: data?.id, type: 'a' }).then((response) => {
+                                                                                        console.log(response?.data)
+                                                                                    })
+                                                                                    let call_2 = await axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
+                                                                                        // console.log(response?.data)
+                                                                                        setAllOrders(response?.data)
+                                                                                    })
+                                                                                }}>Accept</button></div>
+                                                                                <div><button className='bg-[#de496c48] py-1 rounded-[6px] border border-[#de496c] text-[#de496c] px-3 text-[14px]' onClick={async () => {
+                                                                                    let call_1 = await axios.patch(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders', { id: data?.id, type: 'd' }).then((response) => {
+                                                                                        console.log(response?.data)
+                                                                                    })
+                                                                                    let call_2 = await axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
+                                                                                        // console.log(response?.data)
+                                                                                        setAllOrders(response?.data)
+                                                                                    })
+                                                                                }}>Decline</button></div>
+                                                                            </div>
+                                                                            :
+                                                                            data?.admin_accept_status === 'a' ?
+                                                                                <div><button className='bg-[#30b18434] py-1 rounded-[6px] border border-[#30b183]  px-3 text-[14px] text-[#30b183]'>Accepted</button></div>
+                                                                                :
+                                                                                <div><button className='bg-[#de496c48] py-1 rounded-[6px] border border-[#de496c] text-[#de496c] px-3 text-[14px]'>Decline</button></div>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                             <Link to={'' + data?.id}>
                                                                 <div className='w-fit max-w-[120px] ml-5 shadow-md p-2 rounded-[10px] active:scale-[0.96] bg-white'>
                                                                     <span className='cursor-pointer flex justify-between items-center w-full'>
                                                                         <img src={see} className="w-[18px]" />
-                                                                        {/* <span className='w-fit text-[14px]'>
-                                                                            View Order
-                                                                        </span> */}
                                                                     </span>
                                                                 </div>
                                                             </Link>
