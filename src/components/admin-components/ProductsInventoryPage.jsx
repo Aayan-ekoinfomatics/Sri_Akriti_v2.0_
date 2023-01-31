@@ -45,7 +45,7 @@ const ProductsInventoryPage = () => {
         let formdata = new FormData();
         formdata.append("token", localStorage.getItem("token"));
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
-            // console.log(response?.data)
+            console.log(response?.data?.data)
             setAllProducts(response?.data?.data)
             // console.log(Math.ceil(allProducts?.length / usersPerPage))
         })
@@ -53,16 +53,16 @@ const ProductsInventoryPage = () => {
     }, [])
 
     useEffect(() => {
-        setFilteredValue(allProducts?.filter((filterValue) => {
-            if (searchData === '') {
-                return filterValue
-            } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
-                return filterValue
-            }
-        }).length)
-        console.log(allProducts)
+        // setFilteredValue(allProducts?.filter((filterValue) => {
+        //     if (searchData === '') {
+        //         return filterValue
+        //     } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
+        //         return filterValue
+        //     }
+        // }).length)
+        // console.log(allProducts)
     }, [
-        searchData,
+        // searchData,
         // allProducts
     ])
 
@@ -116,13 +116,13 @@ const ProductsInventoryPage = () => {
                                 </div>
                                 <div className='w-full max-h-[700px] overflow-y-scroll'>
                                     {
-                                        filterValue > 0 ?
+                                        allProducts?.length > 0 ?
                                             <div className=''>
                                                 {
                                                     allProducts?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
-                                                        } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
+                                                        } else if (filterValue?.name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.id?.toString()?.includes(searchData?.toLowerCase()) || filterValue?.category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
                                                             return filterValue
                                                         }
                                                     })
