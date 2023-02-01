@@ -28,14 +28,14 @@ const AdminEditSingleOrderPage = () => {
             <div className='w-full pt-20 mt-24'>
 
                 {/* mani flex - 1 */}
-                <div className='w-full pl-[380px] pt-24 '>
+                <div className='w-full pl-[240px] xl:pl-[320px] pt-24 '>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[82%] flex justify-between items-center'>
+                        {/* <div className='w-[82%] flex justify-between items-center'>
                             <div className='w-full'>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* sub-flex - 2 */}
@@ -45,7 +45,7 @@ const AdminEditSingleOrderPage = () => {
                         <AdminSidebar />
 
                         {/* content-flex - 1 */}
-                        <div className='w-[90%] px-3'>
+                        <div className='w-full xl:w-[90%] pr-[50px] xl:px-3'>
 
                             <div className='w-full flex'>
 

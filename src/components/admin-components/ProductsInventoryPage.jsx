@@ -72,11 +72,11 @@ const ProductsInventoryPage = () => {
             <div className='w-full pt-10'>
 
                 {/* mani flex - 1 */}
-                <div className='w-full pl-[380px] mx-auto pt-10'>
+                <div className='w-full pl-[250px] xl:pl-[330px] mx-auto pt-10'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[82%] flex justify-between items-center'>
+                        <div className='w-full pr-[50px] xl:pr-[80px] flex justify-between items-center'>
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Products</h1>
                             </div>
@@ -93,7 +93,7 @@ const ProductsInventoryPage = () => {
                         <AdminSidebar />
 
                         {/* content-flex - 1 */}
-                        <div className='w-[82%]  px-3'>
+                        <div className='w-full pr-[50px] xl:pr-[80px] px-3'>
                             <div className='w-full my-2 mb-4'>
                                 <div className='w-full shadow-md rounded-[14px] bg-white flex items-center pl-3 gap-3'>
                                     <span><img src={search} className="w-[15px]" /></span><input type="text" className='w-[95%] py-[8px] px-2rounded-[14px] outline-none' placeholder='Filter Products' onChange={(e) => setSearchData(e.target.value)} />

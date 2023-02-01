@@ -61,16 +61,11 @@ const OrdersInventoryPage = () => {
             <div className='w-full pt-10'>
 
                 {/* mani flex - 1 */}
-                <div className='w-full pl-[400px]  pt-10'>
+                <div className='w-full pl-[250px] xl:pl-[340px]  pt-10'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        {/* <div className='w-[18%] pb-4'>
-                            <div className='w-full flex flex-col justify-end items-center'>
-                                <img src={logo} className="w-[85px]" />
-                            </div>
-                        </div> */}
-                        <div className='w-[82%] flex justify-between items-center'>
+                        <div className='w-full pr-20 flex justify-between items-center'>
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Orders</h1>
                             </div>
@@ -84,32 +79,10 @@ const OrdersInventoryPage = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        {/* <div className='w-[18%] px-3'>
-                            <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <div className='w-full bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                    <div>
-                                        <img src={order_logo} className="w-[20px]" />
-                                    </div>
-                                    <div>
-                                        <h1 className='roboto text-[17px] font-[500]'>Order</h1>
-                                    </div>
-                                </div>
-                                <NavLink to='/admin-products' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={products_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div> */}
                         <AdminSidebar />
 
                         {/* content-flex - 1 */}
-                        <div className='w-[82%]  px-3'>
+                        <div className='w-full pr-10 xl:pr-20 px-3'>
                             <div className='w-full my-2 mb-4'>
                                 <div className='w-full shadow-md rounded-[14px] bg-white flex items-center pl-3 gap-3'>
                                     <span><img src={search} className="w-[15px]" /></span><input type="text" className='w-[95%] py-[8px] px-2 rounded-[14px] outline-none' placeholder='Filter Orders' onChange={(e) => setSearchData(e.target.value)} />
@@ -162,8 +135,8 @@ const OrdersInventoryPage = () => {
                                                                 <div className='flex justify-center items-center'>
                                                                     {
                                                                         data?.admin_accept_status === 'p' ?
-                                                                            <div className='flex gap-5 w-fit items-center'>
-                                                                                <div><button className='bg-[#30b18434] py-1 rounded-[6px] border border-[#30b183]  px-3 text-[14px] text-[#30b183]' onClick={async () => {
+                                                                            <div className='flex gap-1 w-fit items-center'>
+                                                                                <div><button className='bg-[#30b18434] py-[2px] rounded-[6px] border border-[#30b183] px-[8px] text-[14px] text-[#30b183]' onClick={async () => {
                                                                                     let call_1 = await axios.patch(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders', { id: data?.id, type: 'a' }).then((response) => {
                                                                                         console.log(response?.data)
                                                                                     })
@@ -172,7 +145,7 @@ const OrdersInventoryPage = () => {
                                                                                         setAllOrders(response?.data)
                                                                                     })
                                                                                 }}>Accept</button></div>
-                                                                                <div><button className='bg-[#de496c48] py-1 rounded-[6px] border border-[#de496c] text-[#de496c] px-3 text-[14px]' onClick={async () => {
+                                                                                <div><button className='bg-[#de496c48] py-[2px] rounded-[6px] border border-[#de496c] text-[#de496c] px-[8px] text-[14px]' onClick={async () => {
                                                                                     let call_1 = await axios.patch(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders', { id: data?.id, type: 'd' }).then((response) => {
                                                                                         console.log(response?.data)
                                                                                     })
@@ -184,9 +157,9 @@ const OrdersInventoryPage = () => {
                                                                             </div>
                                                                             :
                                                                             data?.admin_accept_status === 'a' ?
-                                                                                <div><button className='bg-[#30b18434] py-1 rounded-[6px] border border-[#30b183]  px-3 text-[14px] text-[#30b183]'>Accepted</button></div>
+                                                                                <div><button className='bg-[#30b18434] py-[2px] rounded-[6px] border border-[#30b183]  px-[8px] text-[14px] text-[#30b183]'>Accepted</button></div>
                                                                                 :
-                                                                                <div><button className='bg-[#de496c48] py-1 rounded-[6px] border border-[#de496c] text-[#de496c] px-3 text-[14px]'>Decline</button></div>
+                                                                                <div><button className='bg-[#de496c48] py-[2px] rounded-[6px] border border-[#de496c] text-[#de496c] px-[8px] text-[14px]'>Declined</button></div>
                                                                     }
                                                                 </div>
                                                             </div>

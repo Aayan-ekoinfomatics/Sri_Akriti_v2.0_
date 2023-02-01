@@ -10,7 +10,7 @@ import logout from '../../assets/icons/logout.svg'
 
 const AdminSidebar = () => {
     return (
-        <div className='w-full max-w-[230px] h-[80vh] fixed top-[50px] left-[100px]'>
+        <div className='w-full max-w-[190px] xl:max-w-[230px] h-[80vh] fixed top-[50px] left-[40px] xl:left-[70px]'>
             <div className='w-full pb-4'>
                 <div className='w-full flex flex-col justify-end items-center'>
                     <img src={logo} className="w-[85px]" />

@@ -64,7 +64,7 @@ const AdmitEditSingleProduct = () => {
     useEffect(() => {
         setGender(defaultData?.gender)
         setSelectedDiamondQuality(defaultData?.diamond_quality)
-        console.log(defaultData)
+        // console.log(defaultData)
     }, [defaultData])
 
 
@@ -72,21 +72,21 @@ const AdmitEditSingleProduct = () => {
         // let formdata = new FormData();
         // formdata.append("id", params?.product_id);
         axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=' + params?.product_id).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setDefaultData(response?.data)
             // setSelectedDiamondQuality(response?.data?.variants[0]?.diamond_quality)
         })
     }, [])
 
 
-    useEffect(() => {
-        console.log(activeIndex)
-    }, [activeIndex])
+    // useEffect(() => {
+    //     console.log(activeIndex)
+    // }, [activeIndex])
 
 
     const submitForm = (e) => {
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminEditSingleProduct', defaultData).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             // setDefaultData(response?.data)
             if (response?.data?.status) {
                 navigate('/admin-products')
@@ -111,22 +111,13 @@ const AdmitEditSingleProduct = () => {
             <div className='w-full pt-5'>
 
                 {/* mani flex - 1 */}
-                <div className='w-full pl-[380px] pt-32'>
+                <div className='w-full pl-[250px] xl:pl-[330px] pt-32'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        {/* <div className='w-[18%] pb-4'>
-                            <div className='w-full flex flex-col justify-end items-center'>
-                                <img src={logo} className="w-[85px]" />
-                            </div>
-                        </div> */}
-                        <div className='w-[82%] flex justify-between items-center'>
+                        <div className='w-full flex justify-between items-center'>
                             <div className='w-full'>
-                                {/* <h1 className='roboto text-[50px] font-[900]'>Orders</h1> */}
                             </div>
-                            {/* <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Orders</button>
-                            </div> */}
                         </div>
                     </div>
 
@@ -134,36 +125,13 @@ const AdmitEditSingleProduct = () => {
                     <div className='w-full flex gap-3'>
 
                         {/* content-flex - 1 */}
-                        {/* <div className='w-[18%] px-3'>
-                            <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <NavLink to='/admin-orders' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] lg:pl-5 py-2 cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={order_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Order</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                                <NavLink to='/admin-products' className='w-full block'>
-                                    <div className='w-full bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                        <div>
-                                            <img src={products_logo} className="w-[20px]" />
-                                        </div>
-                                        <div>
-                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div> */}
+
                         <AdminSidebar />
 
                         {/* content-flex - 1 */}
                         <div className='w-full px-3'>
                             <div className='w-full min-h-[70vh] pt-[20px]'>
-                                <div className='w-full min-w-[1000px] roboto'>
+                                <div className='w-full  roboto'>
                                     <div className='w-full flex'>
                                         <div className='w-full pt-10'>
 
@@ -254,13 +222,12 @@ const AdmitEditSingleProduct = () => {
                                                 <button className=' py-[4px] px-6 rounded-[10px] text-[14px] active:bg-[#d6d6d6] active:scale-[0.91]'>Add more</button>
                                             </div>
                                         </div>
-                                        <div className='w-full flex flex-col gap-2 justify-end pr-[120px]'>
+                                        <div className='w-full flex flex-col gap-2 justify-center max-w-[500px] pr-[40px] mr-[100px]'>
                                             <div className='w-full flex justify-end gap-4'>
                                                 <input type="file" name="files" id="files" className="inputfile" onChange={(e) => {
                                                     console.log(e.target.files[0])
 
                                                 }} />
-                                                {/* <label htmlFor="files">Add Image</label> */}
                                                 <button className='bg-[#3EDCFF] text-white active:bg-[#d6d6d6] active:scale-[0.91] active:text-[#696363] px-6 py-[5px] shadow-md rounded-[10px]' onClick={submitForm}>Submit</button>
                                             </div>
                                             <div className='w-full pt-14 flex justify-end gap-2 relative'>
@@ -278,7 +245,7 @@ const AdmitEditSingleProduct = () => {
                                                                     setDefaultData(res?.data)
                                                                 })
                                                             } else {
-                                                                console.log('laura bhi nahi chala')
+                                                                console.log('error')
                                                             }
                                                         })
                                                     }}/>
@@ -387,62 +354,11 @@ const AdmitEditSingleProduct = () => {
                                     </div>
 
                                     <h1 className='my-1 mt-4 font-[500] pt-6'>Variants</h1>
-                                    {/* <div className='w-full '>
-                                        <div className='grid grid-cols-4 py-4 px-3'>
-                                            <div className='text-[14px]'>Size</div>
-                                            <div className='text-[14px]'>Weight</div>
-                                            <div className='text-[14px]'>Actual Price</div>
-                                            <div className='text-[14px]'>Selling Price</div>
-                                        </div>
-                                        <div className=' max-h-[230px] overflow-y-scroll'>
-                                            {
-                                                defaultData?.variants?.filter((filter_data, filter_index) => {
-                                                    if (selectedDiamondQuality === null) {
-                                                        return filter_data
-                                                    } else if (filter_data?.diamond_quality === selectedDiamondQuality) {
-                                                        return filter_data
-                                                    }
-                                                })?.map((data, i) => {
-                                                    return (
-                                                        <div key={i} className='px-2 mb-6 w-full grid grid-cols-4 py-1 gap-2'>
 
-                                                            {
-                                                                data?.sub_variants_data?.map((sub_variants_data, sub_variants_index) => {
-                                                                    return (
-                                                                        <div className='' key={sub_variants_index}>
-                                                                            <div className='w-full'>
-                                                                                <input type="text" className='py-1 pl-3 rounded-[10px] shadow-md outline-none' onChange={(e) => {
-                                                                                    setDefaultData({
-                                                                                        ...defaultData,
-                                                                                        variants: defaultData?.variants?.map((variant_data, variant_index) => {
-                                                                                            return {
-                                                                                                ...variant_data,
-                                                                                                sub_variants_data: variant_data?.sub_variants_data?.map((sub_variant_data_2, sub_variant_index_2) => {
-                                                                                                    if (sub_variant_index_2 === activeIndex) {
-                                                                                                        return {
-                                                                                                            ...sub_variant_data_2,
-                                                                                                            value: e.target.value
-                                                                                                        }
-                                                                                                    }
-                                                                                                    return sub_variant_data_2
-                                                                                                })
-                                                                                            }
-                                                                                        }),
-                                                                                    })
-                                                                                }} onClick={() => setActiveIndex(sub_variants_index)} name="" id={sub_variants_data?.id} value={sub_variants_data?.value} placeholder={sub_variants_data?.title} />
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </div> */}
-                                    <div className='flex justify-around items-start'>
-                                        <div className='flex relative flex-col gap-5 justify-end items-end'>
+                                    <div className='flex justify-start xl:justify-between gap-[100px] items-start pr-[140px]'>
+
+
+                                        <div className='flex w-fit relative flex-col gap-4 justify-end items-end'>
                                             <div className='w-full flex gap-5 justify-between'>
                                                 <h1 className='text-[14px] w-full'>Size</h1>
                                                 <h1 className='text-[14px] w-full'>Weight &#40;in gms&#41;</h1>
@@ -470,7 +386,7 @@ const AdmitEditSingleProduct = () => {
                                                                         }
                                                                     })
                                                                 })
-                                                            }} className='outline-none py-1 px-2 rounded-[10px] shadow-md' placeholder='size' />
+                                                            }} className='outline-none py-1 px-2 rounded-[10px] shadow-md max-w-[100px] ' placeholder='size' />
                                                         </div>
                                                         <div className=''>
                                                             <input type="text" value={data?.weight} onClick={() => setActiveIndex(data?.id)} onChange={(e) => {
@@ -491,7 +407,7 @@ const AdmitEditSingleProduct = () => {
                                                                         }
                                                                     })
                                                                 })
-                                                            }} className='outline-none py-1 px-2 rounded-[10px] shadow-md' placeholder='weight' />
+                                                            }} className='outline-none py-1 px-2 rounded-[10px] shadow-md max-w-[100px]' placeholder='weight' />
                                                         </div>
                                                         <div>
                                                             <img src={delete_icon} className='w-[12px] cursor-pointer active:scale-[0.96]' alt="" onClick={() => {
@@ -518,12 +434,14 @@ const AdmitEditSingleProduct = () => {
                                                 </div>
                                             </span>
                                         </div>
-                                        <div className='w-fit flex flex-col gap-3 justify-between items-end'>
+
+
+                                        <div className='flex flex-col gap-3 justify-between items-end'>
                                             <span className='w-full'><h1 className='text-[14px]'> Diamond Size</h1></span>
                                             {
                                                 defaultData?.diamond_size?.map((data, index) => (
                                                     <div key={index} className='w-full flex gap-5 justify-between items-center'>
-                                                        <div className='w-fit flex justify-between'>
+                                                        <div className=' flex justify-between'>
                                                             <input type="text" value={data}
                                                                 // onChange={(e) => {
                                                                 //     setDefaultData({
@@ -531,7 +449,7 @@ const AdmitEditSingleProduct = () => {
                                                                 //         diamond_size: e?.target?.value
                                                                 //     })
                                                                 // }} 
-                                                                className='py-1 px-2 rounded-[10px] shadow-md' placeholder='diamond size' />
+                                                                className='py-1 px-2 rounded-[10px] shadow-md max-w-[150px]' placeholder='diamond size' />
 
                                                         </div>
                                                         <span><img src={delete_icon} className='w-[12px] cursor-pointer active:scale-[0.96]' alt="" onClick={() => {
@@ -604,11 +522,6 @@ const AdmitEditSingleProduct = () => {
                                         </div>
                                     </div>
 
-                                    {/* <div className='w-full my-2'>
-                                        <input type="file" name="files" id="files" className="inputfile" />
-                                        <label htmlFor="files">Add Image</label>
-                                    </div> */}
-
                                 </div>
                             </div>
                         </div>
@@ -618,18 +531,7 @@ const AdmitEditSingleProduct = () => {
 
                 {/* mani flex - 2 */}
                 <div className='w-full flex justify-center items-center pt-10 relative'>
-                    {/* <div className='flex items-center gap-3'>
-                        <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
-                        {
-                            admiProductsApi?.page_number_data?.map((num_data, num_index) => (
-                                <p key={num_index} className='mx-1 text-[#718096] text-[12px]'>{num_data}</p>
-                            ))
-                        }
-                        <span className='ml-3' ><img src={right_arrow} className="w-[11px]" /></span>
-                    </div>
-                    <div className='absolute right-[13%]'>
-                        <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
-                    </div> */}
+
                 </div>
             </div>
         </div>

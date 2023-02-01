@@ -186,8 +186,8 @@ const AllCollections = () => {
         {/* overlay */}
         <div
           className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000071] z-[1004] transition-all ${filterToggle
-              ? "h-full ease-in  duration-500"
-              : "h-0 ease-out  duration-500"
+            ? "h-full ease-in  duration-500"
+            : "h-0 ease-out  duration-500"
             }`}
           onClick={() => handleClick()}
         ></div>
@@ -231,8 +231,8 @@ const AllCollections = () => {
               </div>
               <div
                 className={`w-full overflow-hidden pl-2 bg-[#69696911] ${filterSubCategory === datas?.name
-                    ? "max-h-[200px] overflow-y-scroll transition-all duration-500 ease-in py-2"
-                    : "max-h-0 transition-all duration-500 ease-out"
+                  ? "max-h-[200px] overflow-y-scroll transition-all duration-500 ease-in py-2"
+                  : "max-h-0 transition-all duration-500 ease-out"
                   } flex  flex-col justify-center items-start`}
               >
                 {datas?.sub_filter.map((sub_data, sub_index) => (
@@ -258,56 +258,58 @@ const AllCollections = () => {
           </div>
         </div>
 
-        <div className="flex self-start w-full md:w-[95%] gap-5 mx-auto mt-16 pt-5 h-full">
+        <div className="flex self-start w-full md:w-[95%] gap-5 mx-auto mt-16 pt-5 h-full relative">
           {/* filter desktop*/}
-          <div className="top-0 w-[20%] hidden lg:flex flex-col relative">
+          <div className="w-[20%]">
+            <div className=" hidden lg:flex flex-col top-0 sticky">
 
-            {/* sort desktop */}
-            <div className=" ">
-              <label className="poppins text-[13px] pb-1 tracking-[1px]">Sort</label>
-              <div className=" border w-full flex justify-between p-2 relative ">
-                <h1 className="lora tracking-[1px] text-[15px] font-[500]">Featured</h1>
-                <img src={down_arrow} className="w-[20px] cursor-pointer" onClick={() => setDesktopSort(!desktopSort)} />
-                <div className={` absolute top-[105%] left-0 shadow-lg z-[1000] bg-white w-full transition-all duration-300 overflow-y-hidden ${desktopSort ? 'h-[230px] ease-in' : 'h-0 ease-out'}`}>
-                  {
-                    collection_data?.sort?.map((data, i) => (
-                      <h1 className="py-[5px] pl-4 lora text-[15px] font-[500] hover:bg-[#D9D9D9] cursor-pointer" key={i}>{data?.title}</h1>
-                    ))
-                  }
+              {/* sort desktop */}
+              <div className="relative ">
+                <label className="poppins text-[13px] pb-1 tracking-[1px]">Sort</label>
+                <div className=" border w-full flex justify-between p-2 relative ">
+                  <h1 className="lora tracking-[1px] text-[15px] font-[500]">Featured</h1>
+                  <img src={down_arrow} className="w-[20px] cursor-pointer" onClick={() => setDesktopSort(!desktopSort)} />
+                  <div className={` absolute top-[105%] left-0 shadow-lg z-[1000] bg-white w-full transition-all duration-300 overflow-y-hidden ${desktopSort ? 'h-[230px] ease-in' : 'h-0 ease-out'}`}>
+                    {
+                      collection_data?.sort?.map((data, i) => (
+                        <h1 className="py-[5px] pl-4 lora text-[15px] font-[500] hover:bg-[#D9D9D9] cursor-pointer" key={i}>{data?.title}</h1>
+                      ))
+                    }
+                  </div>
                 </div>
               </div>
+
+              {collection_data?.filters?.map((data, i) => (
+                <div
+                  key={i}
+                  className="py-6"
+                  style={{
+                    borderBottom:
+                      collection_data?.filters.length === i + 1
+                        ? ""
+                        : "1px solid #C0C0C0",
+                  }}
+                >
+                  <h1 className="py-4 poppins text-[1.563rem] tracking-[2px] text-[#000000f3]">
+                    {data?.title}
+                  </h1>
+                  <div>
+                    {data?.checkbox?.map((datas, index) => (
+                      <div key={index} className="py-2 flex gap-4">
+                        <input type="checkbox" value={datas} name={datas} />
+                        <label
+                          htmlFor={datas}
+                          className="text-[1rem] tracking-[1px] poppins font-[300]"
+                        >
+                          {datas}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
             </div>
-
-            {collection_data?.filters?.map((data, i) => (
-              <div
-                key={i}
-                className="py-6"
-                style={{
-                  borderBottom:
-                    collection_data?.filters.length === i + 1
-                      ? ""
-                      : "1px solid #C0C0C0",
-                }}
-              >
-                <h1 className="py-4 poppins text-[1.563rem] tracking-[2px] text-[#000000f3]">
-                  {data?.title}
-                </h1>
-                <div>
-                  {data?.checkbox?.map((datas, index) => (
-                    <div key={index} className="py-2 flex gap-4">
-                      <input type="checkbox" value={datas} name={datas} />
-                      <label
-                        htmlFor={datas}
-                        className="text-[1rem] tracking-[1px] poppins font-[300]"
-                      >
-                        {datas}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-            
           </div>
 
           {/* products */}

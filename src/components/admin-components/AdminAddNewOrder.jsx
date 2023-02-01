@@ -7,6 +7,7 @@ import delete_icon from '../../assets/icons/admin-delete.svg'
 import axios from 'axios'
 import arrow from '../../assets/icons/down-arrow-admin.svg'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 
 const AdminAddNewOrder = () => {
@@ -14,6 +15,8 @@ const AdminAddNewOrder = () => {
     const [defaultData, setDefaultData] = useState();
 
     const [productNames, setProductNames] = useState();
+
+    const navigate = useNavigate();
 
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductDetails, setSelectedProductDetails] = useState();
@@ -44,9 +47,9 @@ const AdminAddNewOrder = () => {
         }
     }, [defaultData?.items])
 
-    useEffect(() => {
-        console.log(defaultData)
-    }, [defaultData])
+    // useEffect(() => {
+    //     console.log(defaultData)
+    // }, [defaultData])
     
 
 
@@ -56,7 +59,7 @@ const AdminAddNewOrder = () => {
             <div className='w-full pt-20'>
 
                 {/* mani flex - 1 */}
-                <div className='w-full pl-[380px] pt-24'>
+                <div className='w-full pl-[240px] xl:pl-[320px] pt-24'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
@@ -389,7 +392,7 @@ const AdminAddNewOrder = () => {
                                             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminAddNewOrder', defaultData).then((response) => {
                                                 console.log(response?.data)
                                                 if ( response?.data?.status === true) {
-                                                    toast.info(response?.data?.message, {
+                                                    toast.success(response?.data?.message + ' ' + 'successfully', {
                                                         position: "top-right",
                                                         autoClose: 2000,
                                                         hideProgressBar: false,
@@ -399,6 +402,7 @@ const AdminAddNewOrder = () => {
                                                         progress: undefined,
                                                         theme: "light",
                                                     })
+                                                    navigate('/admin-orders')
                                                 }else {
                                                     toast.error(response?.data?.message, {
                                                         position: "top-right",
@@ -423,18 +427,6 @@ const AdminAddNewOrder = () => {
 
                 {/* mani flex - 2 */}
                 <div className='w-full flex justify-center items-center pt-10 relative'>
-                    {/* <div className='flex items-center gap-3'>
-                        <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
-                        {
-                            admiProductsApi?.page_number_data?.map((num_data, num_index) => (
-                                <p key={num_index} className='mx-1 text-[#718096] text-[12px]'>{num_data}</p>
-                            ))
-                        }
-                        <span className='ml-3' ><img src={right_arrow} className="w-[11px]" /></span>
-                    </div>
-                    <div className='absolute right-[13%]'>
-                        <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
-                    </div> */}
                 </div>
             </div>
         </div>
