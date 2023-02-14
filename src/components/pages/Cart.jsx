@@ -37,7 +37,7 @@ const Cart = () => {
       </div>
 
       {
-        cartData?.products?.length != 0 ?
+        cartData?.products?.length > 0 ?
           <div className="w-[90%] md:flex md:w-[80%] mx-auto md:h-[400px]">
 
             <div className="w-full mx-auto my-auto h-[400px] overflow-y-scroll mb-5 md:mb-0">
@@ -168,7 +168,7 @@ const Cart = () => {
             </div>
 
           </div>
-          :
+          : cartData?.products?.length == 0 ?
           <div className="w-full flex justify-center items-center md:mt-20 mb-10">
             <div className="flex flex-col justify-center items-center w-full ">
               <div className="w-full text-center lora text-[20px] font-[500] my-12">
@@ -181,6 +181,19 @@ const Cart = () => {
               </div>
             </div>
           </div>
+          : cartData?.status === false ?
+          toast.warn('Please Log in first', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            // draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
+          : 
+          ''
       }
 
 

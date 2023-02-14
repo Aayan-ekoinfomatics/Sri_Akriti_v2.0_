@@ -119,11 +119,17 @@ const Navbar = () => {
                 :
                 null
             }
-            <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[22px]" /></NavLink>
-            <img src={search} className={`min-w-[16px] w-[16px] lg:w-[22px] cursor-pointer ${localStorage.getItem("status") === 'true' ? 'ml-0' : 'ml-8'}`} onClick={() => setSearchToggle(!searchToggle)} />
+             {
+              localStorage.getItem("status") === 'true' ?
+              <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[22px]" /></NavLink>
+                :
+                null
+            }
+            
+            {/* <img src={search} className={`min-w-[16px] w-[16px] lg:w-[22px] cursor-pointer ${localStorage.getItem("status") === 'true' ? 'ml-0' : 'ml-8'}`} onClick={() => setSearchToggle(!searchToggle)} />
             <div className={`absolute transition-all bg-white ${searchToggle ? 'w-[390px] border border-[#696969b6] ease-in' : 'w-0 ease-out overflow-hidden'} top-[19%] right-[6%]`}>
               <input type="search" className="w-full p-2 outline-none" />
-            </div>
+            </div> */}
           </div>
         </nav>
 
