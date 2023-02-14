@@ -61,8 +61,8 @@ const Productpage = () => {
   }, [params])
 
   useEffect(() => {
-    // console.log(productApiData)
-    console.log(productApiData?.image_all[selectedImageIndex])
+    console.log(categoryApi)
+    // console.log(productApiData?.image_all[selectedImageIndex])
   }, [productApiData])
 
 
@@ -330,12 +330,12 @@ const Productpage = () => {
                 <button className="w-full text-white tracking-[1px] md:tracking-[3px] text-[15px] md:text-[20px] bg-[#3EDCFF] px-4 md:px-7 py-2">
                   ADD TO CART
                 </button>
-                <div className="flex items-center gap-3">
+                {/* <div className="flex items-center gap-3">
                   <h1 className="text-[14px] py-2 md:text-[23px] font-[500] tracking-[2px] ">
                     ₹ {data?.selling_price}
                   </h1>
                   <span className="text-[20px] line-through text-[#696969] tracking-[2px]">₹ {data?.actual_price}</span>
-                </div>
+                </div> */}
                 <h1 className="text-[12px] md:text-[19px] font-[400] tracking-[3px]">
                   {data?.name}
                 </h1>

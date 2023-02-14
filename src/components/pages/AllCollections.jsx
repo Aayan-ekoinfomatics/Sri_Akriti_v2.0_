@@ -33,10 +33,6 @@ const AllCollections = () => {
 
   const params = useParams();
 
-  // useEffect(() => {
-  //   console.log(categoryApiData)
-  // }, [categoryApiData])
-
   window.addEventListener("click", (event) => {
     const sort = document?.getElementById("sort");
 
