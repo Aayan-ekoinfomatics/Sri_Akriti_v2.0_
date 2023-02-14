@@ -46,7 +46,6 @@ const Cart = () => {
                   <div className="flex justify-center items-center gap-2 md:gap-12 py-2 md:px-3 md:pr-10" key={i}>
                     <Link to={'/product-details' + '/' + data?.id} className=" flex justify-center items-center">
                       <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[95px]" />
-                      {/* <img src={data?.image} className="w-[95px]" /> */}
                     </Link>
                     <div className="w-full max-w-[300px] md:max-w-none flex flex-col items-start">
                       <div className="pt-2 flex justify-between items-center w-full">
