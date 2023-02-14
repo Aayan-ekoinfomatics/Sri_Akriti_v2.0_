@@ -135,7 +135,7 @@ const Navbar = () => {
 
 
         {/* mobile menu */}
-        <div className="sticky w-full flex flex-col items-center md:hidden">
+        <div className="sticky w-full flex flex-col items-center md:hidden pb-5">
           <div className="sticky top-0 bg-white z-[999] flex w-[95%] justify-between items-center pt-2">
             <div className="flex-1"></div>
             <div className="flex-1">
@@ -147,7 +147,7 @@ const Navbar = () => {
               <img src={cart} className="w-[27px] mr-12" />
             </div>
           </div>
-          <div className="sticky top-[73px] bg-white z-[999] border mt-5 flex w-[93%] p-2 border-[#696969] mx-auto ">
+          {/* <div className="sticky top-[73px] bg-white z-[999] border mt-5 flex w-[93%] p-2 border-[#696969] mx-auto ">
             <input
               type="text"
               className="w-full outline-none"
@@ -155,7 +155,7 @@ const Navbar = () => {
               onChange={(e) => setSearchItem(e.target.value)}
             />
             <img src={search} className="w-[35px] p-1" />
-          </div>
+          </div> */}
         </div>
       </header>
 

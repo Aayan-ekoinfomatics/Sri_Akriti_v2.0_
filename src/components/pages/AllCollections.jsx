@@ -255,11 +255,11 @@ const AllCollections = () => {
         </div>
 
         <div className="flex self-start w-full md:w-[95%] gap-5 mx-auto mt-16 pt-5 h-full relative">
-          {/* filter desktop*/}
-          <div className="w-[20%]">
+          {/* filter desktop */}
+          {/* <div className="w-[20%]">
             <div className=" hidden lg:flex flex-col top-0 sticky">
 
-              {/* sort desktop */}
+              sort desktop
               <div className="relative ">
                 <label className="poppins text-[13px] pb-1 tracking-[1px]">Sort</label>
                 <div className=" border w-full flex justify-between p-2 relative ">
@@ -306,7 +306,7 @@ const AllCollections = () => {
               ))}
 
             </div>
-          </div>
+          </div> */}
 
           {/* products */}
 

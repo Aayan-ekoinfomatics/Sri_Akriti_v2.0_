@@ -119,10 +119,9 @@ const CategoryPage = () => {
         }
 
         {/* filter mobile */}
-        <div
+        {/* <div
           className={`w-full sm:w-[80%] mx-auto px-2 sm:px-6 text-[#696969] text-[18px] sm:text-[20px] poppins lg:hidden flex justify-between`}
         >
-          {/* sort */}
           <div
             className={`border border-[#69696996] flex flex-col tracking-[4px] sm:tracking-[6px] p-2 sm:p-4 over cursor-pointer ${sortToggle ? "bg-white" : "bg-[#b0b0b00a]"
               }`}
@@ -162,7 +161,6 @@ const CategoryPage = () => {
                           role="menuitem"
                           tabIndex="-1"
                           id="menu-item-0"
-                        // onClick={() => console.log(data.name)}
                         >
                           {data?.name}
                         </a>
@@ -176,7 +174,6 @@ const CategoryPage = () => {
             </div>
           </div>
 
-          {/* filter */}
           <div
             id="filter"
             className={`border cursor-pointer border-[#69696996] flex justify-between gap-5 items-center tracking-[4px] sm:tracking-[6px] p-2 text-[14px] md:text-[16px] sm:p-4 over ${filterToggle ? "bg-white" : "bg-[#b0b0b00a]"
@@ -188,7 +185,7 @@ const CategoryPage = () => {
             </span>
             FILTER
           </div>
-        </div>
+        </div> */}
 
         {/* mobile filter pop up */}
 
@@ -269,9 +266,9 @@ const CategoryPage = () => {
 
         <div className="flex self-start w-full md:w-[95%] gap-5 mx-auto mt-16 pt-5 h-full">
           {/* filter desktop*/}
-          <div className="sticky top-0 w-[20%] hidden lg:flex flex-col">
+          {/* <div className="sticky top-0 w-[20%] hidden lg:flex flex-col">
 
-            {/* sort desktop */}
+            sort desktop
             <label className="poppins text-[10px] pb-1 tracking-[1px]">Sort</label>
             <div className=" border w-full flex justify-between items-center p-2 relative">
               <h1 className="lora tracking-[1px] text-[15px] font-[500]">Featured</h1>
@@ -316,7 +313,7 @@ const CategoryPage = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
 
           {/* products */}
 
