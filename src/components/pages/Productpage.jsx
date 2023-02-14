@@ -111,7 +111,7 @@ const Productpage = () => {
                   dots={true}
                   dotsClass="slick-dots"
                 >
-                  {product_details?.images?.map((data, i) => (
+                  {productApiData?.images?.map((data, i) => (
                     <div key={i} className=" max-w-[100%] h-[100%]">
                       <img
                         src={data?.img}
@@ -122,7 +122,7 @@ const Productpage = () => {
                   ))}
                 </Slider>
                 :
-                <div className=" max-w-[100%] h-[100%] md:hidden">
+                <div className="w-full max-w-[100%] h-[100%] md:hidden">
                   <img
                     src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image}
                     alt=""
