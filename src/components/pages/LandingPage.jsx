@@ -46,6 +46,7 @@ const LandingPage = () => {
                 <p>{first_section?.section_data?.section_title?.first}</p>
                 <p>{first_section?.section_data?.section_title?.second}</p>
                 <p>{first_section?.section_data?.section_title?.third}</p>
+                {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae beatae, aliquam ipsam porro repellat at necessitatibus ea consectetur suscipit minima.</p> */}
               </div>
             </div>
             <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
@@ -88,7 +89,7 @@ const LandingPage = () => {
         <div className="w-full">
           <img src={hero_img} className="w-full" />
           <div className="h-[8px] w-full bg-[#696969]"></div>
-          <div className="font-golden_signature text-[80px] text-center w-full mx-auto text-[#41C5BE] -mt-32 mb-2">the beauty of simplicity</div>
+          <div className="font-golden_signature text-[80px] text-center w-full mx-auto text-[#41C5BE] -mt-32 mb-2">{first_section?.section_data?.section_sub_title}</div>
         </div>
       </div>
 

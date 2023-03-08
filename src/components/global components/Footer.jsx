@@ -12,7 +12,7 @@ const Footer = () => {
             SUBMIT
           </div>
         </div>
-        <div className='tracking-[0.4em] lora text-[18px] flex w-full justify-center items-center gap-14 py-5'>
+        {/* <div className='tracking-[0.4em] lora text-[18px] flex w-full justify-center items-center gap-14 py-5'>
           <h1 className='' >INSTAGRAM</h1>
           <h1 className='' >FACEBOOK</h1>
         </div>
@@ -23,7 +23,7 @@ const Footer = () => {
           <h1 className='py-6' >RETURNS</h1>
           <h1 className='py-6' >TERMS & CONDITIONS</h1>
           <h1 className='py-6' >FAQ's</h1>
-        </div>
+        </div> */}
         <div className='w-full flex justify-center items-center'><h1 className='tracking-[0.4em] lora pt-6 pb-2 text-[15px]' >@2022 Sri AAKRITI . ALL RIGHTS RESERVED | DEVELOPED BY</h1></div>
       </div>
 

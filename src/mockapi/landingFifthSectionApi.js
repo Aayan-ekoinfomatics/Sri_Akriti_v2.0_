@@ -1,4 +1,4 @@
-import fifth_section_mobile from '../assets/images/fifth-section-mobile.png'
+import fifth_section_mobile from '../assets/images/fifth-section-desktop.png'
 
 const fifth_section = {
     section_data: {

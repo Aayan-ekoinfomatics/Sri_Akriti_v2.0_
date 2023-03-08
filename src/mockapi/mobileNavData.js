@@ -1,9 +1,8 @@
   const nav_data = [
     {
-      "title": "EARING",
+      "title": "EARRING",
       "id": 0,
-      "routes": "#",
-    //   "routes": "/single-category/earings",
+      "routes": "/single-category/earrings",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",
@@ -61,8 +60,7 @@
   {
       "title": "BRACELET",
       "id": 1,
-    //   "routes": "/single-category/bracelets",
-      "routes": "#",
+      "routes": "/single-category/bracelets",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",
@@ -174,8 +172,7 @@
   {
       "title": "NECKLACE",
       "id": 3,
-    //   "routes": "/single-category/necklaces",
-      "routes": "#",
+      "routes": "/single-category/necklace",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",
@@ -233,8 +230,7 @@
   {
       "title": "COLLECTION",
       "id": 11,
-    //   "routes": "/single-category/collection",
-      "routes": "#",
+      "routes": "/single-category/collection",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",

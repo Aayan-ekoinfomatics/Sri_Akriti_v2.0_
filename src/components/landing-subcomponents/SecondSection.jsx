@@ -18,32 +18,31 @@ const SecondSection = () => {
             </div>
             <div className="flex-[1.3]">
               <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight">
-                pure
+                lorem
               </h1>
               <ul className="flex flex-col list-disc pl-8 text-wrap break-words">
                 <li className="text-[#595959] poppins text-[18px]">
-                  Platinum Jewellery:{" "}
+                  Lorem, ipsum.:{" "}
                   <span className="text-[18px] text-[#] font-semibold">
-                    95% Pure
+                    Lorem, ipsum dolor.
                   </span>
                 </li>
                 <li className="text-[#595959] poppins text-[18px]">
-                  Platinum{" "}
+                  lorem{" "}
                   <span className="text-[18px] text-[#] font-semibold">
-                    is naturally white
+                    Lorem ipsum dolor sit.
                   </span>
-                  , so will not cast any colour into a diamond, enhances natural
-                  brilliance of diamonds
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, accusamus!
                 </li>
                 <li className="text-[#595959] poppins text-[18px]">
-                  Platinum is{" "}
+                  Lorem, ipsum.{" "}
                   <span className="text-[18px] text-[#] font-semibold">
-                    Hypo-Allergenic/Skin Safe
+                    Lorem, ipsum dolor.
                   </span>
                 </li>
                 <li className="text-[#595959] poppins text-[18px]">
                   <span className="text-[18px] text-[#] font-semibold">
-                    Purity Assurance Card: Pt 950 mark
+                    Lorem ipsum dolor sit amet consectetur adipisicing
                   </span>
                 </li>
               </ul>
@@ -75,20 +74,20 @@ const SecondSection = () => {
             </div>
             <div className="translate-y-[40px] flex-1">
               <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight">
-                rare
+                lorem
               </h1>
               <ul className="list-disc flex flex-col pl-8 -translate-x-[100px] w-full">
                 <li className="text-[#595959] poppins text-[18px]">
-                  Platinum being{" "}
+                  Lorem, ipsum.{" "}
                   <span className="text-[18px] text-[#] font-semibold">
-                    30 times
+                    Lorem, ipsum.
                   </span>{" "}
-                  rarer than gold, is an exclusive offering.
+                  Lorem ipsum dolor sit amet consectetur adipisicing.
                 </li>
                 <li className="text-[#595959] poppins text-[18px]">
-                  Only a few will have this{" "}
+                  Lorem ipsum dolor sit amet.{" "}
                   <span className="text-[18px] text-[#] font-semibold">
-                    precious metal
+                    Lorem, ipsum.
                   </span>
                 </li>
               </ul>
@@ -111,20 +110,19 @@ const SecondSection = () => {
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight" >eternal</h1>
+                  <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight" >lorem</h1>
                   <ul className="list-disc flex flex-col" >
                     <li className="text-[#595959] poppins text-[18px]" >
-                      Thanks to its <span className="text-[18px] text-[#] font-semibold" >density</span> , Platinum is the perfect
-                      choice for a lifetime of <span className="text-[18px] text-[#] font-semibold" >everyday wear</span>{" "}
+                      Lorem, ipsum. <span className="text-[18px] text-[#] font-semibold" >lorem</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, quaerat. <span className="text-[18px] text-[#] font-semibold" >Lorem, ipsum.</span>{" "}
                     </li>
                     <li className="text-[#595959] poppins text-[18px]" >
-                      When scratched, <span className="text-[18px] text-[#] font-semibold" >negligible metal loss</span>{" "}
+                      Lorem, ipsum. <span className="text-[18px] text-[#] font-semibold" >Lorem, ipsum dolor.</span>{" "}
                     </li>
                     <li className="text-[#595959] poppins text-[18px]" >
-                      It also offers an extremely{" "}
-                      <span className="text-[18px] text-[#] font-semibold" >secure setting for diamonds</span> and otherprecious
+                      Lorem ipsum dolor sit amet.{" "}
+                      <span className="text-[18px] text-[#] font-semibold" >Lorem ipsum dolor sit.</span> Lorem ipsum dolor.
                       gem stones making your jewellery{" "}
-                      <span className="text-[18px] text-[#] font-semibold" >truly everlasting</span>
+                      <span className="text-[18px] text-[#] font-semibold" >Lorem ipsum </span>
                     </li>
                   </ul>
                 </div>
@@ -150,13 +148,13 @@ const SecondSection = () => {
         <h1 className="lora pt-8 text-[20px] text-[#262626c2] italic pl-4">Sri Aakriti The Store</h1>
         <div className="flex px-10 pt-5 gap-3 justify-end items-end">
           <div className="pb-4">
-            <p className="text-md poppins text-[14px] text-[#262626c2]">We specialize in Pt950 and Pt/K18 men's chains, bracelets and kada's. We use your Diamonds to create your dream designs into to live piece. A PGI authorized manufacturer. </p>
+            <p className="text-md poppins text-[14px] text-[#262626c2]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit doloremque nihil placeat earum nesciunt doloribus a corrupti dolore quia iusto.</p>
           </div>
           <div>
             <img src={arrow} className="w-[25px]" />
           </div>
         </div>
-        <h1 className="py-4 font-golden_signature text-[#41C5BE] text-[70px] text-center">A history made of Platinum</h1>
+        <h1 className="py-4 font-golden_signature text-[#41C5BE] text-[70px] text-center">Lorem ipsum dolor sit amet.</h1>
       </div>
     </>
   );

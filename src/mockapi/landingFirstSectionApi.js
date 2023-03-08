@@ -3,12 +3,12 @@ import img from '../assets/images/hero-img.png'
 const first_section = {
     section_data : {
         section_title: {
-            first: 'We design',
-            second: 'We create and',
-            third: 'We turn story into reality',
+            first: 'lorem ipsum',
+            second: 'dolor sit amet',
+            third: 'consectetur adipisicing',
         },
         section_image: img,
-        section_sub_title: 'the beauty of simplicity',
+        section_sub_title: 'lorem ipsum dolor sit',
         mobile_categories: {
             first:'NECKLESS',
             second:'BRACELETS',

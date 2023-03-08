@@ -94,7 +94,7 @@ function App() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* <Route element={<ProtectedRouteAdmin />} > */}
+          <Route element={<ProtectedRouteAdmin />} >
             <Route path="/admin-products" element={<ProductsInventoryPage />} />
             <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
             <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
@@ -102,7 +102,7 @@ function App() {
             <Route path="/admin-orders" element={<OrdersInventoryPage />} />
             <Route path="/admin-add-order" element={<AdminAddNewOrder />} />
             <Route path="/admin-orders/:order_id" element={<AdminEditSingleOrderPage />} />
-          {/* </Route> */}
+          </Route>
 
           <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />
 

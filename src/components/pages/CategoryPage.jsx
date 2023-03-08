@@ -81,7 +81,7 @@ const CategoryPage = () => {
       <div className="w-full pb-[100px]">
 
         {
-          categoryApiData?.category === "COLLECTION" ? (
+          categoryApiData?.category === "collection" ? (
             <>
               <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
                 {/* {params.category_id} */}
