@@ -12,12 +12,12 @@ const FifthSection = () => {
         </div>
         <div className='w-[45%] bg-[#3edcff5d] flex justify-center items-center' >
             <div className=' flex flex-col items-end pt-16 lg:pt-24 pr-5 pl-10 lg:pl-14'>
-                <h1 className='py-1 poppins font-semibold text-[45px] lg:text-[65px] text-[#313131] tracking-wide'>{fifth_section?.section_data?.first}</h1>
-                <p className='py-1 poppins text-[200] text-[#313131] text-[40px] tracking-wide font-[400]'>{fifth_section?.section_data?.second}</p>
-                <p className='py-1 poppins font-extralight text-[35px] leading-wide text-[#302f2f93] pb-14'>{fifth_section?.section_data?.third}</p>
-                <button className='bg-black text-white p-8 px-24 poppins font-[300] text-[18px] tracking-[6px]'>
+                <h1 className='py-1 poppins font-semibold text-[45px] lg:text-[65px] text-[#313131] tracking-wide'>Lorem ipsum dolor</h1>
+                <p className='py-1 poppins text-[200] text-[#313131] text-[40px] tracking-wide font-[400]'>Lorem ipsum.</p>
+                <p className='py-1 poppins font-extralight text-[35px] leading-wide text-[#302f2f93] pb-14'>Lorem .</p>
+                {/* <button className='bg-black text-white p-8 px-24 poppins font-[300] text-[18px] tracking-[6px]'>
                     READ MORE
-                </button>
+                </button> */}
             </div>
         </div>
     </div>

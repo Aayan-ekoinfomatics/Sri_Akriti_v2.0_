@@ -325,6 +325,9 @@ const CategoryPage = () => {
                     } else if (
                       filterValue?.name
                         ?.toLowerCase()
+                        ?.includes(searchItem?.toLowerCase()) ||
+                      filterValue?.category
+                        ?.toLowerCase()
                         ?.includes(searchItem?.toLowerCase())
                     ) {
                       return filterValue;

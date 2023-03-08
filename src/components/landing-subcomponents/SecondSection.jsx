@@ -135,7 +135,7 @@ const SecondSection = () => {
         {/* 5 */}
         <div className="flex-1 pt-16">
           <p className="text-[150px] font-golden_signature text-[#3EDCFF]">
-            A history made of Platinum
+            Lorem ipsum dolor sit amet
           </p>
         </div>
       </div>
