@@ -23,18 +23,23 @@ const Cart = () => {
     })
   }, [])
 
-  useEffect(() => {
-    console.log(cartData)
-  }, [cartData])
+  // useEffect(() => {
+  //   console.log(cartData)
+  // }, [cartData])
 
   return (
 
     <div className="w-full pb-24">
       {/* <span className=" w-[100px]"><img onClick={() => navigate(-1)} src={left_img} className="cursor-pointer ml-[10px] md:ml-[200px] lg::ml-[270px] mt-7 w-[30px]" /></span> */}
       <PageBackButton />
-      <div className="w-[90%] mx-auto text-center lora italic text-[22px] py-8">
-        <h1>My Cart</h1>
-      </div>
+      {
+        cartData?.products?.length > 0 ?
+          <div className="w-[90%] mx-auto text-center lora italic text-[22px] py-8">
+            <h1>My Cart</h1>
+          </div>
+          :
+          ''
+      }
 
       {
         cartData?.products?.length > 0 ?
@@ -57,7 +62,7 @@ const Cart = () => {
                         <div className="flex flex-col justify-start -translate-y-[15px]">
                           <img src={delete_icon} className="w-[15px] cursor-pointer" onClick={async () => {
                             // let text = confirm("Confirm product delete ?")
-                            if(true === true) {
+                            if (true === true) {
                               let formdata = new FormData();
                               formdata.append("token", localStorage.getItem("token"));
                               formdata.append("cart_product_id", data?.cart_product_id);
@@ -78,7 +83,7 @@ const Cart = () => {
                               })
                             }
 
-                          }}/>
+                          }} />
                         </div>
                       </div>
                       <div className="flex items-center w-full justify-end">
@@ -169,31 +174,47 @@ const Cart = () => {
 
           </div>
           : cartData?.products?.length == 0 ?
-          <div className="w-full flex justify-center items-center md:mt-20 mb-10">
-            <div className="flex flex-col justify-center items-center w-full ">
-              <div className="w-full text-center lora text-[20px] font-[500] my-12">
-                <h1>The Cart is Empty</h1>
-              </div>
-              <div className="w-full flex justify-center items-center my-12">
-                <Link to='/'>
-                  <button className="bg-[#3EDCFF] tracking-[3px] text-[15px] p-4">CONTINUE SHOPPING</button>
-                </Link>
+            <div className="w-full flex justify-center items-center md:mt-20 mb-10">
+              <div className="flex flex-col justify-center items-center w-full ">
+                <div className="w-full text-center lora text-[20px] font-[500] my-12">
+                  <h1>The Cart is Empty</h1>
+                </div>
+                <div className="w-full flex justify-center items-center my-12">
+                  <Link to='/'>
+                    <button className="bg-[#3EDCFF] tracking-[3px] text-[15px] p-4">CONTINUE SHOPPING</button>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-          : cartData?.status === false ?
-          toast.warn('Please Log in first', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            // draggable: true,
-            progress: undefined,
-            theme: "light",
-        })
-          : 
-          ''
+            : cartData?.status === false ?
+              <>
+                <div className="w-full flex justify-center items-center md:mt-20 mb-10">
+                  <div className="flex flex-col justify-center items-center w-full ">
+                    <div className="w-full text-center lora text-[20px] font-[500] my-12">
+                      <h1>The Cart is Empty</h1>
+                    </div>
+                    <div className="w-full flex justify-center items-center my-12">
+                      <Link to='/'>
+                        <button className="bg-[#3EDCFF] tracking-[3px] text-[15px] p-4">CONTINUE SHOPPING</button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                {/* {
+                  toast.warn('re', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    // draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  })
+                } */}
+              </>
+              :
+              ''
       }
 
 

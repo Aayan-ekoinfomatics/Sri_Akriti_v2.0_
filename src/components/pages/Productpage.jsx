@@ -9,7 +9,7 @@ import arrow from "../../assets/icons/arrow.svg";
 // import { data } from "autoprefixer";
 import product_details from "../../mockapi/singleProductPageApi";
 import collection_data from "../../mockapi/apiData";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
 import axios from "axios";
@@ -19,6 +19,8 @@ import { toast } from "react-toastify";
 const Productpage = () => {
 
   const params = useParams();
+
+  const navigate = useNavigate()
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -283,7 +285,7 @@ const Productpage = () => {
                 axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
                   if (response?.data?.status === true) {
                     // alert(response?.data?.message)
-                    toast.info(`${response?.data?.message}`, {
+                    toast.success(`${response?.data?.message}`, {
                       position: "top-right",
                       autoClose: 2000,
                       hideProgressBar: false,
@@ -294,7 +296,17 @@ const Productpage = () => {
                       theme: "light",
                     })
                   } else {
-                    alert("Please login first")
+                    toast.error('Kindly Log in first', {
+                      position: "top-right",
+                      autoClose: 2000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      // draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    })
+                    navigate('/login')
                   }
                 })
               }} className="bg-[#3EDCFF] text-black w-[80%] mt-10 mx-auto py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px] active:scale-[0.97] active:bg-[#202020]">ADD TO CART</button>

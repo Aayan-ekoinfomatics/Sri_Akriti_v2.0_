@@ -335,7 +335,7 @@ const AllCollections = () => {
                     <Link
                       // to={'/product-details/' + '?' + data?.product_name}
                       to={'/product-details' + '/' + data?.id}
-                    ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></Link>
+                    ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='' alt="" /></Link>
                   </div>
                   <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART

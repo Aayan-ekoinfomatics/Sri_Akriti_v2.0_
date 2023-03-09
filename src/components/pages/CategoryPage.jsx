@@ -14,6 +14,7 @@ import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAt
 import axios from "axios";
 import wishlistApiAtom from "../../recoil/atoms/wishlist/wishlistApiAtom";
 import { toast } from "react-toastify";
+import CategoryTabs from "../global components/CategoryTabs";
 
 
 const CategoryPage = () => {
@@ -78,6 +79,9 @@ const CategoryPage = () => {
 
   return (
     <div>
+      <div className="w-full">
+        <CategoryTabs />
+      </div>
       <div className="w-full pb-[100px]">
 
         {
@@ -87,7 +91,7 @@ const CategoryPage = () => {
                 {/* {params.category_id} */}
                 {categoryApiData?.category}
               </h1>
-              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
+              <div className="w-full md:w-[43%] lg:w-[33%] mx-auto md:pt-10 md:pb-20">
                 <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
                   <input
                     type="text"
@@ -317,7 +321,7 @@ const CategoryPage = () => {
 
           {/* products */}
 
-          <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
+          <div className="flex-1 grid gap-4 lg:gap-6 xl:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
             {categoryApiData?.data
                   ?.filter((filterValue) => {
                     if (searchItem === "") {
@@ -368,7 +372,7 @@ const CategoryPage = () => {
                   <div>
                     <NavLink
                       to={'/product-details' + '/' + data?.id}
-                    ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></NavLink>
+                    ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='min-w-[150px] sm:min-w-[250px] md:min-w-[300px] lg:min-w-[350px] aspect-square' alt="" /></NavLink>
                   </div>
                   {/* <div className="pl-1 flex gap-2 items-center w-[70%]">
                     <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">

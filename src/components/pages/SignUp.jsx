@@ -301,7 +301,7 @@ const SignUp = () => {
             formdata.append("terms&conditions", termsandConditionsRef?.current?.checked);
             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'signUp', formdata).then((response) => console.log(response?.data));
             if(response?.data?.status === true) {
-                toast.success(`${response?.data?.message}`, {
+                toast.success(response?.data?.message, {
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -311,7 +311,7 @@ const SignUp = () => {
                     progress: undefined,
                     theme: "light",
                   })
-                navigate('/')
+                navigate('/login')
             }
         } else if (termsandConditionsRef?.current?.checked !== true) {
             setErrorText("Please agree to the terms and conditions")
@@ -391,7 +391,7 @@ const SignUp = () => {
                     <label htmlFor='terms_&_conditions' name='terms & conditions' className='poppins text-[10px]'>By Signing up to create an account I accept SriAatriti's Terms & Conditions & Privacy Policy</label>
                 </div>
                 <div className='w-full flex justify-center items-center py-5'>
-                    <button className='bg-black text-white poppins text-[13px] md:text-[16px] py-4 px-16 font-[300] tracking-[3px] w-full sm:w-auto'
+                    <button className='bg-black text-white poppins transition-all duration-300 active:scale-[0.95] text-[13px] md:text-[16px] py-4 px-16 font-[300] tracking-[3px] w-full sm:w-auto'
                     // onClick={showToastMessage}
                     >
                         SIGN UP</button>

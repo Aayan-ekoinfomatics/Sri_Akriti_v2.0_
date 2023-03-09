@@ -72,16 +72,16 @@ const Navbar = () => {
 
           <ul className="w-full flex justify-between lg:justify-evenly items-center pr-2">
             {
-              nav_data?.slice(0,8)?.map((data, i) => {
+              nav_data?.slice(0, 8)?.map((data, i) => {
                 return localStorage.getItem("status") ?
-                <div className={`${data?.title === 'LOGIN' ? 'hidden' : ''}`} onMouseLeave={() => setNavHoverShow(null)} key={i}>
-                  <NavLink to={data?.routes} onMouseEnter={() => { setNavHoverShow(data?.title) }}>
-                    <li className={`cursor-pointer group flex flex-col w-full pb-8`}>
-                      <p className="uppercase poppins font-[300] text-[15px] lg:text-[18px]">{data?.title}</p>
-                      <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
-                    </li>
-                  </NavLink>
-                  <div className={`absolute flex flex-col gap-2 top-[80%] right-[14%] w-[280px] bg-white shadow-sm overflow-hidden transition-all duration-100 ${navHoverShow === "ACCOUNT" ? 'h-[150px] pt-3 py-2' : 'h-0'}`}>
+                  <div className={`${data?.title === 'LOGIN' ? 'hidden' : ''}`} onMouseLeave={() => setNavHoverShow(null)} key={i}>
+                    <NavLink to={data?.routes} onMouseEnter={() => { setNavHoverShow(data?.title) }}>
+                      <li className={`cursor-pointer group flex flex-col w-full pb-8`}>
+                        <p className="uppercase poppins font-[300] text-[15px] lg:text-[18px]">{data?.title}</p>
+                        <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
+                      </li>
+                    </NavLink>
+                    <div className={`absolute flex flex-col gap-2 top-[80%] right-[14%] w-[280px] bg-white shadow-sm overflow-hidden transition-all duration-100 ${navHoverShow === "ACCOUNT" ? 'h-[150px] pt-3 py-2' : 'h-0'}`}>
                       <NavLink to='/account' className="py-2 w-[90%] px-4 mx-auto flex justify-between items-center hover:bg-[#69696950]">
                         <p className="poppins text-[14px]">My Profile</p>
                         <div><img src={profile} className="w-[14px]" /></div>
@@ -97,21 +97,21 @@ const Navbar = () => {
                         <p className="poppins text-[14px]">Logout</p>
                         <div><img src={logout} className="w-[14px]" /></div>
                       </button>
+                    </div>
                   </div>
-                </div>
-                :
-                <div className={`${data?.title === 'ACCOUNT' ? 'hidden' : ''}`} onMouseLeave={() => setNavHoverShow(null)} key={i}>
-                  <NavLink to={data?.routes} onMouseEnter={() => { setNavHoverShow(data?.title) }}>
-                    <li className={`cursor-pointer group flex flex-col w-full pb-5`}>
-                      <p className="uppercase poppins font-[300] text-[15px] lg:text-[20px]">{data?.title}</p>
-                      <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
-                    </li>
-                  </NavLink>
-                </div>
+                  :
+                  <div className={`${data?.title === 'ACCOUNT' ? 'hidden' : ''}`} onMouseLeave={() => setNavHoverShow(null)} key={i}>
+                    <NavLink to={data?.routes} onMouseEnter={() => { setNavHoverShow(data?.title) }}>
+                      <li className={`cursor-pointer group flex flex-col w-full pb-5`}>
+                        <p className="uppercase poppins font-[300] text-[15px] lg:text-[20px]">{data?.title}</p>
+                        <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
+                      </li>
+                    </NavLink>
+                  </div>
               })
             }
           </ul>
-          
+
           <div className="pl-5 lg:pl-0 w-[10%] gap-3 lg:gap-8 hidden md:flex justify-end md:justify-start items-center pb-7">
             {
               localStorage.getItem("status") === 'true' ?
@@ -119,13 +119,13 @@ const Navbar = () => {
                 :
                 null
             }
-             {
+            {
               localStorage.getItem("status") === 'true' ?
-              <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[22px]" /></NavLink>
+                <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[22px]" /></NavLink>
                 :
                 null
             }
-            
+
             {/* <img src={search} className={`min-w-[16px] w-[16px] lg:w-[22px] cursor-pointer ${localStorage.getItem("status") === 'true' ? 'ml-0' : 'ml-8'}`} onClick={() => setSearchToggle(!searchToggle)} />
             <div className={`absolute transition-all bg-white ${searchToggle ? 'w-[390px] border border-[#696969b6] ease-in' : 'w-0 ease-out overflow-hidden'} top-[19%] right-[6%]`}>
               <input type="search" className="w-full p-2 outline-none" />
@@ -137,14 +137,20 @@ const Navbar = () => {
         {/* mobile menu */}
         <div className="sticky w-full flex flex-col items-center md:hidden pb-5">
           <div className="sticky top-0 bg-white z-[999] flex w-[95%] justify-between items-center pt-2">
-            <div className="flex-1"></div>
+            <div className="flex-1 flex justify-start items-end">
+              <Link to="/account">
+                <img src={profile} className='w-full min-w-[30px]' alt="" />
+              </Link>
+            </div>
             <div className="flex-1">
               <Link to="/">
                 <img src={logo} className="w-[100px] mx-auto" />
               </Link>
             </div>
             <div className="flex-1 flex md:hidden justify-end gap-4 sm:gap-8 pr-2">
-              <img src={cart} className="w-[27px] mr-12" />
+              <Link to="/cart">
+                <img src={cart} className="w-[27px] mr-12" />
+              </Link>
             </div>
           </div>
           {/* <div className="sticky top-[73px] bg-white z-[999] border mt-5 flex w-[93%] p-2 border-[#696969] mx-auto ">

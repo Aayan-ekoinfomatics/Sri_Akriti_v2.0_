@@ -15,6 +15,7 @@ import axios from "axios";
 import navApiAtom from "../../recoil/atoms/global/navApiAtom";
 import { NavLink } from "react-router-dom";
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
+import CategoryTabs from "../global components/CategoryTabs";
 
 
 const LandingPage = () => {
@@ -62,7 +63,7 @@ const LandingPage = () => {
       <div className="md:hidden">
         {/* <div className="w-full mt-3" > */}
         <ul className="flex justify-evenly w-full sm:w-[95%] mx-auto px-1">
-          {
+          {/* {
             mobileNav?.slice(0, 4)?.map((data, i) => (
               <NavLink key={i} to={data?.routes}
                 onClick={() => {
@@ -74,7 +75,8 @@ const LandingPage = () => {
                 }}
               ><li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{data?.title}</li></NavLink>
             ))
-          }
+          } */}
+          <CategoryTabs />
 
         </ul>
         {/* </div> */}
