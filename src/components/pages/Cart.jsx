@@ -8,15 +8,18 @@ import { useState } from "react";
 import PageBackButton from "../global components/PageBackButton";
 import delete_icon from '../../assets/icons/delete.svg'
 import { toast } from "react-toastify";
+import { useRecoilState } from "recoil";
+import cartAtom from "../../recoil/atoms/cart/cartAtom";
 
 const Cart = () => {
 
   const navigate = useNavigate();
-  const [cartData, setCartData] = useState();
+  const [cartData, setCartData] = useRecoilState(cartAtom);
 
   useEffect(() => {
     let formdata = new FormData();
     formdata.append("token", localStorage.getItem("token"));
+    formdata.append("no_login_token", localStorage.getItem("no_login_token"));
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
       console.log(response?.data)
       setCartData(response?.data)
@@ -65,6 +68,7 @@ const Cart = () => {
                             if (true === true) {
                               let formdata = new FormData();
                               formdata.append("token", localStorage.getItem("token"));
+                              formdata.append("no_login_token", localStorage.getItem("no_login_token"));
                               formdata.append("cart_product_id", data?.cart_product_id);
                               await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartProductDelete', formdata).then((response) => setCartData(response?.data))
                               await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
@@ -90,6 +94,7 @@ const Cart = () => {
                         <button className="text-[19px] bg-[#ffffff] font-[500] px-2 flex justify-center items-center" onClick={async () => {
                           let formdata = new FormData();
                           formdata.append("token", localStorage.getItem("token"));
+                          formdata.append("no_login_token", localStorage.getItem("no_login_token"));
                           formdata.append("cart_product_id", data?.cart_product_id);
                           formdata.append("update_type", '-')
                           await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartQuantityUpdate', formdata).then((response) => setCartData(response?.data))
@@ -112,6 +117,7 @@ const Cart = () => {
                         <button className="text-[19px] bg-[#ffffff] font-[500] px-2 flex justify-center items-center" onClick={async () => {
                           let formdata = new FormData();
                           formdata.append("token", localStorage.getItem("token"));
+                          formdata.append("no_login_token", localStorage.getItem("no_login_token"));
                           formdata.append("cart_product_id", data?.cart_product_id);
                           formdata.append("update_type", '+')
                           await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartQuantityUpdate', formdata).then((response) => setCartData(response?.data))

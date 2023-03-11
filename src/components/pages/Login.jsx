@@ -24,6 +24,7 @@ const Login = () => {
     const userCredentials = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
+      no_login_token: localStorage.getItem('no_login_token'),
     };
 
     if (emailRef?.current?.value?.length === 0 || passwordRef?.current?.value?.length === 0) {
@@ -53,6 +54,16 @@ const Login = () => {
           navigate("/");
         } else {
           setErrorText("Wrong Credentials")
+          toast.error(response?.data?.message , {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            // draggable: true,
+            progress: undefined,
+            theme: "light",
+          })
         }
       }).catch(function (error) {
         console.log(error);

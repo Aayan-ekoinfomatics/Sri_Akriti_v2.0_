@@ -15,6 +15,7 @@ import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAt
 import axios from "axios";
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 import { toast } from "react-toastify";
+import cartAtom from "../../recoil/atoms/cart/cartAtom";
 
 const Productpage = () => {
 
@@ -27,6 +28,7 @@ const Productpage = () => {
   const [productApiData, setProductApiData] = useRecoilState(singleProductApiAtom);
 
   const [categoryApi, setCategoryApi] = useRecoilState(categoriesApiAtom);
+  const [cartData, setCartData] = useRecoilState(cartAtom);
 
   const [priceDetails, setPriceDetails] = useState({
     actual_price: '',
@@ -274,17 +276,19 @@ const Productpage = () => {
                 <h1 className="lora text-[15px] md:text-[18px]">Total</h1>
                 <h1 className="lora text-[15px] md:text-[18px]">₹ {productApiData?.total_charges}</h1>
               </div>
-              <button onClick={() => {
+              <button onClick={async () => {
                 let formdata = new FormData();
                 formdata.append("token", localStorage.getItem("token"));
+                formdata.append("no_login_token", localStorage.getItem("no_login_token"));
                 formdata.append("product_id", productApiData?.product_id);
                 formdata.append("size", productDetailsToBackend?.size);
                 formdata.append("weight", productDetailsToBackend?.weight);
                 formdata.append("diamond_size", productDetailsToBackend?.diamond_size);
                 formdata.append("diamond_quality", productDetailsToBackend?.diamond_quality);
-                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
+                await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
                   if (response?.data?.status === true) {
                     // alert(response?.data?.message)
+                    localStorage.setItem('no_login_token', response.data?.no_login_token)
                     toast.success(`${response?.data?.message}`, {
                       position: "top-right",
                       autoClose: 2000,
@@ -296,7 +300,7 @@ const Productpage = () => {
                       theme: "light",
                     })
                   } else {
-                    toast.error('Kindly Log in first', {
+                    toast.error(response?.data?.message, {
                       position: "top-right",
                       autoClose: 2000,
                       hideProgressBar: false,
@@ -308,6 +312,10 @@ const Productpage = () => {
                     })
                     navigate('/login')
                   }
+                })
+                await axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
+                  console.log(response?.data)
+                  setCartData(response?.data)
                 })
               }} className="bg-[#3EDCFF] text-black w-[80%] mt-10 mx-auto py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px] active:scale-[0.97] active:bg-[#202020]">ADD TO CART</button>
             </div>

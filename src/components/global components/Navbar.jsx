@@ -17,6 +17,7 @@ import logout from '../../assets/icons/logout.svg'
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 // import PersonIcon from '@material-ui/icons/Person';
 import axios from "axios";
+import cartAtom from "../../recoil/atoms/cart/cartAtom";
 
 const Navbar = () => {
 
@@ -29,6 +30,8 @@ const Navbar = () => {
   const [categoryApiData, setCategoryApiData] = useRecoilState(categoriesApiAtom);
 
   const [searchToggle, setSearchToggle] = useState(false);
+
+  const [cartData, setCartData] = useRecoilState(cartAtom);
 
   // const [navID, setNavID] = useState({id : null, title: null});
 
@@ -45,18 +48,21 @@ const Navbar = () => {
   // formdata.append("title", navID?.title);
 
   // useEffect(() => {
-  //   axios.get(import.meta.env.VITE_APP_BASE_API_LINK + "navbar").then(
+  //   let formdata = new FormData();
+  //   formdata.append("token", localStorage.getItem("token"));
+  //   formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+  //   axios.get(import.meta.env.VITE_APP_BASE_API_LINK + "getUserCart").then(
   //     (response) => {
   //     setNavApiData(response?.data);
   //     })
   //     .catch(function (error) {
   //       console.log(error);
   //     });
-  // }, []);
+  // }, [cartAtom]);
 
   // useEffect(() => {
-  //   console.log(navApiData);
-  // }, [navApiData])                                                                                
+  //   console.log(cartData, 'cart');
+  // }, [cartData])                                                                                
 
 
   return (
@@ -120,10 +126,15 @@ const Navbar = () => {
                 null
             }
             {
-              localStorage.getItem("status") === 'true' ?
-                <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[22px]" /></NavLink>
+              cartData?.products?.length > 0 ?
+                <div className="relative">
+                  <div className="absolute bottom-[60%] flex justify-center items-center left-[60%] w-[20px] h-[20px] rounded-full bg-red-500 border border-white">
+                    <h1 className="text-white text-[12px]">{cartData?.products?.length}</h1>
+                  </div>
+                  <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[24px]" /></NavLink>
+                </div>
                 :
-                null
+                <NavLink className={`min-w-[16px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[24px]" /></NavLink>
             }
 
             {/* <img src={search} className={`min-w-[16px] w-[16px] lg:w-[22px] cursor-pointer ${localStorage.getItem("status") === 'true' ? 'ml-0' : 'ml-8'}`} onClick={() => setSearchToggle(!searchToggle)} />
