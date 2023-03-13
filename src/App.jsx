@@ -46,6 +46,11 @@ import PageBackButton from "./components/global components/PageBackButton";
 import AdminEditSingleOrderPage from "./components/admin-components/AdminEditSingleOrderPage";
 import { ToastContainer } from "react-toastify";
 import AdminAddNewOrder from "./components/admin-components/AdminAddNewOrder";
+import RingSizeGuide from "./components/pages/RingSizeGuide";
+import DeliveryPolicy from "./components/pages/DeliveryPolicy";
+import ReturnPolicy from "./components/pages/ReturnPolicy";
+import TermsAndConditions from "./components/pages/TermsAndConditions";
+import RefundPolicy from "./components/pages/RefundPolicy";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -91,6 +96,11 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/ring-size-guide" element={<RingSizeGuide />} />
+          <Route path="/delivery-policy" element={<DeliveryPolicy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/terms_&_conditions" element={<TermsAndConditions />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
 

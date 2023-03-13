@@ -8,6 +8,8 @@ const SecondSection = () => {
     <>
       {/* desktop view */}
       <div className=" hidden md:flex flex-col p-4 relative">
+
+
         {/* 1 */}
         <div className="flex-1 flex w-full justify-center">
           <div className=" w-full"></div>
@@ -18,33 +20,14 @@ const SecondSection = () => {
             </div>
             <div className="flex-[1.3]">
               <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight">
-                lorem
+                Gold
               </h1>
-              <ul className="flex flex-col list-disc pl-8 text-wrap break-words">
-                <li className="text-[#595959] poppins text-[18px]">
-                  Lorem, ipsum.:{" "}
-                  <span className="text-[18px] text-[#] font-semibold">
-                    Lorem, ipsum dolor.
-                  </span>
-                </li>
-                <li className="text-[#595959] poppins text-[18px]">
-                  lorem{" "}
-                  <span className="text-[18px] text-[#] font-semibold">
-                    Lorem ipsum dolor sit.
-                  </span>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, accusamus!
-                </li>
-                <li className="text-[#595959] poppins text-[18px]">
-                  Lorem, ipsum.{" "}
-                  <span className="text-[18px] text-[#] font-semibold">
-                    Lorem, ipsum dolor.
-                  </span>
-                </li>
-                <li className="text-[#595959] poppins text-[18px]">
-                  <span className="text-[18px] text-[#] font-semibold">
-                    Lorem ipsum dolor sit amet consectetur adipisicing
-                  </span>
-                </li>
+              <ul className="flex flex-col list-none pl-8 text-wrap break-words">
+                <li className="text-[#595959] poppins text-[18px]">•	Atomic No. : 79</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Periodic Table Symbol : Au</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Atomic Mass : 196.96 u</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Melting Point : 1,065 C</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Less inert & non-reactive as compared to Platinum</li>
               </ul>
             </div>
           </div>
@@ -74,22 +57,14 @@ const SecondSection = () => {
             </div>
             <div className="translate-y-[40px] flex-1">
               <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight">
-                lorem
+                Platinum
               </h1>
-              <ul className="list-disc flex flex-col pl-8 -translate-x-[100px] w-full">
-                <li className="text-[#595959] poppins text-[18px]">
-                  Lorem, ipsum.{" "}
-                  <span className="text-[18px] text-[#] font-semibold">
-                    Lorem, ipsum.
-                  </span>{" "}
-                  Lorem ipsum dolor sit amet consectetur adipisicing.
-                </li>
-                <li className="text-[#595959] poppins text-[18px]">
-                  Lorem ipsum dolor sit amet.{" "}
-                  <span className="text-[18px] text-[#] font-semibold">
-                    Lorem, ipsum.
-                  </span>
-                </li>
+              <ul className="list-none flex flex-col pl-8 -translate-x-[100px] w-full">
+                <li className="text-[#595959] poppins text-[18px]">•	Atomic No. : 78</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Periodic Table Symbol : Pt</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Atomic Mass : 195.08 u</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Melting Point : 1,768 C</li>
+                <li className="text-[#595959] poppins text-[18px]">•	Highly inert & non-reactive.</li>
               </ul>
             </div>
           </div>
@@ -110,20 +85,13 @@ const SecondSection = () => {
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight" >lorem</h1>
-                  <ul className="list-disc flex flex-col" >
-                    <li className="text-[#595959] poppins text-[18px]" >
-                      Lorem, ipsum. <span className="text-[18px] text-[#] font-semibold" >lorem</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, quaerat. <span className="text-[18px] text-[#] font-semibold" >Lorem, ipsum.</span>{" "}
-                    </li>
-                    <li className="text-[#595959] poppins text-[18px]" >
-                      Lorem, ipsum. <span className="text-[18px] text-[#] font-semibold" >Lorem, ipsum dolor.</span>{" "}
-                    </li>
-                    <li className="text-[#595959] poppins text-[18px]" >
-                      Lorem ipsum dolor sit amet.{" "}
-                      <span className="text-[18px] text-[#] font-semibold" >Lorem ipsum dolor sit.</span> Lorem ipsum dolor.
-                      gem stones making your jewellery{" "}
-                      <span className="text-[18px] text-[#] font-semibold" >Lorem ipsum </span>
-                    </li>
+                  <h1 className="text-[80px] leading-[1.2] pb-5 tracking-wide pl-6 poppins font-extralight" >Silver</h1>
+                  <ul className="list-none flex flex-col" >
+                    <li className="text-[#595959] poppins text-[18px]" >•	Atomic No. : 47</li>
+                    <li className="text-[#595959] poppins text-[18px]" >•	Periodic Table Symbol : Ag</li>
+                    <li className="text-[#595959] poppins text-[18px]" >•	Atomic Mass : 107.86 u</li>
+                    <li className="text-[#595959] poppins text-[18px]" >•	Melting Point : 961.8 C</li>
+                    <li className="text-[#595959] poppins text-[18px]" >•	Least inert & non-reactive of the three precious metals</li>
                   </ul>
                 </div>
               </div>
@@ -138,6 +106,8 @@ const SecondSection = () => {
             Lorem ipsum dolor sit amet
           </p>
         </div>
+
+
       </div>
 
       {/* mobile view */}

@@ -317,7 +317,7 @@ const Productpage = () => {
                   console.log(response?.data)
                   setCartData(response?.data)
                 })
-              }} className="bg-[#3EDCFF] text-black w-[80%] mt-10 mx-auto py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px] active:scale-[0.97] active:bg-[#202020]">ADD TO CART</button>
+              }} className="bg-[#3EDCFF] text-black w-[80%] mt-10 mx-auto py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px] active:scale-[0.95] shadow-md transition-all duration-100 active:bg-[#8aeaff]">ADD TO CART</button>
             </div>
           </div>
 

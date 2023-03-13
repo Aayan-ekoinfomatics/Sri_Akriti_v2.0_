@@ -10,26 +10,57 @@ const AboutUs = () => {
 
   return (
     <div className="">
-      <div className="hidden md:block w-full text-center lora text-[32px] tracking-[2px] mt-14 mb-12">
+
+      {/* header */}
+      <div className="hidden md:block w-full text-center lora text-[32px] tracking-[2px] my-14">
         <h1>About Us</h1>
       </div>
-      <div className="mt-5 md:mt-0 mb-32 flex flex-col md:flex-row justify-evenly md:justify-start gap-12 md:gap-2 items-center w-[95%] mx-auto">
-        <div className="w-[95%] md:w-full md:max-w-[550px] mx-auto">
+
+      {/* content */}
+      <div className="mt-5 md:mt-0 mb-32 flex flex-col md:flex-row justify-evenly md:justify-start gap-10 items-start w-[95%] mx-auto">
+
+        {/* image */}
+        <div className="w-[90%] mx-auto md:w-full md:max-w-[550px]">
           <img src={aboutus_img} className="w-full md:max-w-[550px]" />
         </div>
-        <div className="w-full max-w-[700px] px-4 mx-auto flex flex-col items-start gap-14 md:gap-7">
+
+        {/* bullet points */}
+        <ul className="w-full max-w-[800px] px-4 flex flex-col items-start list-disc">
           {about_us?.about?.map((data, i) => (
-            <React.Fragment key={i}>
-              <p className="poppins text-[12px] md:text-[14px] tracking-[2px]">
-                {data?.text_1}
-              </p>
-              <p className="poppins text-[12px] md:text-[14px] tracking-[2px]">
-                {data?.text_2}
-              </p>
-            </React.Fragment>
+            <div key={i} className='flex justify-start items-start gap-2'>
+              <div className="w-[6px] h-[6px] rounded-full bg-gray-500 mt-2">
+
+              </div>
+              <li className="flex justify-start items-start gap-2 w-full mb-2">
+                <p className="poppins text-[11px] md:text-[12px] lg:text-[14px] tracking-[2px]">
+                  {data?.text}
+                </p>
+              </li>
+            </div>
           ))}
+        </ul>
+      </div>
+
+      <div className="w-full mb-[200px]">
+        <div className="w-[90%] md:w-[55%] mx-auto my-5 mb-[60px] pt-10 border-t-2 border-gray-200">
+          <h1 className="text-[22px] font-[500]">Meeet our team</h1>
+        </div>
+        <div className="w-[90%] md:w-[55%] mx-auto mt-5">
+          {
+            about_us?.team?.map((data, i) => (
+              <div key={i} className='w-full flex flex-col justify-start items-start gap-3 mb-10'>
+                <div className="w-fit border border-gray-500">
+                  <img src={data?.image} className='w-full max-w-[200px]' alt="" />
+                </div>
+                <div className="w-full">
+                  <p className="text-[14px]">{data?.description}</p>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
+
       {/* <div className="w-full flex justify-center items-center h-[70vh]">
         <div className="w-full max-w-[400px]">
           <div className="w-full px-3">
@@ -66,6 +97,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div> */}
+
     </div>
   );
 };

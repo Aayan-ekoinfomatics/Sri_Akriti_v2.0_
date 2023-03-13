@@ -1,76 +1,18 @@
+import ravi from '../assets/images/about-us/ravi_joshi.png'
+import bhavana from '../assets/images/about-us/bhavana.png'
+
 const about_us = {
   about: [
-    {
-      text_1:
-        "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      text_2:
-        "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
+    {text: "Sri Aakriti Jewels is a PGI authorised Jewelry Manufacturer and Wholesaler founded by Mr Ravi Joshi , with over 30 years of experience in Diamonds and Jewelry trade  & a 2nd Generation Jeweller. We craft authentic Platinum and Gold  Jewelry in Pt 950 only."},
+    {text: "Sri Aakriti has become synonymous with authentic platinum and Gold Jewelry & customer service and has grown to be the biggest platinum Handmade Chain and Bracelet manufacturer in India."},
+    {text: "We have achieved very fine finishing in Platinum and Gold & provide a Certificate of Authenticity by PGI with every piece of platinum Jewelry. Every piece is also engraved with a Unique ID that is also mentioned on the Certificate."},
+    {text: "All our Platinum Jewelry is in accordance with the quality guidelines of Platinum Guild International. Besides the designs displayed on the website, we also make customised Jewelry for you in platinum. You can contact us for customisation."},
+    {text: "Being established in 2018, Sri Aakriti focuses on meticulously-made platinum Jewelry, Chains , bracelet, necklace, pendant, and ring, specializing in its excellent handmade craftsmanship spirit and temperament. To satisfy customers' preference of personalized ornament, Sri Aakriti offers Bespoke service as well. We have our fabulously professional and skillful artisans who can turn all the customers designated designs into reality. The look of our jewelry emits extraordinarily noble and elegant feelings. If you also wish to enjoy this pride, we guarantee Sri Aakriti should be your brilliant choice. Since 'the beauty of simplicity' is our core philosophy, what we use is the purest materials - Platinum; its pureness remains one of the elements formed naturally on earth. More importantly, Platinum is a type of precious metal which never fades. This justifies it is an ideal material to create Sri Aakriti's everlasting jewelry."},
+    {text: "We design, We create and We turn your story into reality ."},
   ],
-  veggies: [
-    {
-      name: "Cabbage",
-      photo_url: "https://www.freepngimg.com/thumb/categories/2970.png",
-      quantity: "One Unit",
-      id: 2,
-      price: 30
-    },
-    {
-      name: "Capsicum",
-      photo_url: "https://www.nicepng.com/png/detail/52-525615_green-bell-pepper-png-green-capsicum-png.png",
-      quantity: "One Unit",
-      id: 7,
-      price: 5
-    },
-    {
-      name: "Garlic",
-      photo_url: "https://www.freepngimg.com/thumb/garlic/2-2-garlic-transparent-thumb.png",
-      quantity: "One Unit",
-      id: 10,
-      price: 20
-    },
-    {
-      name: "Beetroot",
-      photo_url: "https://pngimg.com/uploads/beet/beet_PNG28.png",
-      quantity: "One Unit",
-      id: 11,
-      price: 20
-    },
-    {
-      name: "Tomatoes",
-      photo_url: "https://www.freepngimg.com/thumb/categories/2985.png",
-      quantity: "One Unit",
-      id: 13,
-      price: 5
-    },
-    {
-      name: "Celeriac",
-      photo_url: "https://w7.pngwing.com/pngs/252/146/png-transparent-celeriac-leaf-vegetable-food-celery-herbes-leaf-vegetable-food-plant-stem-thumbnail.png",
-      quantity: "One Bunch",
-      id: 16,
-      price: 5
-    },
-    {
-      name: "Carrots",
-      photo_url: "https://www.freepngimg.com/thumb/categories/2971.png",
-      quantity: "One Kg",
-      id: 18,
-      price: 60
-    },
-    {
-      name: "Onions",
-      photo_url: "https://www.freepngimg.com/thumb/onion/10-red-onion-png-image-thumb.png",
-      quantity: "One Kg",
-      id: 19,
-      price: 120
-    },
-    {
-      name: "Potatoes",
-      photo_url: "https://www.freepngimg.com/thumb/potato/7-potato-png-images-pictures-download-thumb.png",
-      quantity: "One container",
-      id: 20,
-      price: 80
-    }
+  team: [
+    {image: ravi, name: 'Ravi Joshi', description: 'Hi, I am Ravi Joshi, founder of Sri Aakriti Jewels.My family has been in the gems & Jewelry business for 2 generations. Before starting with Platinum Jewelry in India ,I had 16 years of work experience of working with Diamonds and Jewelry in Hong Kong and Seoul, South Korea.'},
+    {image: bhavana, name: 'Bhavana', description: 'Bhavana is a Design consultant and understands human experiences & cognition. She has over 4 years of experience in transforming the way people look at things. She works on enhancing your experience at all levels. Her efforts are largely driven towards enhancing the customer experiences at various touch points.'},
   ],
 };
 
