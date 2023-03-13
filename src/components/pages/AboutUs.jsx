@@ -41,6 +41,7 @@ const AboutUs = () => {
         </ul>
       </div>
 
+      {/* the team */}
       <div className="w-full mb-[200px]">
         <div className="w-[90%] md:w-[55%] mx-auto my-5 mb-[60px] pt-10 border-t-2 border-gray-200">
           <h1 className="text-[22px] font-[500]">Meeet our team</h1>

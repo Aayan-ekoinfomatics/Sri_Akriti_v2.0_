@@ -5,9 +5,13 @@ const DeliveryPolicy = () => {
     return (
         <div className='w-full mb-[100px]'>
             <PageBackButton />
+
+            {/* header */}
             <div className='w-full flex justify-center items-center text-center mt-5 md:mt-0'>
                 <h1 className='text-[18px] md:text-[26px] font-[600]'>Delivering Your Jewelry Safely</h1>
             </div>
+
+            {/* content */}
             <div className='w-[90%] md:w-[75%] mx-auto mt-10 md:mt-16 text-gray-900'>
                 <h1 className='text-[15px] font-[500]'>Your Jewelry is valuable, it is cared for well!</h1>
                 <div className='w-full mt-5'>

@@ -16,6 +16,8 @@ const FAQPage = () => {
             <div className='w-[90%] md:w-[80%] mx-auto'>
                 <h1 className='lora text-[30px] tracking-[0.5px] font-[500] pb-1'>FAQs</h1>
                 <h1 className='poppins tracking-[1px] text-[13px] pt-1 pb-5 mb-4'>Frequently Asked Questions</h1>
+
+                {/* FAQs */}
                 {
                     faq_page?.section_data?.map((data, i) => (
                         <div className='py-4 my-2' key={i}>
