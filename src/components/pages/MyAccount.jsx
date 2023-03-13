@@ -83,75 +83,9 @@ const MyAccount = () => {
 
             {/* main flex */}
 
-            <div className='w-[90%] md:w-[70%] mx-auto md:flex md:gap-x-12 md:flex-row-reverse'>
-                {/* first sub-main flex item */}
+            <div className='w-[90%] md:w-[70%] mx-auto md:flex md:gap-x-12 flex-col-reverse md:flex-row'>
 
-                <div className='md:w-[45%] md:flex flex-col justify-between' >
-                    {/* my Orders */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
-                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
-                            <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
-                            <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
-                        </div>
-                        <div className='w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]'>
-                            <h1 className='w-full text-start'>ID</h1>
-                            <h1 className='w-full text-center'>Amount</h1>
-                            <h1 className='w-full text-end'>Status</h1>
-                        </div>
-                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
-                            {/* {
-                                profile_data?.my_orders?.content?.map((data, i) => (
-                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]" key={i}>
-                                        <img src={data?.image} className="w-[40px]" />
-                                        <h1>{data?.title}</h1>
-                                        <h1>{data?.price}</h1>
-                                    </div>
-                                ))
-                            } */}
-                            {
-                                profileApiData?.my_orders?.map((data, i) => (
-                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]" key={i}>
-                                        {/* <img src={data?.image} className="w-[40px]" /> */}
-                                        <h1 className='w-full'>{data?.id}</h1>
-                                        <h1 className='w-full text-center'>₹ {data?.order_amount}</h1>
-                                        <h1 className='w-full text-end'>{data?.order_status}</h1>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
-
-                    {/* wishlist */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
-                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
-                            <h1 className="font-[500] md:text-[17px]">{profile_data?.wishlist?.header?.heading}</h1>
-                            <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
-                        </div>
-                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
-                            {/* {
-                                profile_data?.wishlist?.content?.map((data, i) => (
-                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
-                                        <img src={data?.image} className="w-[40px]" />
-                                        <h1>{data?.title}</h1>
-                                        <h1>{data?.price}</h1>
-                                    </div>
-                                ))
-                            } */}
-                            {
-                                profileApiData?.wishlist?.map((data, i) => (
-                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px] my-2" key={i}>
-                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[40px]" />
-                                        <h1>{data?.name}</h1>
-                                        <h1>{data?.id}</h1>
-                                        {/* <h1>{data?.category}</h1> */}
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
-                </div>
                 {/* second sub-main flex item */}
-
                 <div className='md:w-[55%] md:flex flex-col justify-between' >
                     {/* my profile */}
                     <div className='w-full bg-[#E3E3E3] my-4 py-2 pt-4 md:overflow-auto'>
@@ -253,6 +187,74 @@ const MyAccount = () => {
                     </div>
 
                 </div>
+
+
+                {/* first sub-main flex item */}
+                <div className='md:w-[45%] md:flex flex-col justify-between' >
+                    {/* my Orders */}
+                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
+                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
+                            <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
+                            <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
+                        </div>
+                        <div className='w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]'>
+                            <h1 className='w-full text-start'>ID</h1>
+                            <h1 className='w-full text-center'>Amount</h1>
+                            <h1 className='w-full text-end'>Status</h1>
+                        </div>
+                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
+                            {/* {
+                                profile_data?.my_orders?.content?.map((data, i) => (
+                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]" key={i}>
+                                        <img src={data?.image} className="w-[40px]" />
+                                        <h1>{data?.title}</h1>
+                                        <h1>{data?.price}</h1>
+                                    </div>
+                                ))
+                            } */}
+                            {
+                                profileApiData?.my_orders?.map((data, i) => (
+                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]" key={i}>
+                                        {/* <img src={data?.image} className="w-[40px]" /> */}
+                                        <h1 className='w-full'>{data?.id}</h1>
+                                        <h1 className='w-full text-center'>₹ {data?.order_amount}</h1>
+                                        <h1 className='w-full text-end'>{data?.order_status}</h1>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    {/* wishlist */}
+                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
+                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
+                            <h1 className="font-[500] md:text-[17px]">{profile_data?.wishlist?.header?.heading}</h1>
+                            <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
+                        </div>
+                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
+                            {/* {
+                                profile_data?.wishlist?.content?.map((data, i) => (
+                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
+                                        <img src={data?.image} className="w-[40px]" />
+                                        <h1>{data?.title}</h1>
+                                        <h1>{data?.price}</h1>
+                                    </div>
+                                ))
+                            } */}
+                            {
+                                profileApiData?.wishlist?.map((data, i) => (
+                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px] my-2" key={i}>
+                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[40px]" />
+                                        <h1>{data?.name}</h1>
+                                        <h1>{data?.id}</h1>
+                                        {/* <h1>{data?.category}</h1> */}
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
