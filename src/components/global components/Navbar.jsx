@@ -51,14 +51,22 @@ const Navbar = () => {
   //   let formdata = new FormData();
   //   formdata.append("token", localStorage.getItem("token"));
   //   formdata.append("no_login_token", localStorage.getItem("no_login_token"));
-  //   axios.get(import.meta.env.VITE_APP_BASE_API_LINK + "getUserCart").then(
-  //     (response) => {
-  //     setNavApiData(response?.data);
-  //     })
-  //     .catch(function (error) {
+  //   axios.get(import.meta.env.VITE_APP_BASE_API_LINK + "getUserCart").then((response) => {
+  //     setCartData(response?.data)
+  //   }).catch(function (error) {
   //       console.log(error);
   //     });
-  // }, [cartAtom]);
+  // }, []);
+
+  useEffect(() => {
+    let formdata = new FormData();
+    formdata.append("token", localStorage.getItem("token"));
+    formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
+      console.log(response?.data)
+      setCartData(response?.data)
+    })
+  }, [])
 
   // useEffect(() => {
   //   console.log(cartData, 'cart');
@@ -88,11 +96,15 @@ const Navbar = () => {
                       </li>
                     </NavLink>
                     <div className={`absolute flex flex-col gap-2 top-[80%] right-[14%] w-[280px] bg-white shadow-sm overflow-hidden transition-all duration-100 ${navHoverShow === "ACCOUNT" ? 'h-[150px] pt-3 py-2' : 'h-0'}`}>
-                      <NavLink to='/account' className="py-2 w-[90%] px-4 mx-auto flex justify-between items-center hover:bg-[#69696950]">
+                      <NavLink to='/account' className="py-2 w-[90%] px-4 mx-auto flex justify-between items-center hover:bg-[#69696950]" onClick={() => {
+                        setNavHoverShow(null)
+                      }}>
                         <p className="poppins text-[14px]">My Profile</p>
                         <div><img src={profile} className="w-[14px]" /></div>
                       </NavLink>
-                      <NavLink to='/orders' className="py-2 w-[90%] px-4 mx-auto flex justify-between items-center hover:bg-[#69696950]">
+                      <NavLink to='/orders' className="py-2 w-[90%] px-4 mx-auto flex justify-between items-center hover:bg-[#69696950]" onClick={() => {
+                        setNavHoverShow(null)
+                      }}>
                         <p className="poppins text-[14px]">My Orders</p>
                         <div><img src={cart_out} className="w-[14px]" /></div>
                       </NavLink>

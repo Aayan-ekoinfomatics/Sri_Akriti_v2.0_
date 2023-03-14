@@ -16,6 +16,7 @@ import navApiAtom from "../../recoil/atoms/global/navApiAtom";
 import { NavLink } from "react-router-dom";
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 import CategoryTabs from "../global components/CategoryTabs";
+import cartAtom from "../../recoil/atoms/cart/cartAtom";
 
 
 const LandingPage = () => {
@@ -25,6 +26,18 @@ const LandingPage = () => {
   const [categoryApiData, setCategoryApiData] = useRecoilState(categoriesApiAtom);
 
   const [mobileNav, setMobileNav] = useRecoilState(navApiAtom);
+
+  const [cartData, setCartData] = useRecoilState(cartAtom);
+
+  useEffect(() => {
+    let formdata = new FormData();
+    formdata.append("token", localStorage.getItem("token"));
+    formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => {
+      console.log(response?.data)
+      setCartData(response?.data)
+    })
+  }, [])
 
 
   // useEffect(() => {

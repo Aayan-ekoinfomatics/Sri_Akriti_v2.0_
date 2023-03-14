@@ -38,8 +38,6 @@ const Login = () => {
       }).then(function (response) {
         console.log(response)
         // console.log(localStorage.getItem('token'))
-        localStorage.setItem("token", response?.data?.token);
-        localStorage.setItem("status", response?.data?.status);
         if (response?.data?.status === true) {
           toast.success("Login Successful", {
             position: "top-right",
@@ -51,6 +49,8 @@ const Login = () => {
             progress: undefined,
             theme: "light",
           })
+          localStorage.setItem("token", response?.data?.token);
+          localStorage.setItem("status", response?.data?.status);
           navigate("/");
         } else {
           setErrorText("Wrong Credentials")

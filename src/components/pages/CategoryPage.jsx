@@ -87,38 +87,68 @@ const CategoryPage = () => {
         {
           categoryApiData?.category === "collection" ? (
             <>
-              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
-                {/* {params.category_id} */}
-                {categoryApiData?.category}
-              </h1>
-              <div className="w-full md:w-[43%] lg:w-[33%] mx-auto md:pt-10 md:pb-20">
-                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
-                  <input
-                    type="text"
-                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
-                    placeholder="Seach your type of Platinum"
-                    onChange={(e) => setSearchItem(e.target.value)}
-                    value={searchItem}
-                  />
-                  <img src={search} className="w-[35px] mx-2 px-1" />
-                </div>
-              </div>
+              {
+                categoryApiData ?
+                  <>
+                    <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
+                      {/* {params.category_id} */}
+                      {categoryApiData?.category}
+                    </h1>
+                    <div className="w-full md:w-[43%] lg:w-[33%] mx-auto md:pt-10 md:pb-20">
+                      <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
+                        <input
+                          type="text"
+                          className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
+                          placeholder="Seach your type of Platinum"
+                          onChange={(e) => setSearchItem(e.target.value)}
+                          value={searchItem}
+                        />
+                        <img src={search} className="w-[35px] mx-2 px-1" />
+                      </div>
+                    </div>
+                  </>
+                  :
+                  <div className="w-full">
+                    {/* skeleton body */}
+                    <div className='flex flex-col w-full max-h-[20vh] md:max-h-[30vh] lg:max-h-[40vh] justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                      <div className='w-full'>
+                        {/* Skeleton loader*/}
+                        <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                      </div>
+                    </div>
+                  </div>
+              }
             </>
           ) : (
-            <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
-              style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}
-            >
-              <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
-                <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full uppercase">
-                  {categoryApiData?.category}
-                </h1>
-                {/* <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full pl-10">
+            <>
+              {
+                categoryApiData ?
+                  <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
+                    style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}
+                  >
+                    <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
+                      <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full uppercase">
+                        {categoryApiData?.category}
+                      </h1>
+                      {/* <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full pl-10">
                     {categoryApiData?.category_details}
                   </p> */}
-              </div>
-              {/* <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-top4'  ></div> */}
+                    </div>
+                    {/* <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-top4'  ></div> */}
 
-            </div>
+                  </div>
+                  :
+                  <div className="w-full">
+                    {/* skeleton body */}
+                    <div className='flex flex-col w-full max-h-[20vh] md:max-h-[30vh] lg:max-h-[40vh] justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                      <div className='w-full'>
+                        {/* Skeleton loader*/}
+                        <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                      </div>
+                    </div>
+                  </div>
+              }
+            </>
           )
         }
 
@@ -269,6 +299,7 @@ const CategoryPage = () => {
         </div>
 
         <div className="flex self-start w-full md:w-[95%] gap-5 mx-auto mt-16 pt-5 h-full">
+
           {/* filter desktop*/}
           {/* <div className="sticky top-0 w-[20%] hidden lg:flex flex-col">
 
@@ -320,9 +351,10 @@ const CategoryPage = () => {
           </div> */}
 
           {/* products */}
-
-          <div className="flex-1 grid gap-4 lg:gap-6 xl:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
-            {categoryApiData?.data
+          {
+            categoryApiData ?
+              <div className="flex-1 grid gap-4 lg:gap-6 xl:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
+                {categoryApiData?.data
                   ?.filter((filterValue) => {
                     if (searchItem === "") {
                       return filterValue;
@@ -338,43 +370,52 @@ const CategoryPage = () => {
                     }
                   })
                   ?.map((data, i) => (
-              <div className="relative my-2 " key={i}>
-                <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5" onClick={() => {
+                    <div className="relative my-2 aspect-square" key={i}>
+                      <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5 active:scale-[0.95]" onClick={() => {
 
-                  let formdata = new FormData();
-                  // formdata.append("id", data?.id);
-                  formdata.append("token", localStorage.getItem("token"));
-                  formdata.append("product_id", data?.id);
-                  axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'userWishlist', formdata).then((response) => {
-                    console.log(response?.data)
-                    if (response?.data?.status) {
-                      localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
-                      setWishlistToggle(response?.data?.wishlist_array)
-                      toast.info(`${response?.data?.message}`, {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        // draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                      })
-                    } else {
-                      alert("Please log in to add to wishlist")
-                    }
-                    // setProfileApiData(response?.data)
-                  })
-                }}>
-                  <img src={localStorage.getItem("wishlist_array")?.includes(data?.id) ? heart_filled : heart_outline} className="w-[25px]" />
-                </div>
-                <div className="">
-                  <div>
-                    <NavLink
-                      to={'/product-details' + '/' + data?.id}
-                    ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='min-w-[150px] sm:min-w-[250px] md:min-w-[300px] lg:min-w-[350px] aspect-square' alt="" /></NavLink>
-                  </div>
-                  {/* <div className="pl-1 flex gap-2 items-center w-[70%]">
+                        let formdata = new FormData();
+                        // formdata.append("id", data?.id);
+                        formdata.append("token", localStorage.getItem("token"));
+                        formdata.append("product_id", data?.id);
+                        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'userWishlist', formdata).then((response) => {
+                          console.log(response?.data)
+                          if (response?.data?.status) {
+                            localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
+                            setWishlistToggle(response?.data?.wishlist_array)
+                            toast.info(`${response?.data?.message}`, {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              // draggable: true,
+                              progress: undefined,
+                              theme: "light",
+                            })
+                          } else {
+                            toast.error("Please log in to add to wishlist", {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              // draggable: true,
+                              progress: undefined,
+                              theme: "light",
+                            })
+                          }
+                          // setProfileApiData(response?.data)
+                        })
+                      }}>
+                        <img src={localStorage.getItem("wishlist_array")?.includes(data?.id) ? heart_filled : heart_outline} className="w-[25px]" />
+                      </div>
+                      <div className="">
+                        <div>
+                          <NavLink
+                            to={'/product-details' + '/' + data?.id}
+                          ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='min-w-[150px] sm:min-w-[250px] md:min-w-[300px] lg:min-w-[350px] aspect-square' alt="" /></NavLink>
+                        </div>
+                        {/* <div className="pl-1 flex gap-2 items-center w-[70%]">
                     <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
                       ₹{data?.actual_price}
                     </p>
@@ -382,13 +423,85 @@ const CategoryPage = () => {
                       ₹{data?.selling_price}
                     </p>
                   </div> */}
-                  <p className="pl-2 font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px]">
-                    {data?.name}
-                  </p>
+                        <p className="pl-2 font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px]">
+                          {data?.name}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              :
+              <div className="w-full">
+                <div className='w-full grid gap-4 lg:gap-6 xl:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2'>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
+                  {/* skeleton body */}
+                  <div className='flex flex-col w-full justify-center aspect-square items-center relative overflow-hidden bg-[#dfdddd]'>
+                    <div className='w-full'>
+                      {/* Skeleton loader*/}
+                      <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-            ))}
-          </div>
+          }
+
         </div>
       </div>
     </div>

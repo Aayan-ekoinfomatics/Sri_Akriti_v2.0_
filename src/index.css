@@ -189,3 +189,32 @@ input[type=date]:focus::-webkit-datetime-edit {
 .inputfile + label {
 	cursor: pointer; /* "hand" cursor */
 }
+
+
+
+/* Skeleton animation */
+.skeleton-animation {
+  animation: skeleton-loading 1.5s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    left: 0;
+  }
+
+  25% {
+    left: 100%;
+  }
+
+  0% {
+    left: 0;
+  }
+
+  75% {
+    left: 100%;
+  }
+
+  100% {
+    left: 80%;
+  }
+}

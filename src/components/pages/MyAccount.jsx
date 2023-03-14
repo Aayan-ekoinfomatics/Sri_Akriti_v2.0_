@@ -87,172 +87,212 @@ const MyAccount = () => {
 
                 {/* second sub-main flex item */}
                 <div className='md:w-[55%] md:flex flex-col justify-between' >
+
+
                     {/* my profile */}
-                    <div className='w-full bg-[#E3E3E3] my-4 py-2 pt-4 md:overflow-auto'>
-                        {/* <div className="w-[95%] mx-auto flex justify-between py-2 lora text-[15px] shadow-sm">
-                            <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.my_profile?.header?.heading}</h1>
-                            <button onClick={() => setPopUpToggle(true)} className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</button>
-                        </div> */}
-                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm md:shadow-none">
-                            <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.my_profile?.header?.heading}</h1>
-                            <button onClick={() => setPopUpToggle(true)} className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</button>
-                        </div>
-                        <div className='md:grid grid-cols-2 max-h-[260px] md:max-h-[320px] overflow-y-scroll md:overflow-auto' >
-                            <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
-                                <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
-                                    <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Name</label>
-                                    <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.name}</div>
+                    <>
+                        {
+                            profileApiData ?
+                                <div className='w-full bg-[#E3E3E3] my-4 py-2 pt-4 md:overflow-auto'>
+
+                                    {/* heading */}
+                                    <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm md:shadow-none">
+                                        <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.my_profile?.header?.heading}</h1>
+                                        <button onClick={() => setPopUpToggle(true)} className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</button>
+                                    </div>
+
+                                    {/* content */}
+                                    <div className='md:grid grid-cols-2 max-h-[260px] md:max-h-[320px] overflow-y-scroll md:overflow-auto' >
+                                        <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
+                                            <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
+                                                <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Name</label>
+                                                <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.name}</div>
+                                            </div>
+                                        </div>
+                                        <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
+                                            <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
+                                                <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Gender</label>
+                                                <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.gender}</div>
+                                            </div>
+                                        </div>
+                                        <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
+                                            <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
+                                                <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Date Of Birth</label>
+                                                <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.dob}</div>
+                                            </div>
+                                        </div>
+                                        <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
+                                            <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
+                                                <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Email ID</label>
+                                                <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.email}</div>
+                                            </div>
+                                        </div>
+                                        <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
+                                            <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
+                                                <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Phone No</label>
+                                                <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.phone_code}{' '}{profileApiData?.user?.phone_no}</div>
+                                            </div>
+                                        </div>
+                                        {/* {
+                                            profile_data?.my_profile?.content?.map((data, i) => (
+                                                <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]" key={i}>
+                                                    <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
+                                                        <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">{data?.label}</label>
+                                                        <input type={data?.type} className="w-full p-2 text-[11px] outline-none" />
+                                                    </div>
+                                                </div>
+                                            ))
+                                        } */}
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
-                                <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
-                                    <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Gender</label>
-                                    {/* <input style={{ caretColor: 'transparent', }} readOnly type='text' className="w-full p-2 text-[13px] outline-none" value={profileApiData?.gender} /> */}
-                                    <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.gender}</div>
-                                </div>
-                            </div>
-                            <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
-                                <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
-                                    <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Date Of Birth</label>
-                                    {/* <input style={{ caretColor: 'transparent', }} readOnly type='date' className="w-full p-2 text-[13px] outline-none" value={profileApiData?.dob} /> */}
-                                    <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.dob}</div>
-                                </div>
-                            </div>
-                            <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
-                                <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
-                                    <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Email ID</label>
-                                    {/* <input style={{ caretColor: 'transparent', }} readOnly type='email' className="w-full p-2 text-[13px] outline-none" value={profileApiData?.email} /> */}
-                                    <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.email}</div>
-                                </div>
-                            </div>
-                            <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]">
-                                <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
-                                    <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">Phone No</label>
-                                    {/* <input style={{ caretColor: 'transparent', }} readOnly type='number' min={0} className="w-full p-2 text-[13px] outline-none" value={profileApiData?.phone_no} /> */}
-                                    <div readOnly type='text' className="w-full p-2 text-[13px] outline-none">{profileApiData?.user?.phone_code}{' '}{profileApiData?.user?.phone_no}</div>
-                                </div>
-                            </div>
-                            {/* {
-                                profile_data?.my_profile?.content?.map((data, i) => (
-                                    <div className="block w-[90%] mx-auto py-2 lora text-[14px] tracking-[1.5px]" key={i}>
-                                        <div className="flex flex-col items-start justify-center w-full py-2 md:py-[10px] ">
-                                            <label htmlFor="" className="text-[10px] poppins tracking-[1px] font-[500] pl-1">{data?.label}</label>
-                                            <input type={data?.type} className="w-full p-2 text-[11px] outline-none" />
+                                :
+                                <div className="w-full">
+                                    {/* skeleton body */}
+                                    <div className='flex flex-col w-full justify-center items-center relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full min-h-[300px] max-h-[380px] h-full'>
+                                            {/* Skeleton loader*/}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
                                         </div>
                                     </div>
-                                ))
-                            } */}
-                        </div>
-                    </div>
+                                </div>
+                        }
+                    </>
 
                     {/* address */}
-                    <div className='w-full bg-[#E3E3E3] my-4 py-2 md:px-0 pt-4'>
-                        {/* <div className="w-[95%] mx-auto flex justify-between md:px-3 py-2 lora text-[14px] mb-4">
-                            <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.address?.header?.heading}</h1>
-                            <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
-                        </div> */}
-                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
-                            <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.address?.header?.heading}</h1>
-                            {
-                                profileApiData?.address?.length === 0 ?
-                                <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
-                                :
-                                ''
-                            }
-                        </div>
-                        <div className='max-h-[200px] md:max-h-[175px] px-4'>
-                            {
-                                profileApiData?.address?.map((data, i) => (
-                                    <div className='w-full flex justify-between items-center my-2 border-b border-b-[#6969696b]' key={i}>
-                                        <div className="w-full flex flex-col justify-start py-2 md:px-3 lora text-[11px] tracking-[1.5px]">
-                                            <div className='w-full flex flex-col'>
-                                                <h1>{data?.add_line_1},</h1>
-                                                <h1>{data?.add_line_2}</h1>
-                                            </div>
-                                            <h1>{data?.landmark}</h1>
-                                            <h1>{data?.city}</h1>
-                                            <h1>{data?.country}</h1>
-                                            <h1>{data?.state}</h1>
-                                            <h1>{data?.pincode}</h1>
-                                        </div>
-                                        <Link to={'/edit-address' + '/' + data?.id}>
-                                            <div className='lora text-[12px] pr-1 tracking-[2px]'>
-                                                <p className='underline'>edit</p>
-                                            </div>
-                                        </Link>
+                    <>
+                        {
+                            profileApiData ?
+                                <div className='w-full bg-[#E3E3E3] my-4 py-2 md:px-0 pt-4'>
+                                    <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
+                                        <h1 className="font-[500] md:text-[18px] md:w-full md:text-center md:ml-8">{profile_data?.address?.header?.heading}</h1>
+                                        {
+                                            profileApiData?.address?.length === 0 ?
+                                                <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
+                                                :
+                                                ''
+                                        }
                                     </div>
-                                ))
-                            }
-                        </div>
-                    </div>
+                                    <div className='max-h-[200px] md:max-h-[175px] px-4'>
+                                        {
+                                            profileApiData?.address?.map((data, i) => (
+                                                <div className='w-full flex justify-between items-center my-2 border-b border-b-[#6969696b]' key={i}>
+                                                    <div className="w-full flex flex-col justify-start py-2 md:px-3 lora text-[11px] tracking-[1.5px]">
+                                                        <div className='w-full flex flex-col'>
+                                                            <h1>{data?.add_line_1},</h1>
+                                                            <h1>{data?.add_line_2}</h1>
+                                                        </div>
+                                                        <h1>{data?.landmark}</h1>
+                                                        <h1>{data?.city}</h1>
+                                                        <h1>{data?.country}</h1>
+                                                        <h1>{data?.state}</h1>
+                                                        <h1>{data?.pincode}</h1>
+                                                    </div>
+                                                    <Link to={'/edit-address' + '/' + data?.id}>
+                                                        <div className='lora text-[12px] pr-1 tracking-[2px]'>
+                                                            <p className='underline'>edit</p>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                :
+                                <div className="w-full mt-5">
+                                    {/* skeleton body */}
+                                    <div className='flex flex-col w-full justify-center items-center relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full min-h-[250px]'>
+                                            {/* Skeleton loader*/}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    </>
 
                 </div>
 
 
                 {/* first sub-main flex item */}
                 <div className='md:w-[45%] md:flex flex-col justify-between' >
+
+
                     {/* my Orders */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
-                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
-                            <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
-                            <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
-                        </div>
-                        <div className='w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]'>
-                            <h1 className='w-full text-start'>ID</h1>
-                            <h1 className='w-full text-center'>Amount</h1>
-                            <h1 className='w-full text-end'>Status</h1>
-                        </div>
-                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
-                            {/* {
-                                profile_data?.my_orders?.content?.map((data, i) => (
-                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] tracking-[1.5px]" key={i}>
-                                        <img src={data?.image} className="w-[40px]" />
-                                        <h1>{data?.title}</h1>
-                                        <h1>{data?.price}</h1>
+                    <>
+                        {
+                            profileApiData ?
+                                <>
+                                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
+                                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
+                                            <h1 className="font-[500] md:text-[17px]">{profile_data?.my_orders?.header?.heading}</h1>
+                                            <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
+                                        </div>
+                                        <div className='w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]'>
+                                            <h1 className='w-full text-start'>ID</h1>
+                                            <h1 className='w-full text-center'>Amount</h1>
+                                            <h1 className='w-full text-end'>Status</h1>
+                                        </div>
+                                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
+                                            {
+                                                profileApiData?.my_orders?.map((data, i) => (
+                                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]" key={i}>
+                                                        <h1 className='w-full'>{data?.id}</h1>
+                                                        <h1 className='w-full text-center'>₹ {data?.order_amount}</h1>
+                                                        <h1 className='w-full text-end'>{data?.order_status}</h1>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
                                     </div>
-                                ))
-                            } */}
-                            {
-                                profileApiData?.my_orders?.map((data, i) => (
-                                    <div className="w-full px-[20px] flex justify-between items-center py-2 lora text-[12px] my-2 tracking-[1.5px]" key={i}>
-                                        {/* <img src={data?.image} className="w-[40px]" /> */}
-                                        <h1 className='w-full'>{data?.id}</h1>
-                                        <h1 className='w-full text-center'>₹ {data?.order_amount}</h1>
-                                        <h1 className='w-full text-end'>{data?.order_status}</h1>
+                                </>
+                                :
+                                <div className="w-full">
+                                    {/* skeleton body */}
+                                    <div className='flex flex-col w-full justify-center items-center relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full min-h-[300px] max-h-[380px] h-full'>
+                                            {/* Skeleton loader*/}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
                                     </div>
-                                ))
-                            }
-                        </div>
-                    </div>
+                                </div>
+                        }
+                    </>
 
                     {/* wishlist */}
-                    <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
-                        <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
-                            <h1 className="font-[500] md:text-[17px]">{profile_data?.wishlist?.header?.heading}</h1>
-                            <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
-                        </div>
-                        <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
-                            {/* {
-                                profile_data?.wishlist?.content?.map((data, i) => (
-                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px]" key={i}>
-                                        <img src={data?.image} className="w-[40px]" />
-                                        <h1>{data?.title}</h1>
-                                        <h1>{data?.price}</h1>
+                    <>
+                        {
+                            profileApiData ?
+                                <div className='w-full bg-[#E3E3E3] my-4 md:mx-10 pt-[1rem] min-h-[220px] md:min-h-[280px]'>
+                                    <div className="w-full px-[25px] flex justify-between py-2 pb-3 lora text-[15px] shadow-sm">
+                                        <h1 className="font-[500] md:text-[17px]">{profile_data?.wishlist?.header?.heading}</h1>
+                                        <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
                                     </div>
-                                ))
-                            } */}
-                            {
-                                profileApiData?.wishlist?.map((data, i) => (
-                                    <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px] my-2" key={i}>
-                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[40px]" />
-                                        <h1>{data?.name}</h1>
-                                        <h1>{data?.id}</h1>
-                                        {/* <h1>{data?.category}</h1> */}
+                                    <div className='max-h-[150px] md:max-h-[230px] overflow-y-scroll pt-1'>
+                                        {
+                                            profileApiData?.wishlist?.map((data, i) => (
+                                                <div className="w-[95%] mx-auto flex justify-between items-center py-2 px-2 lora text-[12px] tracking-[1.5px] my-2" key={i}>
+                                                    <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[40px]" />
+                                                    <h1>{data?.name}</h1>
+                                                    <h1>{data?.id}</h1>
+                                                    {/* <h1>{data?.category}</h1> */}
+                                                </div>
+                                            ))
+                                        }
                                     </div>
-                                ))
-                            }
-                        </div>
-                    </div>
+                                </div>
+                                :
+                                <div className="w-full">
+                                    {/* skeleton body */}
+                                    <div className='flex flex-col w-full justify-center items-center relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full min-h-[250px] max-h-[380px] h-full'>
+                                            {/* Skeleton loader*/}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    </>
+
                 </div>
 
             </div>
