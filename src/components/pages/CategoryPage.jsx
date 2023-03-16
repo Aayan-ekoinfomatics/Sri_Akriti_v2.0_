@@ -353,7 +353,7 @@ const CategoryPage = () => {
           {/* products */}
           {
             categoryApiData ?
-              <div className="flex-1 grid gap-4 lg:gap-6 xl:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
+              <div className="flex-1 grid gap-4 sm:gap-6 xl:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
                 {categoryApiData?.data
                   ?.filter((filterValue) => {
                     if (searchItem === "") {
@@ -370,7 +370,7 @@ const CategoryPage = () => {
                     }
                   })
                   ?.map((data, i) => (
-                    <div className="relative my-2 aspect-square" key={i}>
+                    <div className="relative my-2 shadow-md flex flex-col justify-between" key={i}>
                       <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5 active:scale-[0.95]" onClick={() => {
 
                         let formdata = new FormData();
@@ -407,26 +407,20 @@ const CategoryPage = () => {
                           // setProfileApiData(response?.data)
                         })
                       }}>
-                        <img src={localStorage.getItem("wishlist_array")?.includes(data?.id) ? heart_filled : heart_outline} className="w-[25px]" />
+                        <img src={localStorage.getItem("wishlist_array")?.includes(data?.id) ? heart_filled : heart_outline} className="w-[25px] aspect-square" />
                       </div>
-                      <div className="">
-                        <div>
-                          <NavLink
-                            to={'/product-details' + '/' + data?.id}
-                          ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='min-w-[150px] sm:min-w-[250px] md:min-w-[300px] lg:min-w-[350px] aspect-square' alt="" /></NavLink>
-                        </div>
-                        {/* <div className="pl-1 flex gap-2 items-center w-[70%]">
-                    <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
-                      ₹{data?.actual_price}
-                    </p>
-                    <p className="font-[300] poppins text-[0.95rem] md:text-[15px] tracking-[2px] pl-1 line-through">
-                      ₹{data?.selling_price}
-                    </p>
-                  </div> */}
-                        <p className="pl-2 font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px]">
-                          {data?.name}
-                        </p>
+
+                      {/* image */}
+                      <div className="w-full flex justify-center items-center">
+                        <NavLink to={'/product-details' + '/' + data?.id} className='w-full flex justify-center items-center'>
+                          <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='w-full aspect-square' alt="" />
+                        </NavLink>
                       </div>
+
+                      {/* product name */}
+                      <p className="pl-2 font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] mx-3 my-3">
+                        {data?.name}
+                      </p>
                     </div>
                   ))}
               </div>
