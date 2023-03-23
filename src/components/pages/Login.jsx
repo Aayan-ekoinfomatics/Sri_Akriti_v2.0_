@@ -51,7 +51,12 @@ const Login = () => {
           })
           localStorage.setItem("token", response?.data?.token);
           localStorage.setItem("status", response?.data?.status);
-          navigate("/");
+          if (response?.data?.user_type) {
+            localStorage.setItem("user_type", response?.data?.user_type);
+            navigate("/admin-products")
+          }else {
+            navigate("/");
+          }
         } else {
           setErrorText("Wrong Credentials")
           toast.error(response?.data?.message , {

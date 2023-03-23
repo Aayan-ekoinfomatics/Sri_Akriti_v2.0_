@@ -53,6 +53,7 @@ const CategoryPage = () => {
   }, [categoryApiData])
 
   useEffect(() => {
+    // setCategoryApiData({})
     let formdata = new FormData();
     // formdata.append("id", data?.id);
     formdata.append("category_name", params?.category_id);

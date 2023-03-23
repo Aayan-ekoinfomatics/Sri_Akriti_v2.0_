@@ -51,6 +51,7 @@ import DeliveryPolicy from "./components/pages/DeliveryPolicy";
 import ReturnPolicy from "./components/pages/ReturnPolicy";
 import TermsAndConditions from "./components/pages/TermsAndConditions";
 import RefundPolicy from "./components/pages/RefundPolicy";
+import AdminPricesPage from "./components/admin-components/AdminPricesPage";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -58,10 +59,11 @@ function App() {
   const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log(location)
   }, [location]);
 
   return (
-    <div className="relative">  
+    <div className="relative">
       {/* overlay  */}
       <div
         className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000071] z-[1000] transition-all duration-500 ${navToggle ? "block" : "hidden"
@@ -82,10 +84,10 @@ function App() {
         />
       </div>
 
-      <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
+      <div className={`sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full ${localStorage.getItem("user_type") === 'admin' ? 'hidden' : 'block'}`}>
         <Navbar />
       </div>
-      
+
       <div>
         <Routes>
           <Route path='*' element={<Navigate to={localStorage.getItem("status") === 'true' ? '/' : '/login'} replace={true} />} />
@@ -112,6 +114,8 @@ function App() {
             <Route path="/admin-orders" element={<OrdersInventoryPage />} />
             <Route path="/admin-add-order" element={<AdminAddNewOrder />} />
             <Route path="/admin-orders/:order_id" element={<AdminEditSingleOrderPage />} />
+
+            <Route path="/admin-prices" element={<AdminPricesPage />} />
           </Route>
 
           <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />
@@ -134,7 +138,9 @@ function App() {
 
         </Routes>
       </div>
-      <Footer />
+      <div className={`${localStorage.getItem("user_type") === 'admin' ? 'hidden' : 'block'}`}>
+        <Footer />
+      </div>
       <ToastContainer />
     </div>
   );
