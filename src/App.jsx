@@ -71,19 +71,29 @@ function App() {
         onClick={() => setNavToggle(false)}
       ></div>
 
-      <div>
+      <div className={`${localStorage.getItem("user_type") === 'admin' ? 'hidden' : 'block'}`}>
         <Sidebar />
       </div>
 
       {/* mobile navbar open button */}
-      <div className="md:hidden fixed top-[42px] right-[25px] z-[1003] cursor-pointer">
+      <div className={`md:hidden fixed top-[42px] right-[25px] z-[1003] cursor-pointer ${localStorage.getItem("user_type") === 'admin' ? 'hidden' : 'block'}`}>
         <img
-          src={!navToggle ? mobile_menu : cross}
+          src={!navToggle ? mobile_menu : cross} 
           className="w-[27px] z-[9990] "
           onClick={() => setNavToggle(!navToggle)}
         />
       </div>
 
+      {/* admin sidebar mobile */}
+      {/* <div className={`md:hidden fixed top-[42px] right-[25px] z-[1003] cursor-pointer`}>
+        <img
+          src={!navToggle ? mobile_menu : cross}
+          className="w-[27px] z-[9990] "
+          onClick={() => setNavToggle(!navToggle)}
+        />
+      </div> */}
+      
+      {/* navbar */}
       <div className={`sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full ${localStorage.getItem("user_type") === 'admin' ? 'hidden' : 'block'}`}>
         <Navbar />
       </div>
@@ -120,7 +130,7 @@ function App() {
 
           <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} />
 
-          <Route element={<ProtectedRoute />}  >
+          <Route element={<ProtectedRoute />}>
             {/* <Route path="/" element /> */}
             <Route path="*" element={<Navigate replace to='/' />} />
             <Route path="/account" element={<MyAccount />} />
