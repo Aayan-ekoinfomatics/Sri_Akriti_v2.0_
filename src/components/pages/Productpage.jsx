@@ -41,12 +41,7 @@ const Productpage = () => {
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [selectedWeight, setSelectedWeight] = useState(0);
 
-  const [productDetailsToBackend, setProductDetailsToBackend] = useState({
-    // diamond_quality: '',
-    // diamond_size: '',
-    // size: '',
-    // weight: '',
-  })
+  const [productDetailsToBackend, setProductDetailsToBackend] = useState({})
 
   useEffect(() => {
     let formdata = new FormData();
@@ -65,8 +60,8 @@ const Productpage = () => {
   }, [params])
 
   useEffect(() => {
-    console.log(categoryApi)
-    // console.log(productApiData?.image_all[selectedImageIndex])
+    // console.log(categoryApi)
+    console.log(productApiData)
   }, [productApiData])
 
 
@@ -96,7 +91,7 @@ const Productpage = () => {
   return (
     <>
       <div className="md:flex w-[95%] mx-auto ">
-        <div className=" md:w-[45%]">
+        <div className="w-full md:w-[40%]">
 
           {/* breadcrumbs */}
           <div className="pl-6 flex gap-4 items-center md:tracking-[2px] text-[12px] md:text-[18px] mb-8 my-5 md:my-10">
@@ -110,7 +105,7 @@ const Productpage = () => {
           <div className="w-[95%] mx-auto object-cover mb-2 md:flex gap-1 justify-center items-center md:pb-16 lg:pb-24">
             {/* mobile slider */}
             {
-              productApiData?.image?.length > 1 ?
+              productApiData?.image_all?.length > 1 ?
                 <Slider
                   className="w-full mx-auto z-[780] md:hidden"
                   slidesToScroll={1}
@@ -119,10 +114,10 @@ const Productpage = () => {
                   dots={true}
                   dotsClass="slick-dots"
                 >
-                  {productApiData?.images?.map((data, i) => (
+                  {productApiData?.image_all?.map((data, i) => (
                     <div key={i} className=" max-w-[100%] h-[100%]">
                       <img
-                        src={data?.img}
+                        src={import.meta.env.VITE_APP_BASE_API_LINK + data}
                         alt=""
                         className="object-contain w-[95%] mx-auto"
                       />
@@ -147,7 +142,7 @@ const Productpage = () => {
               <div className="hidden md:flex w-full justify-center">
                 {
                   productApiData ?
-                    <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image_all[selectedImageIndex]} className=" max-w-[630px] w-full shadow-md" />
+                    <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image_all[selectedImageIndex]} className=" max-w-[630px] aspect-square w-full shadow-md" />
                     :
                     <div className="w-full flex justify-end">
                       {/* skeleton body */}
@@ -162,7 +157,7 @@ const Productpage = () => {
               </div>
 
               {/* small images */}
-              <div className="w-full flex justify-evenly px-4 items-center mt-2">
+              <div className="w-full hidden md:flex justify-evenly px-4 items-center mt-2">
                 {
                   productApiData ?
                     <>
@@ -220,13 +215,13 @@ const Productpage = () => {
 
         </div>
 
-        <div className="pt-6 md:pt-0 lora w-[95%] md:w-[55%] mx-auto tracking-[2px] flex flex-col md:flex-row md:justify-between md:items-center mb-10 md:mb-0">
+        <div className="pt-6 md:pt-0 lora w-[95%] md:w-[60%] mx-auto tracking-[2px] flex flex-col lg:flex-row md:justify-between md:items-center mb-10">
 
 
 
           {
             productApiData ?
-              <div className='relative w-full md:border-r-2 md:border-r-[#D9D9D9] md:pl-16 px-4'>
+              <div className='relative w-full lg:border-r-2 lg:border-r-[#D9D9D9] md:pl-16 px-4'>
                 <h1 className="text-[20px] sm:text-[30px] md:text-[36px] mb-2 font-[600]">
                   {productApiData?.name}
                 </h1>
@@ -373,23 +368,23 @@ const Productpage = () => {
 
           {
             productApiData ?
-              <div className="w-full md:w-[70%] flex flex-col justify-end items-center text-black">
+              <div className="w-full md:w-[70%] flex flex-col justify-end items-center text-black xl:pl-8">
                 <div className="w-full flex flex-col md:translate-y-[100px] pt-10 md:pt-0">
                   <div className="py-3 px-3 flex justify-between items-center">
-                    <h1 className="lora text-[12px] md:text-[18px]">Diamond Charges</h1>
-                    <h1 className="lora text-[12px] md:text-[18px]">₹ {productApiData?.diamond_charges}</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">Diamond Charges</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">₹ {productApiData?.diamond_charges}</h1>
                   </div>
                   <div className="py-3 px-3 flex justify-between items-center">
-                    <h1 className="lora text-[12px] md:text-[18px]">Metal Charges</h1>
-                    <h1 className="lora text-[12px] md:text-[18px]">₹ {productApiData?.metal_charges}</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">Metal Charges</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">₹ {productApiData?.metal_charges}</h1>
                   </div>
                   <div className="py-3 px-3 flex justify-between items-center">
-                    <h1 className="lora text-[12px] md:text-[18px]">Making Charges</h1>
-                    <h1 className="lora text-[12px] md:text-[18px]">₹ {productApiData?.making_charges}</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">Making Charges</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">₹ {productApiData?.making_charges}</h1>
                   </div>
                   <div className="py-3 px-3 flex justify-between items-center">
-                    <h1 className="lora text-[12px] md:text-[18px]">Discount<span className="poppins text-[11px] pl-2">&#40;10%&#41;</span></h1>
-                    <h1 className="lora text-[12px] md:text-[18px]">- ₹ {productApiData?.discount_price}</h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">Discount<span className="poppins text-[11px] pl-2">&#40;10%&#41;</span></h1>
+                    <h1 className="lora text-[12px] md:text-[15px] xl:text-[18px]">- ₹ {productApiData?.discount_price}</h1>
                   </div>
                 </div>
 
@@ -440,7 +435,7 @@ const Productpage = () => {
                       console.log(response?.data)
                       setCartData(response?.data)
                     })
-                  }} className="bg-[#3EDCFF] text-black w-[80%] mt-10 mx-auto py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px] active:scale-[0.95] shadow-md transition-all duration-100 active:bg-[#8aeaff]">ADD TO CART</button>
+                  }} className="bg-[#3EDCFF] text-black md:w-[80%] mt-5 md:mt-0 lg:mt-10 mx-auto py-2 md:py-4 poppins md:translate-y-[80px] text-[15px] md:text-[18px] xl:text-[22px] px-4 tracking-[2px] md:tracking-[3px] active:scale-[0.95] shadow-md transition-all duration-100 active:bg-[#8aeaff]">ADD TO CART</button>
                 </div>
               </div>
               :
@@ -486,11 +481,13 @@ const Productpage = () => {
 
 
         </div>
+
+
       </div>
 
       {/* products */}
 
-      <div className="w-[93%] mx-auto flex justify-start items-center gap-2 md:gap-4 my-4 mb-10">
+      <div className="w-[93%] mx-auto flex justify-start items-center gap-2 md:gap-4 mt-10 mb-10">
         <div className="w-[8px] md:w-[18px]">
           <img src={arrow} className="w-full" />
         </div>
@@ -502,25 +499,21 @@ const Productpage = () => {
         </h1>
       </div>
       <div>
-        <div className="w-[95%] mx-auto grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 mb-10">
+        <div className="w-[95%] mx-auto grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10 mb-10 px-3 md:px-0">
           {
-            categoryApi?.data?.map((data, i) => (
-              <div className="p-1" key={i}>
-                <div>
-                  <NavLink to='/product-details/:product_id'> <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="" /></NavLink>
+            cartData?.recomended_products?.map((data, i) => (
+              <div className="w-full shadow-md">
+                <div className="w-full">
+                  <Link to={'/product-details' + '/' + data?.id}>
+                    <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='w-full aspect-square' alt="" />
+                  </Link>
                 </div>
-                <button className="w-full text-white tracking-[1px] md:tracking-[3px] text-[15px] md:text-[20px] bg-[#3EDCFF] px-4 md:px-7 py-2">
+                <div className="w-full border-b border-l border-r border-gray-300 p-2">
+                  {/* <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[12px] py-1 md:text-[23px] md:font-[500] text-white tracking-[1px] md:tracking-[3px]">
                   ADD TO CART
-                </button>
-                {/* <div className="flex items-center gap-3">
-                  <h1 className="text-[14px] py-2 md:text-[23px] font-[500] tracking-[2px] ">
-                    ₹ {data?.selling_price}
-                  </h1>
-                  <span className="text-[20px] line-through text-[#696969] tracking-[2px]">₹ {data?.actual_price}</span>
-                </div> */}
-                <h1 className="text-[12px] md:text-[19px] font-[400] tracking-[3px]">
-                  {data?.name}
-                </h1>
+                </button> */}
+                  <h1>{data?.name}</h1>
+                </div>
               </div>
             ))
           }

@@ -265,14 +265,17 @@ const Cart = () => {
           //     </p>
           //   </div>
           // </div>
-          <div className="w-full">
-            <div className="w-fit">
-              <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='w-full aspect-square' alt="" />
-            </div>
+          <div className="w-full shadow-md">
             <div className="w-full">
-              <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[12px] py-1 md:text-[23px] md:font-[500] text-white tracking-[1px] md:tracking-[3px]">
+              <Link to={'/product-details' + '/' + data?.id}>
+                <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className='w-full aspect-square' alt="" />
+              </Link>
+            </div>
+            <div className="w-full border-b border-l border-r border-gray-300 p-2">
+              {/* <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[12px] py-1 md:text-[23px] md:font-[500] text-white tracking-[1px] md:tracking-[3px]">
                 ADD TO CART
-              </button>
+              </button> */}
+              <h1>{data?.name}</h1>
             </div>
           </div>
         ))}
