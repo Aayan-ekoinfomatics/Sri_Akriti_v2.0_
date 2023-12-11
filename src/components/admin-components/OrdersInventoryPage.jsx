@@ -9,12 +9,22 @@ import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
 import img from '../../assets/icons/no-data-found.svg'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import edit from '../../assets/icons/admit-edit.svg'
+import deleteIcn from '../../assets/icons/delete.svg'
 
 
 const OrdersInventoryPage = () => {
 
+
     const [searchData, setSearchData] = useState('');
     const [filterValue, setFilteredValue] = useState();
+
+    const [adminStatusToggle, setAdminStatusToggle] = useState(false);
+
+    const [ordersData, setOrdersData] = useState();
+
+    const [orderActiveId, setOrderActiveId] = useState(null);
 
     useEffect(() => {
         setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
@@ -27,9 +37,16 @@ const OrdersInventoryPage = () => {
     }, [searchData])
 
 
-    // useEffect(() => {
-    //   console.log(filterValue)
-    // }, [filterValue])
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
+            console.log(response?.data)
+            setOrdersData(response?.data?.orders)
+        })
+    }, [])
+
+    useEffect(() => {
+        console.log(orderActiveId);
+    }, [orderActiveId])
 
 
     return (
@@ -96,13 +113,13 @@ const OrdersInventoryPage = () => {
                                         <h1 className='text-[#718096]'>#</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>Name</h1>
+                                        <h1 className='text-[#718096]'>Staus</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>Category</h1>
+                                        <h1 className='text-[#718096]'>Amount</h1>
                                     </div>
                                     <div className='flex justify-center items-center'>
-                                        <h1 className='text-[#718096]'>Action</h1>
+                                        <h1 className='text-[#718096]'>Delivery Status</h1>
                                     </div>
                                 </div>
                                 <div className='w-full'>
@@ -110,7 +127,7 @@ const OrdersInventoryPage = () => {
                                         filterValue > 0 ?
                                             <div>
                                                 {
-                                                    adminOrdersApi?.products?.filter((filterValue) => {
+                                                    ordersData?.filter((filterValue) => {
                                                         if (searchData === '') {
                                                             return filterValue
                                                         } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
@@ -120,25 +137,77 @@ const OrdersInventoryPage = () => {
                                                         <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7 h-full'>
                                                             <div className='grid grid-cols-4 gap-4 justify-center items-center'>
                                                                 <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.order_id}</h1>
+                                                                    <h1 className='text-[#718096]'>{data?.id}</h1>
                                                                 </div>
-                                                                <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.order_name}</h1>
-                                                                </div>
-                                                                <div className='flex justify-center items-center'>
-                                                                    <h1 className='text-[#718096]'>{data?.order_category}</h1>
-                                                                </div>
-                                                                {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
-                                                        <div key={sub_index} className='flex items-center border border-red-500'>
-                                                            <span className='border border-red-500'><img src={sub_data?.img} className="w-[20px]" /></span>
-                                                        </div>
-                                                    ))}</div> */}
-                                                                <div className='flex justify-center items-center'>
-                                                                    <div className='flex gap-5 w-fit items-center'>
-                                                                        <span className='cursor-pointer'><img src={data?.icon_edit} className="w-[16px]" /></span>
-                                                                        <span className='cursor-pointer'><img src={data?.icon_delete} className="w-[14px]" /></span>
+                                                                <div className='flex justify-center items-center relative'>
+                                                                    <h1 onClick={() => {
+                                                                        setAdminStatusToggle(!adminStatusToggle)
+                                                                        if (orderActiveId !== data?.id) {
+                                                                            setOrderActiveId(data?.id)
+                                                                        } else {
+                                                                            setOrderActiveId(null)
+                                                                        }
+                                                                    }} className='text-[#718096] cursor-pointer'>{data?.admin_accept_status == 'a' ? 'Accepted' : data?.admin_accept_status == 'p' ? 'Pending' : 'Declined'}  <span className='ml-2'>⋮</span></h1>
+                                                                    <div className={` ${orderActiveId == data?.id ? 'h-[96px]' : 'h-0 overflow-hidden'} z-[200] transition-all duration-200 ease-in-out w-full bg-white absolute top-[140%] rounded-[8px] cursor-pointer`}>
+                                                                        <div className='relative flex flex-col border'>
+                                                                            <span className='text-center py-3 hover:bg-gray-200 active:scale-95 active:bg-gray-100 transition-all duration-100 ease-in-out w-full' onClick={() => {
+                                                                                // if (orderActiveId !== data?.id) {
+                                                                                //     setOrderActiveId(data?.id)
+                                                                                // } else {
+                                                                                //     setOrderActiveId(data?.id)
+                                                                                // }
+                                                                                let formdata = new FormData();
+                                                                                formdata.append('id', data?.id)
+                                                                                formdata.append('type', 'a')
+                                                                                axios.patch(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders', formdata).then((res) => {
+                                                                                    console.log(res);
+                                                                                    if (res) {
+                                                                                        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
+                                                                                            console.log(response?.data)
+                                                                                            setOrdersData(response?.data?.orders)
+                                                                                        })
+                                                                                    }
+                                                                                })
+                                                                            }}>Accept</span>
+                                                                            <span className='text-center py-3 hover:bg-gray-200 active:scale-95 active:bg-gray-100 transition-all duration-100 ease-in-out w-full' onClick={() => {
+                                                                                // if (orderActiveId !== data?.id) {
+                                                                                //     setOrderActiveId(data?.id)
+                                                                                // } else {
+                                                                                //     setOrderActiveId(data?.id)
+                                                                                // }
+                                                                                let formdata = new FormData();
+                                                                                formdata.append('id', data?.id)
+                                                                                formdata.append('type', 'd')
+                                                                                axios.patch(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders', formdata).then((res) => {
+                                                                                    console.log(res);
+                                                                                    if (res) {
+                                                                                        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllOrders').then((response) => {
+                                                                                            console.log(response?.data)
+                                                                                            setOrdersData(response?.data?.orders)
+                                                                                        })
+                                                                                    }
+                                                                                })
+                                                                            }}>Decline</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                                <div className='flex justify-center items-center'>
+                                                                    <h1 className='text-[#718096]'>Rs {data?.order_amount}</h1>
+                                                                </div>
+                                                                {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
+                                                                    <div key={sub_index} className='flex items-center border border-red-500'>
+                                                                        <span className='border border-red-500'><img src={sub_data?.img} className="w-[20px]" /></span>
+                                                                    </div>
+                                                                ))}</div> */}
+                                                                <div className='flex justify-center items-center'>
+                                                                    <h1 className='text-[#718096]'>{data?.order_status == 'a' ? 'Accepted' : data?.order_status == 'p' ? 'Pending' : 'Declined'}</h1>
+                                                                </div>
+                                                                {/* <div className='flex justify-center items-center'>
+                                                                    <div className='flex gap-5 w-fit items-center'>
+                                                                        <span className='cursor-pointer'><img src={edit} className="w-[16px]" /></span>
+                                                                        <span className='cursor-pointer'><img src={deleteIcn} className="w-[14px]" /></span>
+                                                                    </div>
+                                                                </div> */}
                                                             </div>
                                                         </div>
                                                     ))

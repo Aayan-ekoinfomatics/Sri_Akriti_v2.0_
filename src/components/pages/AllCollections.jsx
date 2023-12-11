@@ -33,10 +33,6 @@ const AllCollections = () => {
 
   const params = useParams();
 
-  // useEffect(() => {
-  //   console.log(categoryApiData)
-  // }, [categoryApiData])
-
   window.addEventListener("click", (event) => {
     const sort = document?.getElementById("sort");
 
@@ -56,7 +52,7 @@ const AllCollections = () => {
     // formdata.append("id", data?.id);
     formdata.append("category_name", params?.category_id);
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPageNew', formdata).then((response) => setCategoryApiData(response?.data))
-    // console.log(response?.data)
+    console.log(response?.data)
   }, [params])
 
 

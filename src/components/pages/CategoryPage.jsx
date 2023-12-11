@@ -59,7 +59,7 @@ const CategoryPage = () => {
     formdata.append("token", localStorage.getItem("token"));
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPageNew', formdata).then((response) => {
       // console.log(response?.data)
-      setCategoryApiData(response?.data)
+      setCategoryApiData(response)
       setWishlistToggle(response?.data?.wishlist_array)
       localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
     })

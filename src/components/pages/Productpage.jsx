@@ -14,17 +14,33 @@ import { useRecoilState } from "recoil";
 import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
 import axios from "axios";
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
+import { cartDataAtom } from "../../recoil/atoms/cart/cartDataAtom";
+import arrowCart from '../../assets/icons/arrow_cart.svg'
 
 const Productpage = () => {
 
   const params = useParams();
 
+  const [addToCartToast, setAddToCartToast] = useState(false);
+
   const [productApiData, setProductApiData] = useRecoilState(singleProductApiAtom);
 
   const [categoryApi, setCategoryApi] = useRecoilState(categoriesApiAtom);
 
+  const [cartDataList, setCartDataList] = useRecoilState(cartDataAtom);
+
   const [selectedQuality, setSelectedQuality] = useState(0);
   const [selectedSize, setSelectedSize] = useState(0);
+
+
+  const handleAddToCartToast = () => {
+    setAddToCartToast(true);
+    setTimeout(() => {
+      setAddToCartToast(false);
+    }, 2000);
+  }
+
+
 
   useEffect(() => {
     let formdata = new FormData();
@@ -35,13 +51,13 @@ const Productpage = () => {
   }, [params])
 
   useEffect(() => {
-    console.log(productApiData);
-  }, [productApiData])
+    console.log(cartDataList);
+  }, [cartDataList])
 
 
   return (
-    <>
-      <div className="md:flex gap-5 w-[95%] mx-auto ">
+    <div className="overflow-x-hidden">
+      <div className="md:flex gap-5 w-[95%] mx-auto relative">
         <div className=" md:w-[50%]">
           <div className="pl-3 flex gap-4 items-center md:tracking-[2px] text-[11px] md:text-[18px] my-5 md:my-10">
             {/* Home / Necklace / Type 1 Necklace Platinum */}
@@ -85,7 +101,7 @@ const Productpage = () => {
 
             <div>
               <div className="hidden md:block w-full">
-                <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image[0]} className=" min-w-[300px] w-[90%]" />
+                <img src={import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image} className=" min-w-[300px] w-[90%]" />
               </div>
             </div>
           </div>
@@ -97,10 +113,11 @@ const Productpage = () => {
             </h1>
             <h1 className="text-[15px] md:text-[18px] lora ">{productApiData?.name}</h1>
             <h1 className="text-[18px] sm:text-[26px] md:text-[25px] my-3 md:my-[20px] lg:my-[30px]">
-              {/* ₹ {productApiData?.selling_price[selectedQuality][selectedSize]} */}
+              ₹ {productApiData?.selling_price[selectedSize]}
               <span className="line-through text-[20px] text-[#696969] mx-2">₹
-               {/* {productApiData?.actual_price[selectedQuality][selectedSize]} */}
-               </span>
+                {productApiData?.actual_price[selectedSize]}
+                {/* {productApiData?.actual_price} */}
+              </span>
               <span className="text-[18px]">{productApiData?.discount}% Off</span>
             </h1>
             <div className="w-full mx-auto md:my-8">
@@ -151,14 +168,43 @@ const Productpage = () => {
             </div>
             <div className="w-full md:w-[80%] flex gap-2 justify-between sticky botton-0 right-0 text-black py-4 ">
               <button onClick={() => {
-                let formdata = new FormData();
+                const formdata = new FormData();
                 formdata.append("token", localStorage.getItem("token"));
+                formdata.append("no_login_token", localStorage.getItem("no_login_token"));
                 formdata.append("product_id", productApiData?.product_id);
                 formdata.append("size", productApiData?.size[selectedSize]);
+                formdata.append("weight", productApiData?.weight[selectedSize]);
                 formdata.append("diamond_quality", productApiData?.diamond_quality[selectedQuality]);
-                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => console.log(response?.data))
+                formdata.append("diamond_size", productApiData?.diamond_size[selectedQuality]);
+                axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'addToCart', formdata).then((response) => {
+                  // setCartDataList([
+                  //   ...cartDataList,
+                  //   {
+                  //     id: productApiData?.product_id,
+                  //     size: productApiData?.size[selectedSize],
+                  //     weight: productApiData?.weight[selectedSize],
+                  //     diamond_quality: productApiData?.diamond_quality[selectedQuality],
+                  //     diamond_size: productApiData?.diamond_size[selectedQuality],
+                  //   }
+                  // ])
+                  // alert(response?.data?.message)
+                  handleAddToCartToast();
+                  console.log(response?.data)
+                  localStorage.setItem("no_login_token", response?.data?.no_login_token)
+                })
               }} className="bg-black text-white min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">ADD TO CART</button>
-              <button className="bg-[#3EDCFF] min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">BUY NOW</button>
+              <button onClick={() => setCartDataList([])} className="bg-[#3EDCFF] min-w-[150px] lg:min-w-[250px] py-4 poppins text-[15px] md:text-[18px] lg:text-[22px] px-2 tracking-[2px] md:tracking-[3px]">BUY NOW</button>
+            </div>
+          </div>
+        </div>
+        <div className={`w-full max-w-[400px] border bg-gray-100 shadow-lg absolute top-8 right-0 pt-6 py-4 px-4 transition-all duration-300 ease-in-out ${addToCartToast ? 'translate-x-0' : 'translate-x-[440px]'}`}>
+          <h1 className="font-[600]">Item added to Cart</h1>
+          <div className="border-t pt-2 flex items-center gap-2 mt-1">
+            <div>
+              <p>Go to cart!</p>
+              <span>
+                <img src={arrowCart} className="w-full max-w-[25px]" alt="" />
+              </span>
             </div>
           </div>
         </div>
@@ -202,7 +248,8 @@ const Productpage = () => {
           }
         </div>
       </div>
-    </>
+
+    </div>
   );
 };
 

@@ -11,6 +11,7 @@ import img from '../../assets/icons/no-data-found.svg'
 import { NavLink, useParams } from 'react-router-dom'
 import axios from 'axios'
 import down from '../../assets/icons/down-arrow-admin.svg'
+import noImage from '../../assets/images/about-us.png'
 
 
 const AdmitEditSingleProduct = () => {
@@ -37,6 +38,72 @@ const AdmitEditSingleProduct = () => {
 
     const [image, setImage] = useState()
 
+
+    const [testRes, setTestRes] = useState({
+        product_id: 861,
+        name: "SA-BAND-005",
+        gender: "Male",
+        category: "rings",
+        discount: "",
+        image_1: "media/products/SA-BAND-005.jpg",
+        image_2: false,
+        image_3: false,
+        image_4: false,
+        diamond_quality: "P",
+        diamond_quality_all: [
+            "GH-VS/SI",
+            "EF-VVS",
+            "GH-VS/SI & EF-VVS",
+            "P"
+        ],
+        diamond_size: [
+            "0.1"
+        ],
+        diamond_size_all: [
+            "0.01",
+            "0.02",
+            "0.03",
+            "0.04",
+            "0.05",
+            "0.06",
+            "0.07",
+            "0.08",
+            "0.09",
+            "0.10",
+            "0.20"
+        ],
+        size_weight: [
+            {
+                size: "17",
+                weight: "7.78",
+                actual_price: "46368",
+                sellingprice: "41731",
+                id: 0
+            },
+            {
+                size: "18",
+                weight: "5.84",
+                actual_price: "34806",
+                sellingprice: "31325",
+                id: 1
+            },
+            {
+                size: "20",
+                weight: "6.63",
+                actual_price: "39514",
+                sellingprice: "35563",
+                id: 2
+            },
+            {
+                size: "21",
+                weight: "6.63",
+                actual_price: "39514",
+                sellingprice: "35563",
+                id: 3
+            }
+        ]
+    });
+
     useEffect(() => {
         setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
             if (searchData === '') {
@@ -48,23 +115,23 @@ const AdmitEditSingleProduct = () => {
     }, [searchData])
 
     useEffect(() => {
-      console.log(selectedDiamondQualityIndex)
+        console.log(selectedDiamondQualityIndex)
     }, [selectedDiamondQualityIndex])
-    
+
 
     useEffect(() => {
         setGender(defaultData?.gender)
-        console.log(defaultData)
-    }, [defaultData])
+        console.log(testRes)
+    }, [testRes])
 
 
     useEffect(() => {
         // let formdata = new FormData();
         // formdata.append("id", params?.product_id);
-        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=  ' + params?.product_id).then((response) => {
+        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=' + params?.product_id).then((response) => {
             // console.log(response?.data)
             setDefaultData(response?.data)
-            setSelectedDiamondQuality(response?.data?.variants[0]?.diamond_quality)
+            setSelectedDiamondQuality(response?.data?.diamond_quality)
         })
     }, [])
 
@@ -109,24 +176,94 @@ const AdmitEditSingleProduct = () => {
     //         {}
     //     ],
     // }
-
+    // const payload = {
+    //     name: '',
+    //     gender: '',
+    //     category: '',
+    //     diamond_quality: '',
+    //     dimond_size: '',
+    //     image_1: '',
+    //     image_2: '',
+    //     image_3: '',
+    //     image_4: '',
+    //     size: '',
+    //     weight: '',
+    //     size_weight: ''
+    // }
     const submitForm = (e) => {
         e.preventDefault()
-        // let formdata = new FormData();
-        // formdata.append("id", params?.product_id);
-        axios.get(import.meta.env.VITE_APP_BASE_API_LINK + 'adminSingleProduct?product_id=  ' + params?.product_id).then((response) => {
+        let formdata = new FormData();
+        formdata.append("product_id", params?.product_id);
+        formdata.append("name", defaultData?.name);
+        formdata.append("gender", defaultData?.gender);
+        formdata.append("image_1", defaultData?.image_1);
+        formdata.append("image_2", defaultData?.image_2);
+        formdata.append("image_3", defaultData?.image_3);
+        formdata.append("image_4", defaultData?.image_4);
+        formdata.append("category", defaultData?.category);
+        formdata.append("diamond_quality", defaultData?.diamond_quality);
+        formdata.append("diamond_size", defaultData?.diamond_size);
+        formdata.append("size_weight", [{
+            "size": "8",
+            "weight": "13.92",
+            "actual_price": "82962",
+            "sellingprice": "74666",
+            "id": 2
+        }]);
+        axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminEditSingleProduct', formdata).then((response) => {
             // console.log(response?.data)
             setDefaultData(response?.data)
         })
     }
-    
+
+    const handleVariantChange = (index, field, value) => {
+        setTestRes({
+            ...testRes,
+            size_weight: testRes?.size_weight?.map((variant_data, variant_index) => {
+                if (variant_index === index) {
+                    return {
+                        ...variant_data,
+                        [field]: value,
+                    };
+                } else {
+                    return variant_data;
+                }
+            }),
+        });
+    };
+
+    const addNewVariant = () => {
+
+        const newIndex = testRes?.size_weight?.length > 0
+            ? testRes.size_weight.length
+            : 0;
+
+        // Create a new blank variant object with empty values
+        const newVariant = {
+            size: '',
+            weight: '',
+            actual_price: '',
+            selling_price: '', // Adjust the field name as needed
+            id: testRes?.size_weight?.length || 0, // Assign a unique ID, adjust as needed
+        };
+
+        // Update the state to add the new variant
+        setTestRes((prevState) => ({
+            ...prevState,
+            size_weight: [...(prevState?.size_weight || []), newVariant],
+        }));
+
+        // Set the active index to the new variant's index
+        setActiveIndex(newIndex);
+    };
+
 
     return (
         <div className='w-full bg-[#F5F5F5] flex justify-center items-center relative'>
             <div className='w-full pt-16'>
 
                 {/* mani flex - 1 */}
-                <div className='w-[80%] mx-auto'>
+                <div className='px-10'>
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
@@ -139,14 +276,11 @@ const AdmitEditSingleProduct = () => {
                             <div className='w-full'>
                                 {/* <h1 className='roboto text-[50px] font-[900]'>Orders</h1> */}
                             </div>
-                            {/* <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Orders</button>
-                            </div> */}
                         </div>
                     </div>
 
                     {/* sub-flex - 2 */}
-                    <div className='w-full flex gap-3'>
+                    <div className='w-full flex gap-10 px-10'>
 
                         {/* content-flex - 1 */}
                         <div className='w-[18%] px-3'>
@@ -175,10 +309,10 @@ const AdmitEditSingleProduct = () => {
                         </div>
 
                         {/* content-flex - 1 */}
-                        <div className='w-[82%] px-3'>
+                        <div className='w-full px-3'>
                             <div className='w-full min-h-[70vh] pt-[20px]'>
-                                <form onSubmit={submitForm} className='w-fit min-w-[1000px] roboto'>
-                                    <div className='w-full flex'>
+                                <form onSubmit={submitForm} className='w-full roboto'>
+                                    <div className='w-full flex gap-5'>
                                         <div className='w-full pt-10'>
 
                                             <div className='flex gap-5 my-2 max-w-[500px]'>
@@ -199,11 +333,6 @@ const AdmitEditSingleProduct = () => {
                                                 </div>
                                             </div>
                                             {
-                                                // defaultData?.variants?.map((data, i) => {
-                                                //     <div key={i}>
-                                                //         {data?.diamond_quality}
-                                                //     </div>
-                                                // })
                                                 <div className='w-full flex flex-col my-2 max-w-[500px]'>
                                                     <input type="text" name="product name" value={defaultData?.name} onChange={(e) => {
                                                         setDefaultData({
@@ -229,13 +358,13 @@ const AdmitEditSingleProduct = () => {
                                                 </div>
                                                 <div className={`fixed max-w-[500px] z-[110] mt-10 rounded-[10px] shadow-md bg-white w-full overflow-hidden transition-all duration-300 ${dropdown ? 'max-h-[180px] ease-in  px-4 py-2' : 'max-h-0 ease-out p-0'}`}>
                                                     {
-                                                        defaultData?.variants?.map((data, i) => {
+                                                        defaultData?.diamond_quality_all?.map((data, i) => {
                                                             return (
                                                                 <li key={i} className='text-[16px] list-none roboto w-full hover:bg-[#dddddd] my-1 px-2 py-1 cursor-pointer rounded-md' onClick={() => {
-                                                                    setSelectedDiamondQuality(data?.diamond_quality)
+                                                                    setSelectedDiamondQuality(data)
                                                                     setSelectedDiamondQualityIndex(i)
                                                                     setDropdown(false)
-                                                                }}>{data?.diamond_quality}</li>
+                                                                }}>{data}</li>
                                                             )
                                                         })
                                                     }
@@ -249,12 +378,12 @@ const AdmitEditSingleProduct = () => {
                                                     setDefaultData({
                                                         ...defaultData,
                                                         variants: defaultData?.variants?.map((v_data, v_index) => {
-                                                            if(v_data?.diamond_quality === selectedDiamondQuality) {
+                                                            if (v_data?.diamond_quality === selectedDiamondQuality) {
                                                                 return {
                                                                     ...v_data,
                                                                     diamond_quality: e.target.value,
                                                                 }
-                                                            }else {
+                                                            } else {
                                                                 return v_data
                                                             }
                                                         })
@@ -262,11 +391,11 @@ const AdmitEditSingleProduct = () => {
                                                     })
                                                 }} name="product name" className='outline-none py-[6px] px-3 my-1 rounded-[8px] shadow-md text-[13px]' placeholder='Category Name' />
                                             </div>
-                                            <div className='w-full flex justify-end max-w-[500px]'>
+                                            {/* <div className='w-full flex justify-end max-w-[500px]'>
                                                 <button className=' py-[4px] px-6 rounded-[10px] text-[14px] active:bg-[#d6d6d6] active:scale-[0.91]'>Add more</button>
-                                            </div>
+                                            </div> */}
                                         </div>
-                                        <div className='w-full flex flex-col gap-2 justify-end pr-[120px]'>
+                                        <div className='w-full flex flex-col gap-2 justify-end'>
                                             <div className='w-full flex justify-end gap-4'>
                                                 <input type="file" name="files" id="files" className="inputfile" onChange={(e) => {
                                                     console.log(e.target.files[0])
@@ -275,107 +404,75 @@ const AdmitEditSingleProduct = () => {
                                                 <label htmlFor="files">Add Image</label>
                                                 <button className='bg-[#3EDCFF] text-white active:bg-[#d6d6d6] active:scale-[0.91] active:text-[#696363] px-6 py-[5px] shadow-md rounded-[10px]'>Submit</button>
                                             </div>
-                                            <div className='w-full pt-14 flex justify-end gap-2'>
-                                                <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="max-w-[300px]" />
-                                                <div className='w-[20%] flex flex-col justify-evenly gap-2'>
-                                                    <div className='w-full'>
-                                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="w-full" />
+                                            <div className='w-full pt-10 flex justify-end gap-2'>
+                                                <div className="w-full max-w-[500px] relative">
+                                                    <img onClick={() => setTestRes({
+                                                        ...testRes,
+                                                        image_1: image,
+                                                    })} src={defaultData?.image_1 ? import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_1 : noImage} className="w-full" />
+                                                    <input type="file" className='absolute h-full w-full border top-0 opacity-0' />
+                                                </div>
+                                                <div className='w-[25%] flex flex-col justify-between gap-2'>
+                                                    <div className='w-full relative'>
+                                                        <img onClick={() => setTestRes({
+                                                            ...testRes,
+                                                            image_2: image,
+                                                        })} src={defaultData?.image_2 ? import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_2 : noImage} className="w-full" />
+                                                        <input type="file" className="absolute h-full w-full top-0 opacity-0" id="" />
                                                     </div>
-                                                    <div className='w-full'>
-                                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="w-full" />
+                                                    <div className='w-full relative'>
+                                                        <img onClick={() => setTestRes({
+                                                            ...testRes,
+                                                            image_3: image,
+                                                        })} src={defaultData?.image_3 ? import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_3 : noImage} className="w-full" />
+                                                        <input type="file" className="absolute h-full w-full top-0 opacity-0" id="" />
                                                     </div>
-                                                    <div className='w-full'>
-                                                        <img src={import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image[0]} className="w-full" />
+                                                    <div className='w-full relative'>
+                                                        <img onClick={() => setTestRes({
+                                                            ...testRes,
+                                                            image_4: image,
+                                                        })} src={defaultData?.image_4 ? import.meta.env.VITE_APP_BASE_API_LINK + defaultData?.image_4 : noImage} className="w-full" />
+                                                        <input type="file" className="absolute h-full w-full top-0 opacity-0" id="" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <h1 className='my-1 mt-4 font-[500] pt-6'>Variants</h1>
+                                    <h1 className=' font-[500] pt-6'>Variants</h1>
                                     <div className='w-full '>
-                                        <div className='grid grid-cols-4 py-4 px-3'>
-                                            <div className='text-[14px]'>Size</div>
-                                            <div className='text-[14px]'>Weight</div>
-                                            <div className='text-[14px]'>Actual Price</div>
-                                            <div className='text-[14px]'>Selling Price</div>
+                                        <div className='grid grid-cols-4 py-4'>
+                                            <div className='text-[14px] pl-2'>Size</div>
+                                            <div className='text-[14px] pl-2'>Weight</div>
+                                            <div className='text-[14px] pl-2'>Actual Price</div>
+                                            <div className='text-[14px] pl-2'>Selling Price</div>
                                         </div>
-                                        <div className=' max-h-[230px] overflow-y-scroll'>
-                                            {
-                                                defaultData?.variants?.filter((filter_data, filter_index) => {
-                                                    if (selectedDiamondQuality === null) {
-                                                        return filter_data
-                                                    } else if (filter_data?.diamond_quality === selectedDiamondQuality) {
-                                                        return filter_data
-                                                    }
-                                                })?.map((data, i) => {
-                                                    return (
-                                                        <div key={i} className='px-2 mb-6 w-full grid grid-cols-4 py-1 gap-2'>
-
-                                                            {
-                                                                data?.sub_variants_data?.map((sub_variants_data, sub_variants_index) => {
-                                                                    return (
-                                                                        <div className='' key={sub_variants_index}>
-                                                                            <div className='w-full'>
-                                                                                <input type="text" className='py-1 pl-3 rounded-[10px] shadow-md outline-none' onChange={(e) => {
-                                                                                    setDefaultData({
-                                                                                        ...defaultData,
-                                                                                        variants: defaultData?.variants?.map((variant_data, variant_index) => {
-                                                                                            return {
-                                                                                                ...variant_data,
-                                                                                                sub_variants_data: variant_data?.sub_variants_data?.map((sub_variant_data_2, sub_variant_index_2) => {
-                                                                                                    if (sub_variant_index_2 === activeIndex) {
-                                                                                                        return {
-                                                                                                            ...sub_variant_data_2,
-                                                                                                            value: e.target.value
-                                                                                                        }
-                                                                                                    }
-                                                                                                    return sub_variant_data_2
-                                                                                                })
-                                                                                            }
-                                                                                        }),
-                                                                                    })
-                                                                                }} onClick={() => setActiveIndex(sub_variants_index)} name="" id={sub_variants_data?.id} value={sub_variants_data?.value} placeholder={sub_variants_data?.title} />
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
+                                        <div className=''>
+                                            <div className='w-full'>
+                                                {
+                                                    testRes?.size_weight?.map((data, i) => (
+                                                        <div key={data?.id} className='w-full grid grid-cols-4 gap-4 mb-2'>
+                                                            <input type="text" onChange={(e) => handleVariantChange(i, 'size', e?.target?.value)} onClick={() => setActiveIndex(i)} value={data?.size} className='ouline-none bg-[#fff] w-full py-1 px-2 rounded-[8px]' />
+                                                            <input type="text" onChange={(e) => handleVariantChange(i, 'weight', e?.target?.value)} onClick={() => setActiveIndex(i)} value={data?.weight} className='ouline-none bg-[#fff] w-full py-1 px-2 rounded-[8px]' />
+                                                            <input type="text" onChange={(e) => handleVariantChange(i, 'actual_price', e?.target?.value)} onClick={() => setActiveIndex(i)} value={data?.actual_price} className='ouline-none bg-[#fff] w-full py-1 px-2 rounded-[8px]' />
+                                                            <input type="text" onChange={(e) => handleVariantChange(i, 'selling_price', e?.target?.value)} onClick={() => setActiveIndex(i)} value={data?.sellingprice} className='ouline-none bg-[#fff] w-full py-1 px-2 rounded-[8px]' />
                                                         </div>
-                                                    )
-                                                })
-                                            }
+                                                    ))
+                                                }
+                                            </div>
+
+                                        </div>
+                                        <div className='w-full flex justify-end px-5'>
+                                            <button onClick={addNewVariant} className='bg-[#cfcfcf] active:bg-[#d6d6d6] active:scale-[0.91] active:text-[#696363] px-6 py-[5px] shadow-md rounded-[10px] text-gray-700'>Add New Variant</button>
                                         </div>
                                     </div>
-                                    <div className='w-full flex justify-end pr-16'>
-                                        <button className=' py-[4px] px-6 rounded-[10px] text-[14px] active:bg-[#d6d6d6] active:scale-[0.91]'>Add more</button>
-                                    </div>
-                                    {/* <div className='w-full my-2'>
-                                        <input type="file" name="files" id="files" className="inputfile" />
-                                        <label htmlFor="files">Add Image</label>
-                                    </div> */}
+
 
                                 </form>
                             </div>
                         </div>
 
                     </div>
-                </div>
-
-                {/* mani flex - 2 */}
-                <div className='w-full flex justify-center items-center pt-10 relative'>
-                    {/* <div className='flex items-center gap-3'>
-                        <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
-                        {
-                            admiProductsApi?.page_number_data?.map((num_data, num_index) => (
-                                <p key={num_index} className='mx-1 text-[#718096] text-[12px]'>{num_data}</p>
-                            ))
-                        }
-                        <span className='ml-3' ><img src={right_arrow} className="w-[11px]" /></span>
-                    </div>
-                    <div className='absolute right-[13%]'>
-                        <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
-                    </div> */}
                 </div>
             </div>
         </div>
@@ -388,37 +485,3 @@ export default AdmitEditSingleProduct
 
 
 
-
-{/* <div className='w-full grid grid-cols-4 px-3 py-1' key={size_index}>
-<div className='text-[15px]'>
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={size_data} onClick={() => {
-        setActiveIndex(size_index)
-        setActiveKey('size')
-    }} 
-    onChange={(e) => {
-        setDefaultData({
-            ...defaultData,
-            variants: defaultData?.variants?.map((data, index) => {
-              
-                data?.size?.map((size_specific_data, size_specific_index) => {
-                    if (size_specific_index === activeIndex) {
-                        return 'got chya'
-                    }else {
-                        return 'size_specific_data'
-                    }
-                })
-            })
-        })
-    }}
-    />
-</div>
-<div className='text-[15px]'>
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={data?.weight[size_index] + ' gms'} onClick={() => setActiveIndex(size_index)} />
-</div>
-<div className='text-[15px]'>\
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={'₹ ' + data?.actual_price[size_index]} onClick={() => setActiveIndex(size_index)} />
-</div>
-<div className='text-[15px]'>
-    <input type="text" className='outline-none p-1 pl-3 shadow-md rounded-[10px] ' defaultValue={'₹ ' + data?.selling_price[size_index]} onClick={() => setActiveIndex(size_index)} />
-</div>
-</div> */}

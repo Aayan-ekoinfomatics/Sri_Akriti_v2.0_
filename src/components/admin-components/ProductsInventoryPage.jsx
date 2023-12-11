@@ -42,7 +42,7 @@ const ProductsInventoryPage = () => {
         // let formdata = new FormData();
         // formdata.append("token", localStorage.getItem("token"));
         axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'adminViewAllProducts').then((response) => {
-            // console.log(response?.data)
+            console.log(response?.data)
             setAllProducts(response?.data?.data)
         })
     }, [])
@@ -175,6 +175,7 @@ const ProductsInventoryPage = () => {
                                                                             let formdata = new FormData();
                                                                             formdata.append("id", data?.id);
                                                                             formdata.append("token", localStorage.getItem("token"));
+                                                                            formdata.append("no_login_token", localStorage.getItem("no_login_token"));
                                                                             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'profileView', formdata).then((response) => {
                                                                                 // console.log(response?.data)
                                                                                 setAllProducts(response?.data?.data)

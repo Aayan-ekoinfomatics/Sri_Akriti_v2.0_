@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import card_data from "../../mockapi/cartPageApi";
 import heart_outline from '../../assets/icons/heart-outline.svg'
 import left_img from '../../assets/icons/black-arrow-left.svg';
+import deleteIcon from '../../assets/icons/delete.svg'
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
@@ -14,6 +15,7 @@ const Cart = () => {
   useEffect(() => {
     let formdata = new FormData();
     formdata.append("token", localStorage.getItem("token"));
+    formdata.append("no_login_token", localStorage.getItem("no_login_token"));
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => setCartData(response?.data))
   }, [])
 
@@ -39,13 +41,31 @@ const Cart = () => {
                 cartData?.products?.map((data, i) => (
                   <div className="flex justify-center items-center gap-2 md:gap-12 py-2 md:px-3 md:pr-10 " key={i}>
                     <div className=" flex justify-center items-center">
-                      <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[95px]" />
+                      <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-[100px]" />
                     </div>
                     <div className="w-full max-w-[300px] md:max-w-none flex flex-col items-start">
-                      <div className="pt-2">
-                        <h1 className="lora font-[600] text-[15px] ">{data?.title}</h1>
-                        <h1 className="lora font-[600] text-[15px] ">ID : {data?.id}</h1>
-                        <h1 className="lora font-[600] text-[15px] ">₹ {data?.price}</h1>
+                      <div className="w-full flex justify-between items-center">
+                        <div className="pt-2">
+                          <h1 className="lora font-[600] text-[15px] ">{data?.title}</h1>
+                          <h1 className="lora font-[600] text-[15px] ">ID : {data?.id}</h1>
+                          <h1 className="lora font-[600] text-[15px] ">₹ {data?.price}</h1>
+                        </div>
+                        <div>
+                          <span onClick={() => {
+                            let formdata = new FormData();
+                            formdata.append("token", localStorage.getItem("token"));
+                            formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+                            formdata.append("cart_product_id", data?.cart_product_id);
+                            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartProductDelete', formdata).then((response) => {
+                              let formdata = new FormData();
+                              formdata.append("token", localStorage.getItem("token"));
+                              formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+                              axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => setCartData(response?.data))
+                            })
+                          }}>
+                            <img src={deleteIcon} className="w-full max-w-[20px]" alt="" />
+                          </span>
+                        </div>
                       </div>
                       <div className="flex items-center w-full justify-end">
                         <button className="text-[19px] bg-[#ffffff] font-[500] px-2 flex justify-center items-center" onClick={() => {
@@ -53,15 +73,25 @@ const Cart = () => {
                           formdata.append("token", localStorage.getItem("token"));
                           formdata.append("cart_product_id", data?.cart_product_id);
                           formdata.append("update_type", '-')
-                          axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartQuantityUpdate', formdata).then((response) => setCartData(response?.data))
+                          axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartQuantityUpdate', formdata).then((response) => {
+                            let formdata = new FormData();
+                            formdata.append("token", localStorage.getItem("token"));
+                            formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+                            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => setCartData(response?.data))
+                          })
                         }} >-</button>
-                        <p className="text-[17px] bg-[#3EDCFF] font-[500] px-2 flex pt-1 justify-center items-center" >{data?.quantity}</p>
+                        <p className="text-[17px] bg-[#3EDCFF] font-[500] px-2 flex pt-1 justify-center items-center" >{data?.qty}</p>
                         <button className="text-[19px] bg-[#ffffff] font-[500] px-2 flex justify-center items-center" onClick={() => {
                           let formdata = new FormData();
                           formdata.append("token", localStorage.getItem("token"));
                           formdata.append("cart_product_id", data?.cart_product_id);
                           formdata.append("update_type", '+')
-                          axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartQuantityUpdate', formdata).then((response) => setCartData(response?.data))
+                          axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'cartQuantityUpdate', formdata).then((response) => {
+                            let formdata = new FormData();
+                            formdata.append("token", localStorage.getItem("token"));
+                            formdata.append("no_login_token", localStorage.getItem("no_login_token"));
+                            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'getUserCart', formdata).then((response) => setCartData(response?.data))
+                          })
                         }} >+</button>
                       </div>
                     </div>

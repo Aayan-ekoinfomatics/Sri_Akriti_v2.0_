@@ -1,8 +1,8 @@
   const nav_data = [
     {
-      "title": "EARING",
+      "title": "EAR RING",
       "id": 0,
-      "routes": "/single-category/earings",
+      "routes": "/single-category/earrings",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",

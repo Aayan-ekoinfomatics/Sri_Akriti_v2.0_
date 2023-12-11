@@ -2,15 +2,33 @@ import React, { useState } from 'react'
 import logo from '../../assets/icons/sri-aakriti-logo.svg'
 import order_logo from '../../assets/icons/admin-order-logo.svg'
 import products_logo from '../../assets/icons/admin-products-logo.svg'
-import admiProductsApi from '../../mockapi/admiProductsApi'
-import left_arrow from '../../assets/icons/admin-left-pointer.svg'
-import right_arrow from '../../assets/icons/admin-right-pointer.svg'
-import search from '../../assets/icons/admin-search-icon.svg'
+// import admiProductsApi from '../../mockapi/admiProductsApi'
+// import left_arrow from '../../assets/icons/admin-left-pointer.svg'
+// import right_arrow from '../../assets/icons/admin-right-pointer.svg'
+// import search from '../../assets/icons/admin-search-icon.svg'
 import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
 import { NavLink } from 'react-router-dom'
 
 
 const AddNewProductInventoryPage = () => {
+
+    const [addNewProductData, setAddNewProductData] = useState({
+        name: "",
+        gender: "",
+        category: "",
+        category_all: ["rings", "earings", "necklace", "bracelets"],
+        discount: "",
+        image_1: false,
+        image_2: false,
+        image_3: false,
+        image_4: false,
+        diamond_quality: "",
+        diamond_quality_all: ["GH-VS/SI", "EF-VVS", "GH-VS/SI & EF-VVS", "P"],
+        diamond_size: [],
+        diamond_size_all: '',
+        size_weight: [],
+    });
+
 
     const [searchData, setSearchData] = useState('');
     return (
@@ -21,7 +39,7 @@ const AddNewProductInventoryPage = () => {
                 <div className='w-[80%] mx-auto'>
 
                     {/* sub-flex - 1 */}
-                    <div className='w-full flex gap-3'>
+                    <div className='w-[80%] flex gap-3'>
                         <div className='w-[15%] pb-4'>
                             <div className='w-full flex flex-col justify-end items-center'>
                                 <img src={logo} className="w-[85px]" />
@@ -86,7 +104,10 @@ const AddNewProductInventoryPage = () => {
                                 <div className='flex-1 pl-4'>
                                     <div className='w-full rounded-[14px] mt-3 mb-6'>
                                         <label className='text-[11px] text-[#7C7A7A]'>Products Name</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
+                                        <input value={addNewProductData?.name} onChange={(e) => setAddNewProductData({
+                                            ...addNewProductData,
+                                            name: e?.target?.value,
+                                        })} type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
                                     </div>
                                     <div className='w-full rounded-[14px] mt-3 mb-6'>
                                         <label className='text-[11px] text-[#7C7A7A]'>Products Code</label>
@@ -94,12 +115,18 @@ const AddNewProductInventoryPage = () => {
                                     </div>
                                     <div className='w-full rounded-[14px] mt-3 mb-6'>
                                         <label className='text-[11px] text-[#7C7A7A]'>Diamond Quality</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
+                                        <input value={addNewProductData?.diamond_quality} onChange={(e) => setAddNewProductData({
+                                            ...addNewProductData,
+                                            diamond_quality: e?.target?.value,
+                                        })} type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
                                     </div>
                                     <div className='w-full flex gap-4 rounded-[14px] mt-3 mb-6'>
                                         <div className='w-full'>
                                             <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
+                                            <input value={addNewProductData?.size_weight} onChange={(e) => setAddNewProductData({
+                                            ...addNewProductData,
+                                            size_weight: e?.target?.value,
+                                        })} type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
                                         </div>
                                         <div className='w-full'>
                                             <label className='text-[11px] text-[#7C7A7A]'>Products Weight</label>

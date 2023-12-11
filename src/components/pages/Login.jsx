@@ -18,6 +18,7 @@ const Login = () => {
     const userCredentials = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
+      no_login_token: null,
     };
 
     if (emailRef?.current?.value?.length === 0 || passwordRef?.current?.value?.length === 0) {
